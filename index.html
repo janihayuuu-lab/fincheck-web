@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinCheck - Sistem Evaluasi Kredit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <style>
+    * { font-family: Arial, Helvetica, sans-serif !important; }
+    body { background-color: #f4f7f6; color: #1e293b; }
+    .nav-item.active { background-color: #0f172a; color: #ffffff; border-left: 3px solid #10b981; }
+    .card-panel { background-color: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03); }
+    .filter-btn.active { background-color: #0f172a; color: #ffffff; border-color: #0f172a; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <div class="min-h-screen flex flex-col md:flex-row">
+    
+    <!-- Sidebar Navigasi -->
+    <aside class="w-full md:w-64 bg-slate-900 text-slate-300 flex-shrink-0 no-print flex flex-col">
+      <div class="p-6 border-b border-slate-800 flex items-center justify-between md:block">
+        <div>
+          <div class="text-white font-bold text-xl tracking-wide">FINCHECK</div>
+          <div class="text-[11px] text-slate-400 tracking-wider uppercase mt-1">Sistem Evaluasi Kredit</div>
+        </div>
+        <button type="button" onclick="toggleMobileMenu()" class="md:hidden px-3 py-1.5 border border-slate-700 rounded text-xs text-white cursor-pointer">
+          Menu
+        </button>
+      </div>
+      
+      <nav id="sidebarMenu" class="hidden md:block py-4 space-y-1 flex-1">
+        <button type="button" onclick="bukaHalaman('beranda')" data-page="beranda" class="nav-item active w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Beranda Utama</button>
+        <button type="button" onclick="bukaHalaman('analisis')" data-page="analisis" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Konsultasi & Pindai Brosur</button>
+        <button type="button" onclick="bukaHalaman('rekomendasi')" data-page="rekomendasi" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Direktori Produk Bank (64)</button>
+        <button type="button" onclick="bukaHalaman('anuitas')" data-page="anuitas" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Tabel & Grafik Anuitas</button>
+        <button type="button" onclick="bukaHalaman('riwayat')" data-page="riwayat" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition text-emerald-400 cursor-pointer">Riwayat Privat Saya</button>
+        
+        <div class="px-6 pt-4">
+          <button type="button" onclick="bukaKuesioner()" class="w-full py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg text-center transition cursor-pointer">
+            Isi Kuesioner Uji Coba
+          </button>
+        </div>
+      </nav>
+
+      <div class="hidden md:block p-6 border-t border-slate-800 text-[11px] text-slate-400 leading-relaxed space-y-2">
+        <div>Standar kelayakan bank mengacu pada rasio utang sehat maksimal 30% dari penghasilan bersih.</div>
+        <div class="text-slate-500">Prototipe Literasi Keuangan — Proyek Siswa SMA Kelas XI.</div>
+      </div>
+    </aside>
+
+    <!-- Konten Utama -->
+    <div class="flex-1 flex flex-col min-w-0">
+      
+      <!-- Top Bar -->
+      <header class="bg-white border-b border-slate-200 px-6 py-3 flex flex-col sm:flex-row sm:items-center justify-between no-print gap-2">
+        <div id="breadcrumbTitle" class="text-sm font-bold text-slate-800 uppercase tracking-wide">Beranda Utama</div>
+        <div class="flex items-center gap-4">
+          <button type="button" onclick="bukaKuesioner()" class="md:hidden px-3 py-1.5 bg-emerald-600 text-white text-[11px] font-bold rounded-lg cursor-pointer">
+            Kuesioner
+          </button>
+          <div class="text-[11px] text-slate-500 text-right">
+            <div>Kapasitas Angsuran Ideal (30%):</div>
+            <div id="globalBatas" class="font-bold text-emerald-600 text-sm">Rp 1.400.000 / bln</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="p-4 md:p-8 max-w-5xl w-full mx-auto space-y-6 flex-1">
+
+        <!-- HALAMAN 1: BERANDA -->
+        <section id="page-beranda" class="space-y-6">
+          <div class="rounded-xl bg-slate-900 text-white p-6 md:p-8 border border-slate-800">
+            <div class="text-xs font-bold tracking-widest uppercase text-emerald-400">Pendamping Keputusan Finansial</div>
+            <h1 class="text-2xl font-bold mt-2">Pahami kemampuan bayar sebelum mengambil cicilan.</h1>
+            <p class="text-sm text-slate-300 mt-2 max-w-2xl leading-relaxed">
+              Unggah foto brosur kredit, bandingkan 64 produk pembiayaan dari 52 bank resmi terdaftar OJK, atau simulasikan tabel anuitas secara presisi.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <button type="button" onclick="bukaHalaman('analisis')" class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-lg hover:bg-emerald-700 transition cursor-pointer">
+                Mulai Konsultasi & Pindai Brosur
+              </button>
+              <button type="button" onclick="bukaHalaman('rekomendasi')" class="px-5 py-2.5 bg-slate-800 text-white border border-slate-700 font-bold text-xs rounded-lg hover:bg-slate-700 transition cursor-pointer">
+                Jelajahi 64 Produk Bank OJK
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="card-panel rounded-xl p-6 space-y-5">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900 uppercase">Simulasi Pembiayaan Cepat</h3>
+                <p class="text-xs text-slate-500 mt-1">Termasuk fitur pengurangan Uang Muka (DP).</p>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Harga Barang / Total Kredit</span><span id="lblSliderBarang" class="text-slate-900">Rp 150.000.000</span></div>
+                  <input type="range" id="sliderBarang" min="2000000" max="500000000" step="1000000" value="150000000" oninput="hitungSlider()" class="w-full accent-slate-900">
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Uang Muka (DP) - Dibayar Awal</span><span id="lblSliderDP" class="text-slate-900">Rp 30.000.000</span></div>
+                  <input type="range" id="sliderDP" min="0" max="250000000" step="500000" value="30000000" oninput="hitungSlider()" class="w-full accent-slate-900">
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded text-xs flex justify-between font-bold text-slate-700">
+                  <span>Plafon Bersih Pinjaman:</span><span id="outPlafonBersih">Rp 120.000.000</span>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Bunga Efektif Tahunan</span><span id="lblSliderBunga" class="text-slate-900">8%</span></div>
+                  <input type="range" id="sliderBunga" min="3" max="24" step="0.25" value="8" oninput="hitungSlider()" class="w-full accent-slate-900">
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Tenor (Durasi)</span><span id="lblSliderTenor" class="text-slate-900">60 bln</span></div>
+                  <input type="range" id="sliderTenor" min="6" max="180" step="6" value="60" oninput="hitungSlider()" class="w-full accent-slate-900">
+                </div>
+              </div>
+
+              <div class="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-center">
+                <div class="text-xs text-emerald-800 font-bold uppercase tracking-wider">Estimasi Angsuran</div>
+                <div id="outSliderPMT" class="text-3xl font-bold text-emerald-700 mt-1">Rp 2.433.167</div>
+              </div>
+              <button type="button" onclick="kirimSliderKeTabel()" class="w-full py-3 bg-slate-900 text-white text-xs font-bold uppercase rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                Buat Grafik & Tabel Anuitas Lengkap
+              </button>
+            </div>
+
+            <div class="card-panel rounded-xl p-6 space-y-4">
+              <h3 class="text-sm font-bold text-slate-900 uppercase">Indikator Kapasitas Pembayaran</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Penilaian risiko kelayakan persetujuan kredit bank.</p>
+              
+              <div class="mt-4 space-y-3">
+                <div class="flex justify-between text-xs font-bold"><span class="text-slate-600">Gaji Bersih Aktif</span><span id="dashGaji">Rp 8.000.000</span></div>
+                <div class="flex justify-between text-xs font-bold"><span class="text-slate-600">Beban Kewajiban Lama</span><span id="dashCicilan">Rp 1.000.000</span></div>
+              </div>
+
+              <div class="mt-4 p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
+                <div class="text-xs font-bold text-slate-600">Rasio Beban Utang Berjalan</div>
+                <div id="outRasioPersen" class="text-2xl font-bold text-slate-900">12,5%</div>
+                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                  <div id="barRasio" class="bg-emerald-600 h-2" style="width: 12.5%"></div>
+                </div>
+                <p id="outRasioKet" class="text-[11px] text-slate-600 mt-2 font-medium">Batas aman mencukupi. Anda dapat mengajukan pembiayaan baru.</p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 pt-3">
+                <button type="button" onclick="bukaHalaman('analisis')" class="py-2.5 bg-white border border-slate-300 text-slate-800 text-xs font-bold rounded-lg hover:bg-slate-50 cursor-pointer">Konsultasi AI</button>
+                <button type="button" onclick="bukaHalaman('rekomendasi')" class="py-2.5 bg-slate-100 text-slate-900 text-xs font-bold rounded-lg hover:bg-slate-200 cursor-pointer">Direktori Bank (64)</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HALAMAN 2: KONSULTASI & PINDAI BROSUR -->
+        <section id="page-analisis" class="hidden space-y-6">
+          <div class="card-panel rounded-xl p-6 space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+              <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Konsultasi Keuangan & Pindai Brosur</h2>
+              <p class="text-xs text-slate-500 mt-1">Ceritakan kondisi Anda atau unggah foto brosur penawaran kredit untuk mendapatkan evaluasi spesifik dari AI.</p>
+            </div>
+
+            <div class="p-5 rounded-xl border border-slate-300 bg-slate-50 space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-900 mb-1.5">1. Ceritakan Kondisi Keuangan & Pertanyaan Anda</label>
+                <textarea id="catatan" rows="3" placeholder="Contoh: Jika saya seorang guru ASN bergaji 10 juta dan ingin merenovasi rumah yang butuh dana 300 juta, produk di brosur mana yang paling cocok untuk saya dan sertakan alasannya?" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900"></textarea>
+              </div>
+
+              <div class="pt-2 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs font-bold text-slate-900">2. Lampirkan Foto Brosur Kredit (Opsional)</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">AI membaca angka di tabel brosur dengan resolusi tajam.</div>
+                </div>
+                <div class="shrink-0">
+                  <input type="file" id="fotoBrosur" accept="image/*" onchange="kompresGambarDanPreview(this)" class="hidden">
+                  <label for="fotoBrosur" class="inline-block cursor-pointer px-4 py-2.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
+                    Pilih File / Jepret Brosur
+                  </label>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-900 leading-relaxed">
+                <strong>Perlindungan Privasi:</strong> Hanya unggah atau potret <strong>brosur penawaran kredit umum</strong>. Demi keamanan data pribadi Anda, <strong>dilarang mengunggah foto KTP, Kartu Keluarga, slip gaji asli, maupun buku tabungan</strong>.
+              </div>
+              
+              <div id="teksKompresi" class="text-[11px] text-emerald-700 font-bold hidden">Foto brosur siap dipindai AI.</div>
+              <img id="imgPreview" class="hidden mt-2 max-h-60 rounded-lg border border-slate-300 mx-auto" />
+            </div>
+
+            <div class="space-y-4 pt-2">
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Data Angka Tambahan (Opsional)</div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Penghasilan Tetap per Bulan (Rp)</label>
+                  <input type="number" id="gaji" placeholder="Contoh: 10000000" oninput="sinkronProfil()" class="w-full px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Cicilan Berjalan Saat Ini (Rp)</label>
+                  <input type="number" id="cicilanLama" placeholder="0" oninput="sinkronProfil()" class="w-full px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                  <div class="text-xs font-bold text-slate-900 border-b border-slate-200 pb-2 mb-3">Simulasi Manual Skema A (Opsional)</div>
+                  <div class="space-y-2">
+                    <input type="number" id="plafonA" placeholder="Pokok Pinjaman (Rp)" class="w-full px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                    <div class="flex gap-2">
+                      <input type="number" id="tenorA" placeholder="Tenor (Bln)" class="w-1/2 px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                      <input type="number" step="0.1" id="bungaA" placeholder="Bunga %/thn" class="w-1/2 px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                  <div class="text-xs font-bold text-slate-900 border-b border-slate-200 pb-2 mb-3">Simulasi Manual Skema B (Opsional)</div>
+                  <div class="space-y-2">
+                    <input type="number" id="plafonB" placeholder="Pokok Pinjaman (Rp)" class="w-full px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                    <div class="flex gap-2">
+                      <input type="number" id="tenorB" placeholder="Tenor (Bln)" class="w-1/2 px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                      <input type="number" step="0.1" id="bungaB" placeholder="Bunga %/thn" class="w-1/2 px-3 py-2 text-sm rounded bg-white border border-slate-300">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="btnSubmit" onclick="kirimData()" class="w-full py-3.5 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition cursor-pointer">
+              Dapatkan Penjelasan AI & Simpan ke Riwayat Saya
+            </button>
+          </div>
+
+          <!-- Hasil Analisis -->
+          <div id="hasilContainer" class="hidden card-panel rounded-xl p-6 space-y-5 border-l-4 border-emerald-600">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-slate-900 uppercase">Hasil Evaluasi & Kesimpulan</h3>
+                <span id="badgeSumberAI" class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">AI Ready</span>
+              </div>
+              <span id="statusSimpanDB" class="text-[11px] font-bold text-emerald-700">Menyimpan...</span>
+            </div>
+            <div id="boxAngkaHasil" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded bg-slate-50 border border-slate-200"><div class="text-xs text-slate-500">Angsuran Skema A</div><div id="outAngsuranA" class="font-bold text-base text-slate-900 mt-1">-</div><div id="outStatusA" class="text-[11px] font-bold mt-1">-</div></div>
+              <div class="p-4 rounded bg-slate-50 border border-slate-200"><div class="text-xs text-slate-500">Angsuran Skema B</div><div id="outAngsuranB" class="font-bold text-base text-slate-900 mt-1">-</div><div id="outStatusB" class="text-[11px] font-bold mt-1">-</div></div>
+            </div>
+            <div class="p-5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-slate-800 leading-relaxed" id="outSaranAI"></div>
+
+            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 no-print">
+              <div class="text-xs text-emerald-900">
+                <div class="font-bold">Sudah selesai mencoba fitur ini?</div>
+                <div class="mt-0.5">Bantu evaluasi proyek literasi keuangan kami dengan mengisi kuesioner singkat (1 menit).</div>
+              </div>
+              <button type="button" onclick="bukaKuesioner()" class="shrink-0 px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg transition cursor-pointer">
+                Isi Kuesioner Uji Coba
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- HALAMAN 3: DIREKTORI PRODUK BANK -->
+        <section id="page-rekomendasi" class="hidden space-y-6">
+          <div class="card-panel rounded-xl p-6 space-y-5">
+            <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 uppercase">Direktori 64 Produk & 52 Bank Resmi OJK</h2>
+                <p class="text-xs text-slate-500 mt-1">Bandingkan produk pembiayaan bank nasional, daerah (BPD), syariah, hingga bank digital resmi terdaftar OJK beserta situs resminya.</p>
+              </div>
+              <span id="jumlahTampilBank" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 self-start sm:self-auto">Menampilkan 64 produk</span>
+            </div>
+
+            <div class="space-y-3">
+              <input type="text" id="cariBankInput" oninput="renderDirektoriBank()" placeholder="Cari nama bank, provinsi BPD, atau jenis kredit (misal: BRI, KUR, KPR, Syariah, Jateng, BCA, Jago)..." class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-slate-50 border border-slate-300 focus:bg-white focus:outline-none focus:border-slate-900">
+              
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="setKategoriBank('Semua', this)" class="filter-btn active px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 transition cursor-pointer">Semua (64)</button>
+                <button type="button" onclick="setKategoriBank('Modal Usaha', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Modal Usaha / KUR</button>
+                <button type="button" onclick="setKategoriBank('Properti', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Properti / KPR</button>
+                <button type="button" onclick="setKategoriBank('Syariah', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Pembiayaan Syariah</button>
+                <button type="button" onclick="setKategoriBank('Bank Daerah (BPD)', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Bank Daerah (BPD)</button>
+                <button type="button" onclick="setKategoriBank('Kendaraan & Pegawai', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Kendaraan & Pegawai</button>
+                <button type="button" onclick="setKategoriBank('Bank Digital OJK', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Bank Digital OJK</button>
+              </div>
+            </div>
+
+            <div id="wadahDirektoriBank" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+          </div>
+        </section>
+
+        <!-- HALAMAN 4: TABEL & GRAFIK ANUITAS -->
+        <section id="page-anuitas" class="hidden space-y-6">
+          <div class="card-panel rounded-xl p-6 space-y-5">
+            <div class="border-b border-slate-200 pb-4">
+              <h2 class="text-lg font-bold text-slate-900 uppercase">Visualisasi & Rincian Amortisasi</h2>
+              <p class="text-xs text-slate-500 mt-1">Distribusi pembayaran pokok versus kewajiban bunga bulanan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 no-print">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">Pokok Pinjaman (Rp)</label>
+                <input type="number" id="tblPlafon" value="120000000" class="w-full px-3 py-2 text-sm rounded border border-slate-300">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">Bunga Efektif (%/Tahun)</label>
+                <input type="number" step="0.1" id="tblBunga" value="8" class="w-full px-3 py-2 text-sm rounded border border-slate-300">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">Tenor (Bulan)</label>
+                <input type="number" id="tblTenor" value="60" class="w-full px-3 py-2 text-sm rounded border border-slate-300">
+              </div>
+            </div>
+
+            <div class="flex gap-2 no-print">
+              <button type="button" onclick="generateTabelAnuitas()" class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded cursor-pointer">Buat Laporan</button>
+              <button type="button" onclick="window.print()" class="px-4 py-2 bg-slate-100 text-slate-800 text-xs font-bold rounded border border-slate-300 cursor-pointer">Cetak PDF</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+              <div class="p-5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
+                <div class="text-xs text-slate-500">Angsuran Bulanan Tetap</div>
+                <div id="tblOutPMT" class="text-3xl font-bold text-slate-900 border-b border-slate-200 pb-3">Rp 0</div>
+                <div class="text-xs font-bold text-slate-700 flex justify-between pt-2"><span>Total Pokok Terbayar:</span><span id="tblOutPokok">Rp 0</span></div>
+                <div class="text-xs font-bold text-slate-700 flex justify-between"><span>Total Bunga Bank:</span><span id="tblOutBunga" class="text-rose-600">Rp 0</span></div>
+              </div>
+              
+              <div class="h-48 relative">
+                <canvas id="chartAnuitas"></canvas>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto border border-slate-200 rounded-lg">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-100 border-b border-slate-200 font-bold text-slate-800">
+                    <th class="py-2 px-3">Ke-</th><th class="py-2 px-3">Angsuran</th><th class="py-2 px-3">Porsi Pokok</th><th class="py-2 px-3">Porsi Bunga</th><th class="py-2 px-3">Sisa Pinjaman</th>
+                  </tr>
+                </thead>
+                <tbody id="tbodyAnuitas" class="divide-y divide-slate-200"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- HALAMAN 5: RIWAYAT PRIVAT PENGGUNA -->
+        <section id="page-riwayat" class="hidden space-y-6">
+          <div class="card-panel rounded-xl p-6 space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-4 gap-3">
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 uppercase">Riwayat Konsultasi Privat Saya</h2>
+                <p class="text-xs text-slate-500 mt-1">Hanya menampilkan data milik sesi perangkat Anda (<span id="labelUserIdAktif" class="font-bold text-slate-800">-</span>), terpisah dari pengguna lain.</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" id="btnTarikRiwayat" onclick="tarikRiwayatDatabase()" class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                  Muat Riwayat Saya
+                </button>
+                <button type="button" id="btnHapusRiwayat" onclick="kosongkanRiwayatSaya()" class="px-3.5 py-2 bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold rounded-lg hover:bg-rose-100 transition cursor-pointer">
+                  Kosongkan Riwayat Saya
+                </button>
+              </div>
+            </div>
+            <div id="wadahRiwayat" class="space-y-4">
+              <div class="text-center py-10 text-xs text-slate-500 font-bold uppercase">Klik tombol Muat Riwayat Saya untuk menyinkronkan data sesi Anda.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer Disclaimer Edukasi -->
+        <footer class="pt-4 pb-6 border-t border-slate-200 text-[11px] text-slate-500 leading-relaxed flex flex-col sm:flex-row sm:items-center justify-between gap-2 no-print">
+          <div>
+            <strong>Disclaimer:</strong> FinCheck merupakan prototipe edukasi literasi keuangan karya siswa SMA Kelas XI. Seluruh perhitungan anuitas dan evaluasi AI bersifat simulasi pembelajaran, bukan keputusan persetujuan resmi bank.
+          </div>
+          <button type="button" onclick="bukaKuesioner()" class="shrink-0 font-bold text-emerald-700 underline hover:text-emerald-800 self-start sm:self-auto cursor-pointer">
+            Beri Penilaian Uji Coba
+          </button>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // 1. LINK GOOGLE APPS SCRIPT (/exec) SUDAH TERPASANG:
+    var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbx_zFJBWrFjWm_qtacWjig_OBF54fx3r70n6UYkYlkCMOokN8Z1DGvlPeXtMV5bRWfl/exec";
+
+    // 2. TEMPEL LINK GOOGLE FORM KUESIONER DI SINI (JIKA SUDAH SIAP):
+    var LINK_KUESIONER = "";
+
+    var base64Gambar = "";
+    var mimeTypeGambar = "";
+    var anuitasChart = null;
+    var timerInterval = null;
+    var kategoriBankAktif = "Semua";
+
+    window.bukaKuesioner = function() {
+      if (LINK_KUESIONER && LINK_KUESIONER.trim().indexOf("http") === 0) {
+        window.open(LINK_KUESIONER.trim(), "_blank", "noopener,noreferrer");
+      } else {
+        alert("Tautan Google Form kuesioner sedang disiapkan oleh tim pengembang.");
+      }
+    };
+
+    window.getUserIdPrivat = function() {
+      var uid = "";
+      try {
+        uid = localStorage.getItem('fincheck_private_uid');
+        if (!uid) {
+          uid = 'USR-' + Math.random().toString(36).substring(2, 7).toUpperCase() + '-' + Date.now().toString().slice(-4);
+          localStorage.setItem('fincheck_private_uid', uid);
+        }
+      } catch (e) {
+        uid = 'USR-TAMU';
+      }
+      return uid;
+    };
+
+    var direktoriBankData = [
+      // 1. BANK BUMN / HIMBARA
+      { bank: "Bank Rakyat Indonesia (BRI)", produk: "KUR Mikro & Kecil BRI", kategori: "Modal Usaha", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal kerja dan investasi UMKM bersubsidi pemerintah (BUMN - OJK).", url: "https://bri.co.id/kur" },
+      { bank: "Bank Rakyat Indonesia (BRI)", produk: "Briguna Karya (Kredit ASN/Pegawai)", kategori: "Kendaraan & Pegawai", bunga: 10.5, tenorDefault: 60, plafonDefault: 100000000, ket: "Kredit tanpa agunan khusus pegawai aktif/ASN dengan sumber pembayaran gaji.", url: "https://bri.co.id/briguna" },
+      { bank: "Bank Rakyat Indonesia (BRI)", produk: "KPR BRI (Pembelian & Renovasi)", kategori: "Properti", bunga: 7.25, tenorDefault: 120, plafonDefault: 300000000, ket: "Pembiayaan pembelian rumah baru, bekas, maupun renovasi properti.", url: "https://bri.co.id/kpr" },
+      { bank: "Bank Mandiri", produk: "KUR Mandiri", kategori: "Modal Usaha", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit usaha produktif bagi pelaku UMKM perorangan maupun kelompok usaha.", url: "https://www.bankmandiri.co.id/kredit-usaha-rakyat" },
+      { bank: "Bank Mandiri", produk: "KPR Mandiri Fix & Cap", kategori: "Properti", bunga: 8.25, tenorDefault: 120, plafonDefault: 250000000, ket: "Kredit pemilikan rumah tinggal baru, bekas, maupun renovasi properti.", url: "https://www.bankmandiri.co.id/kpr" },
+      { bank: "Bank Mandiri", produk: "Kredit Serbaguna Mandiri (KSM)", kategori: "Kendaraan & Pegawai", bunga: 10.25, tenorDefault: 60, plafonDefault: 100000000, ket: "Kredit multiguna tanpa agunan untuk pegawai berpenghasilan tetap.", url: "https://www.bankmandiri.co.id/kredit-serbaguna-mandiri" },
+      { bank: "Bank Negara Indonesia (BNI)", produk: "BNI Wirausaha / KUR", kategori: "Modal Usaha", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Fasilitas kredit modal kerja dan investasi skala mikro hingga kecil.", url: "https://www.bni.co.id/id-id/bisnis/kredit-usaha-rakyat" },
+      { bank: "Bank Negara Indonesia (BNI)", produk: "BNI Griya (KPR & Renovasi)", kategori: "Properti", bunga: 8.5, tenorDefault: 120, plafonDefault: 250000000, ket: "Pembiayaan pembelian rumah, apartemen, ruko, atau pembangunan/renovasi mandiri.", url: "https://www.bni.co.id/id-id/individu/pinjaman/bni-griya" },
+      { bank: "Bank Negara Indonesia (BNI)", produk: "BNI Fleksi Aktif", kategori: "Kendaraan & Pegawai", bunga: 10.75, tenorDefault: 60, plafonDefault: 100000000, ket: "Fasilitas kredit tanpa agunan bagi pegawai aktif yang menyalurkan gaji di BNI.", url: "https://www.bni.co.id/id-id/individu/pinjaman/bni-fleksi" },
+      { bank: "Bank Tabungan Negara (BTN)", produk: "KPR Subsidi FLPP BTN", kategori: "Properti", bunga: 5.0, tenorDefault: 180, plafonDefault: 150000000, ket: "KPR bersubsidi suku bunga tetap 5% hingga lunas untuk rumah pertama.", url: "https://www.btn.co.id" },
+      { bank: "Bank Tabungan Negara (BTN)", produk: "KPR BTN Platinum (Non-Subsidi)", kategori: "Properti", bunga: 6.99, tenorDefault: 120, plafonDefault: 300000000, ket: "KPR komersial untuk pembelian rumah dari developer maupun non-developer.", url: "https://www.btn.co.id" },
+      { bank: "Bank Tabungan Negara (BTN)", produk: "Kredit Ringan Batara (Kring BTN)", kategori: "Kendaraan & Pegawai", bunga: 10.5, tenorDefault: 60, plafonDefault: 100000000, ket: "Kredit tanpa agunan khusus karyawan dan ASN mitra BTN.", url: "https://www.btn.co.id" },
+
+      // 2. BANK SWASTA NASIONAL & INTERNASIONAL
+      { bank: "Bank Central Asia (BCA)", produk: "KPR BCA Fix & Cap", kategori: "Properti", bunga: 7.25, tenorDefault: 120, plafonDefault: 300000000, ket: "Kredit pemilikan rumah dengan kepastian suku bunga berjenjang.", url: "https://www.bca.co.id/id/Individu/produk/pinjaman/KPR" },
+      { bank: "Bank Central Asia (BCA)", produk: "KKB BCA (Kredit Kendaraan)", kategori: "Kendaraan & Pegawai", bunga: 6.75, tenorDefault: 48, plafonDefault: 150000000, ket: "Pembiayaan kepemilikan mobil baru maupun bekas dengan bunga kompetitif.", url: "https://www.bca.co.id/id/Individu/produk/pinjaman/KKB" },
+      { bank: "Bank Central Asia (BCA)", produk: "BCA Personal Loan", kategori: "Kendaraan & Pegawai", bunga: 12.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pinjaman tanpa agunan untuk berbagai kebutuhan konsumtif nasabah BCA.", url: "https://www.bca.co.id" },
+      { bank: "CIMB Niaga", produk: "KPR Xtra Manfaat", kategori: "Properti", bunga: 7.5, tenorDefault: 120, plafonDefault: 250000000, ket: "KPR yang terhubung dengan saldo tabungan untuk meringankan beban bunga.", url: "https://www.cimbniaga.co.id/id/personal/kpr" },
+      { bank: "CIMB Niaga", produk: "Xtra Dana CIMB Niaga", kategori: "Kendaraan & Pegawai", bunga: 11.5, tenorDefault: 48, plafonDefault: 75000000, ket: "Pinjaman tunai tanpa agunan dengan proses pencairan cepat.", url: "https://www.cimbniaga.co.id" },
+      { bank: "Bank Danamon Indonesia", produk: "KPR Danamon Lebih", kategori: "Properti", bunga: 7.75, tenorDefault: 120, plafonDefault: 250000000, ket: "KPR dengan fitur pengurangan beban bunga dari saldo rekening tabungan.", url: "https://www.danamon.co.id" },
+      { bank: "Bank Danamon Indonesia", produk: "Dana Instant Danamon", kategori: "Kendaraan & Pegawai", bunga: 12.5, tenorDefault: 36, plafonDefault: 50000000, ket: "Fasilitas pinjaman tanpa agunan untuk kebutuhan pendidikan, renovasi, dan darurat.", url: "https://www.danamon.co.id" },
+      { bank: "PermataBank", produk: "PermataKPR Bijak", kategori: "Properti", bunga: 7.75, tenorDefault: 120, plafonDefault: 250000000, ket: "KPR fleksibel yang mengaitkan hingga 75% saldo tabungan untuk mengurangi bunga.", url: "https://www.permatabank.com" },
+      { bank: "PermataBank", produk: "PermataKTA", kategori: "Kendaraan & Pegawai", bunga: 11.75, tenorDefault: 48, plafonDefault: 60000000, ket: "Kredit tanpa agunan dengan pengajuan digital dan cicilan tetap.", url: "https://www.permatabank.com" },
+      { bank: "Bank OCBC Indonesia", produk: "KPR Easy Start OCBC", kategori: "Properti", bunga: 7.5, tenorDefault: 120, plafonDefault: 250000000, ket: "KPR dengan angsuran awal ringan yang dirancang untuk pembeli rumah pertama.", url: "https://www.ocbc.id" },
+      { bank: "Bank Maybank Indonesia", produk: "Maybank KPR Bebas Bunga", kategori: "Properti", bunga: 7.85, tenorDefault: 120, plafonDefault: 250000000, ket: "Pembiayaan properti dengan skema fleksibel untuk pembelian maupun renovasi.", url: "https://www.maybank.co.id" },
+      { bank: "Bank Panin", produk: "KPR Panin", kategori: "Properti", bunga: 7.9, tenorDefault: 120, plafonDefault: 250000000, ket: "Kredit kepemilikan rumah dan ruko dengan jangka waktu fleksibel.", url: "https://www.panin.co.id" },
+      { bank: "Bank UOB Indonesia", produk: "UOB Home Loan", kategori: "Properti", bunga: 7.65, tenorDefault: 120, plafonDefault: 300000000, ket: "Pembiayaan properti residensial dengan pilihan suku bunga tetap awal.", url: "https://www.uob.co.id" },
+      { bank: "Bank DBS Indonesia", produk: "digibank KTA", kategori: "Kendaraan & Pegawai", bunga: 11.88, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit tanpa agunan berbasis aplikasi dengan persetujuan cepat.", url: "https://www.dbs.id" },
+      { bank: "Bank HSBC Indonesia", produk: "HSBC Home Loan", kategori: "Properti", bunga: 7.8, tenorDefault: 120, plafonDefault: 350000000, ket: "Pembiayaan kepemilikan properti dan refinancing rumah tinggal.", url: "https://www.hsbc.co.id" },
+      { bank: "Bank Sinarmas", produk: "KUR & Kredit Multiguna Sinarmas", kategori: "Modal Usaha", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal usaha UMKM dan kredit konsumer terdaftar OJK.", url: "https://www.banksinarmas.com" },
+      { bank: "Bank Mega", produk: "Mega Griya (KPR)", kategori: "Properti", bunga: 8.25, tenorDefault: 120, plafonDefault: 250000000, ket: "Kredit pemilikan rumah tinggal, apartemen, maupun renovasi bangunan.", url: "https://bankmega.com" },
+      { bank: "Bank SMBC Indonesia (BTPN)", produk: "Jenius Flexi Cash", kategori: "Kendaraan & Pegawai", bunga: 12.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Dana siaga fleksibel yang dapat ditarik bertahap sesuai kebutuhan.", url: "https://www.smbci.com" },
+      { bank: "KB Bank (Bank Bukopin)", produk: "KPR KB Bank", kategori: "Properti", bunga: 8.0, tenorDefault: 120, plafonDefault: 200000000, ket: "Fasilitas pembiayaan kepemilikan hunian dan properti komersial.", url: "https://www.kbbank.co.id" },
+      { bank: "Bank Nationalnobu", produk: "Nobu KUR UMKM", kategori: "Modal Usaha", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit Usaha Rakyat berbunga 6% per tahun untuk pelaku usaha mikro dan kecil.", url: "https://www.nobubank.com" },
+      { bank: "Bank Artha Graha Internasional", produk: "Kredit Usaha & KPR Artha Graha", kategori: "Modal Usaha", bunga: 8.5, tenorDefault: 48, plafonDefault: 100000000, ket: "Pembiayaan modal kerja dan investasi usaha ritel maupun menengah.", url: "https://www.arthagraha.com" },
+      { bank: "Bank Mayapada International", produk: "Kredit Modal Kerja Mayapada", kategori: "Modal Usaha", bunga: 9.5, tenorDefault: 48, plafonDefault: 100000000, ket: "Fasilitas pinjaman modal usaha untuk ekspansi bisnis dan stok barang.", url: "https://www.bankmayapada.com" },
+
+      // 3. BANK UMUM SYARIAH
+      { bank: "Bank Syariah Indonesia (BSI)", produk: "BSI KUR Syariah", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal usaha berbasis akad Murabahah/Ijarah tanpa riba.", url: "https://www.bankbsi.co.id" },
+      { bank: "Bank Syariah Indonesia (BSI)", produk: "BSI Griya Hasanah", kategori: "Syariah", bunga: 7.5, tenorDefault: 120, plafonDefault: 250000000, ket: "Pembiayaan kepemilikan hunian syariah dengan angsuran tetap sesuai akad.", url: "https://www.bankbsi.co.id" },
+      { bank: "Bank Syariah Indonesia (BSI)", produk: "BSI Mitraguna Berkah (ASN/Pegawai)", kategori: "Syariah", bunga: 9.5, tenorDefault: 60, plafonDefault: 100000000, ket: "Pembiayaan syariah tanpa agunan khusus pegawai/ASN untuk renovasi & kebutuhan halal.", url: "https://www.bankbsi.co.id" },
+      { bank: "Bank Muamalat Indonesia", produk: "KPR iB Hijrah Muamalat", kategori: "Syariah", bunga: 7.75, tenorDefault: 120, plafonDefault: 250000000, ket: "Pembiayaan rumah dengan akad Murabahah atau Musyarakah Mutanaqisah.", url: "https://www.bankmuamalat.co.id" },
+      { bank: "Bank Mega Syariah", produk: "Mega Syariah Flexi Home", kategori: "Syariah", bunga: 7.9, tenorDefault: 120, plafonDefault: 250000000, ket: "Pembiayaan kepemilikan rumah dan renovasi sesuai prinsip syariah.", url: "https://www.megasyariah.co.id" },
+      { bank: "Panin Dubai Syariah Bank", produk: "PPR iB Panin Dubai Syariah", kategori: "Syariah", bunga: 7.85, tenorDefault: 120, plafonDefault: 250000000, ket: "Pembiayaan kepemilikan rumah tinggal dan apartemen berbasis syariah.", url: "https://www.pdsb.co.id" },
+      { bank: "Bank BJB Syariah", produk: "Pembiayaan Pemilikan Rumah iB", kategori: "Syariah", bunga: 7.8, tenorDefault: 120, plafonDefault: 200000000, ket: "Pembiayaan hunian syariah untuk masyarakat Jawa Barat, Banten, dan sekitarnya.", url: "https://bjbsyariah.co.id" },
+      { bank: "Bank Aceh Syariah", produk: "Pembiayaan Sejahtera & Mikro Syariah", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan syariah untuk UMKM dan pegawai di wilayah Provinsi Aceh.", url: "https://www.bankaceh.co.id" },
+      { bank: "Bank NTB Syariah", produk: "Pembiayaan Tunas Usaha & Griya", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM dan hunian syariah di Nusa Tenggara Barat.", url: "https://www.bankntbsyariah.co.id" },
+      { bank: "Bank BRK Syariah (Riau Kepri)", produk: "KUR Syariah & Griya BRK", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan syariah untuk modal usaha dan hunian di Riau & Kepulauan Riau.", url: "https://www.brksyariah.co.id" },
+
+      // 4. BANK PEMBANGUNAN DAERAH (BPD)
+      { bank: "Bank Jateng", produk: "KUR & Kredit Mitra Jateng", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan usaha mikro, kecil, dan kredit pegawai wilayah Jawa Tengah.", url: "https://www.bankjateng.co.id" },
+      { bank: "Bank BPD DIY", produk: "KUR & Kredit Perumahan BPD DIY", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM dan KPR untuk masyarakat Daerah Istimewa Yogyakarta.", url: "https://www.bpddiy.co.id" },
+      { bank: "Bank Jatim", produk: "KUR & KPR Bank Jatim", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit modal usaha UMKM dan kepemilikan rumah di Jawa Timur.", url: "https://www.bankjatim.co.id" },
+      { bank: "Bank BJB", produk: "KUR & BJB KPR", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal usaha dan hunian untuk wilayah Jawa Barat dan Banten.", url: "https://www.bankbjb.co.id" },
+      { bank: "Bank Jakarta (Bank DKI)", produk: "Kredit Multiguna & KPR", kategori: "Bank Daerah (BPD)", bunga: 8.5, tenorDefault: 60, plafonDefault: 100000000, ket: "Fasilitas kredit konsumer, ASN DKI, dan pembiayaan usaha di Jakarta.", url: "https://www.bankdki.co.id" },
+      { bank: "Bank Sumut", produk: "KUR & Kredit Sejahtera Bank Sumut", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan usaha rakyat dan kredit pegawai di Sumatera Utara.", url: "https://www.banksumut.co.id" },
+      { bank: "Bank Nagari (BPD Sumbar)", produk: "KUR & Kredit Pegawai Nagari", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM dan konsumer untuk masyarakat Sumatera Barat.", url: "https://www.banknagari.co.id" },
+      { bank: "Bank Sumsel Babel", produk: "KUR & Kredit Griya Sejahtera", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit usaha dan perumahan di Sumatera Selatan & Bangka Belitung.", url: "https://www.banksumselbabel.com" },
+      { bank: "Bank Lampung", produk: "KUR & Kredit Aneka Usaha", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal usaha UMKM dan pegawai di Provinsi Lampung.", url: "https://www.banklampung.co.id" },
+      { bank: "Bank Kalsel", produk: "KUR & KPR Bank Kalsel", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal kerja dan perumahan di Kalimantan Selatan.", url: "https://www.bankkalsel.co.id" },
+      { bank: "Bank Kalbar", produk: "KUR & Kredit Perumahan Kalbar", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit usaha rakyat dan pembiayaan hunian di Kalimantan Barat.", url: "https://bankkalbar.co.id" },
+      { bank: "Bankaltimtara", produk: "KUR & Kredit Konsumer Kaltimtara", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM dan pegawai di Kalimantan Timur & Kalimantan Utara.", url: "https://www.bankaltimtara.co.id" },
+      { bank: "Bank Sulselbar", produk: "KUR & Kredit Griya Sulselbar", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan usaha dan perumahan di Sulawesi Selatan & Sulawesi Barat.", url: "https://banksulselbar.co.id" },
+      { bank: "Bank BPD Bali", produk: "KUR & Kredit Konstruksi/KPR Bali", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM pariwisata, perdagangan, dan hunian di Bali.", url: "https://www.bpdbali.co.id" },
+
+      // 5. BANK DIGITAL BERIZIN OJK
+      { bank: "Bank Raya Indonesia (BRI Group)", produk: "Pinang Flexi", kategori: "Bank Digital OJK", bunga: 15.0, tenorDefault: 18, plafonDefault: 20000000, ket: "Pinjaman digital penuh dari anak usaha BRI untuk pekerja bergaji BRI/Raya.", url: "https://bankraya.co.id" },
+      { bank: "Bank Jago", produk: "Jago Dana Cepat (Kemitraan)", kategori: "Bank Digital OJK", bunga: 16.5, tenorDefault: 12, plafonDefault: 15000000, ket: "Pembiayaan digital terintegrasi ekosistem aplikasi keuangan berizin OJK.", url: "https://www.jago.com" },
+      { bank: "Allo Bank Indonesia", produk: "Allo Instant Cash", kategori: "Bank Digital OJK", bunga: 18.0, tenorDefault: 12, plafonDefault: 10000000, ket: "Fasilitas dana tunai cicilan tetap dari bank digital terdaftar OJK.", url: "https://www.allobank.com" },
+      { bank: "Bank Neo Commerce", produk: "Neo Pinjam", kategori: "Bank Digital OJK", bunga: 18.0, tenorDefault: 12, plafonDefault: 15000000, ket: "Pinjaman tunai digital langsung cair ke rekening neobank berizin OJK.", url: "https://www.bankneocommerce.co.id" },
+      { bank: "Superbank", produk: "Pinjaman Atur Sendiri (PAS)", kategori: "Bank Digital OJK", bunga: 16.8, tenorDefault: 12, plafonDefault: 15000000, ket: "Pinjaman digital dengan fleksibilitas pemilihan tanggal jatuh tempo cicilan.", url: "https://www.superbank.id" },
+      { bank: "Krom Bank Indonesia", produk: "Krom Flex", kategori: "Bank Digital OJK", bunga: 17.5, tenorDefault: 12, plafonDefault: 15000000, ket: "Fasilitas limit kredit digital dari bank umum berizin OJK.", url: "https://krom.id" }
+    ];
+
+    window.formatRp = function(angka) {
+      return "Rp " + Math.round(angka).toLocaleString('id-ID');
+    };
+
+    window.hitungPMT = function(plafon, tenor, bunga) {
+      if (!plafon || !tenor || !bunga) return 0;
+      var r = (bunga / 100) / 12;
+      return (plafon * r) / (1 - Math.pow(1 + r, -tenor));
+    };
+
+    window.formatTeksAI = function(teks) {
+      if (!teks) return "";
+      var html = teks
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      html = html.replace(/^---$/gm, '<hr class="my-3 border-slate-200">');
+      html = html.replace(/^#{1,3}\s*(.+)$/gm, '<div class="font-bold text-slate-900 text-sm uppercase tracking-wide mt-4 mb-1.5 pt-2 border-t border-slate-200 first:mt-0 first:pt-0 first:border-0">$1</div>');
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
+      html = html.replace(/^\s*[\*\-]\s+(.+)$/gm, '<div class="flex items-start gap-2 my-1"><span class="font-bold text-emerald-700">&#8226;</span><div class="flex-1">$1</div></div>');
+      html = html.replace(/\*/g, '');
+      html = html.replace(/\n{2,}/g, '<div class="h-2"></div>');
+      html = html.replace(/\n/g, '<br>');
+
+      return html;
+    };
+
+    window.toggleMobileMenu = function() {
+      var menu = document.getElementById('sidebarMenu');
+      if (menu) menu.classList.toggle('hidden');
+    };
+
+    window.bukaHalaman = function(namaHalaman) {
+      var daftarHalaman = ['beranda', 'analisis', 'rekomendasi', 'anuitas', 'riwayat'];
+      for (var i = 0; i < daftarHalaman.length; i++) {
+        var el = document.getElementById('page-' + daftarHalaman[i]);
+        if (el) el.classList.add('hidden');
+      }
+
+      var target = document.getElementById('page-' + namaHalaman);
+      if (target) target.classList.remove('hidden');
+
+      var navBtns = document.querySelectorAll('.nav-item');
+      for (var j = 0; j < navBtns.length; j++) {
+        if (navBtns[j].getAttribute('data-page') === namaHalaman) {
+          navBtns[j].classList.add('active');
+        } else {
+          navBtns[j].classList.remove('active');
+        }
+      }
+
+      var judulMap = {
+        beranda: 'Beranda Utama',
+        analisis: 'Konsultasi & Pindai Brosur',
+        rekomendasi: 'Direktori 64 Produk Bank OJK',
+        anuitas: 'Amortisasi & Grafik',
+        riwayat: 'Riwayat Konsultasi Privat Saya'
+      };
+      var bc = document.getElementById('breadcrumbTitle');
+      if (bc) bc.innerText = judulMap[namaHalaman] || 'Beranda Utama';
+
+      if (namaHalaman === 'riwayat') {
+        var lbl = document.getElementById('labelUserIdAktif');
+        if (lbl) lbl.innerText = getUserIdPrivat();
+        tarikRiwayatDatabase();
+      }
+
+      if (window.innerWidth < 768) {
+        var menu = document.getElementById('sidebarMenu');
+        if (menu) menu.classList.add('hidden');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.setKategoriBank = function(kategori, btnEl) {
+      kategoriBankAktif = kategori;
+      var btns = document.querySelectorAll('.filter-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+        btns[i].classList.add('bg-white', 'text-slate-700');
+      }
+      if (btnEl) {
+        btnEl.classList.add('active');
+        btnEl.classList.remove('bg-white', 'text-slate-700');
+      }
+      renderDirektoriBank();
+    };
+
+    window.renderDirektoriBank = function() {
+      var wadah = document.getElementById('wadahDirektoriBank');
+      if (!wadah) return;
+      var inputCari = document.getElementById('cariBankInput');
+      var kataKunci = inputCari ? inputCari.value.toLowerCase() : "";
+      wadah.innerHTML = "";
+
+      var hasilFilter = direktoriBankData.filter(function(item) {
+        var cocokKategori = kategoriBankAktif === "Semua" || item.kategori === kategoriBankAktif;
+        var cocokTeks = item.bank.toLowerCase().indexOf(kataKunci) !== -1 ||
+                        item.produk.toLowerCase().indexOf(kataKunci) !== -1 ||
+                        item.ket.toLowerCase().indexOf(kataKunci) !== -1 ||
+                        item.kategori.toLowerCase().indexOf(kataKunci) !== -1;
+        return cocokKategori && cocokTeks;
+      });
+
+      var badgeJumlah = document.getElementById('jumlahTampilBank');
+      if (badgeJumlah) badgeJumlah.innerText = "Menampilkan " + hasilFilter.length + " produk";
+
+      if (hasilFilter.length === 0) {
+        wadah.innerHTML = '<div class="col-span-2 text-center py-8 text-xs font-bold text-slate-500">Produk bank tidak ditemukan untuk kata kunci tersebut.</div>';
+        return;
+      }
+
+      for (var i = 0; i < hasilFilter.length; i++) {
+        var item = hasilFilter[i];
+        var estPMT = hitungPMT(item.plafonDefault, item.tenorDefault, item.bunga);
+        wadah.innerHTML += 
+          '<div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between gap-3">' +
+            '<div class="space-y-1">' +
+              '<div class="flex items-center justify-between gap-2">' +
+                '<span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">' + item.kategori + '</span>' +
+                '<span class="text-xs font-bold text-slate-900">Bunga ' + item.bunga + '% / thn</span>' +
+              '</div>' +
+              '<div class="font-bold text-sm text-slate-900 pt-1">' + (i + 1) + '. ' + item.bank + ' — ' + item.produk + '</div>' +
+              '<p class="text-xs text-slate-600 leading-relaxed">' + item.ket + '</p>' +
+              '<div class="text-[11px] text-slate-500 pt-1">Contoh simulasi ' + formatRp(item.plafonDefault) + ' (' + item.tenorDefault + ' bln): <strong class="text-slate-800">' + formatRp(estPMT) + '/bln</strong></div>' +
+            '</div>' +
+            '<div class="flex items-center gap-2 pt-2 border-t border-slate-200">' +
+              '<button type="button" onclick="simulasikanBankKeAnuitas(' + item.plafonDefault + ',' + item.bunga + ',' + item.tenorDefault + ')" class="flex-1 py-2 px-3 bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 text-xs font-bold rounded-lg transition cursor-pointer">Hitung Anuitas</button>' +
+              '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg text-center transition">Situs Resmi</a>' +
+            '</div>' +
+          '</div>';
+      }
+    };
+
+    window.simulasikanBankKeAnuitas = function(plafon, bunga, tenor) {
+      document.getElementById('tblPlafon').value = plafon;
+      document.getElementById('tblBunga').value = bunga;
+      document.getElementById('tblTenor').value = tenor;
+      generateTabelAnuitas();
+      bukaHalaman('anuitas');
+    };
+
+    window.sinkronProfil = function() {
+      var gaji = parseFloat(document.getElementById('gaji').value) || 8000000;
+      var cicilan = parseFloat(document.getElementById('cicilanLama').value) || 0;
+      var batas = Math.max(0, (gaji * 0.30) - cicilan);
+      var rasio = gaji > 0 ? ((cicilan / gaji) * 100).toFixed(1) : 0;
+
+      document.getElementById('dashGaji').innerText = formatRp(gaji);
+      document.getElementById('dashCicilan').innerText = formatRp(cicilan);
+      document.getElementById('globalBatas').innerText = formatRp(batas) + " / bln";
+
+      document.getElementById('outRasioPersen').innerText = rasio.toString().replace('.', ',') + "%";
+      document.getElementById('barRasio').style.width = Math.min(100, rasio) + "%";
+      
+      if (rasio > 30) {
+        document.getElementById('barRasio').className = "bg-rose-600 h-2";
+        document.getElementById('outRasioKet').innerText = "Rasio utang Anda melewati batas 30%. Pengajuan baru berisiko tinggi.";
+      } else {
+        document.getElementById('barRasio').className = "bg-emerald-600 h-2";
+        document.getElementById('outRasioKet').innerText = "Batas kelayakan valid. Anda memiliki kapasitas angsuran baru sebesar " + formatRp(batas) + " per bulan.";
+      }
+    };
+
+    window.hitungSlider = function() {
+      var barang = parseFloat(document.getElementById('sliderBarang').value);
+      var dp = parseFloat(document.getElementById('sliderDP').value);
+      var plafonBersih = Math.max(0, barang - dp);
+      var bunga = parseFloat(document.getElementById('sliderBunga').value);
+      var tenor = parseFloat(document.getElementById('sliderTenor').value);
+      var pmt = hitungPMT(plafonBersih, tenor, bunga);
+
+      document.getElementById('lblSliderBarang').innerText = formatRp(barang);
+      document.getElementById('lblSliderDP').innerText = formatRp(dp);
+      document.getElementById('outPlafonBersih').innerText = formatRp(plafonBersih);
+      document.getElementById('lblSliderBunga').innerText = bunga + "%";
+      document.getElementById('lblSliderTenor').innerText = tenor + " bln";
+      document.getElementById('outSliderPMT').innerText = formatRp(pmt);
+    };
+
+    window.kirimSliderKeTabel = function() {
+      document.getElementById('tblPlafon').value = Math.max(0, document.getElementById('sliderBarang').value - document.getElementById('sliderDP').value);
+      document.getElementById('tblBunga').value = document.getElementById('sliderBunga').value;
+      document.getElementById('tblTenor').value = document.getElementById('sliderTenor').value;
+      generateTabelAnuitas();
+      bukaHalaman('anuitas');
+    };
+
+    window.generateTabelAnuitas = function() {
+      var plafon = parseFloat(document.getElementById('tblPlafon').value) || 0;
+      var bungaTahunan = parseFloat(document.getElementById('tblBunga').value) || 0;
+      var tenor = parseInt(document.getElementById('tblTenor').value) || 0;
+      var tbody = document.getElementById('tbodyAnuitas');
+      tbody.innerHTML = "";
+
+      if (!plafon || !tenor || !bungaTahunan) return;
+
+      var r = (bungaTahunan / 100) / 12;
+      var pmt = hitungPMT(plafon, tenor, bungaTahunan);
+      var totalBayar = pmt * tenor;
+      var totalBunga = totalBayar - plafon;
+
+      document.getElementById('tblOutPMT').innerText = formatRp(pmt);
+      document.getElementById('tblOutPokok').innerText = formatRp(plafon);
+      document.getElementById('tblOutBunga').innerText = formatRp(totalBunga);
+
+      if (typeof Chart !== 'undefined') {
+        try {
+          var ctx = document.getElementById('chartAnuitas').getContext('2d');
+          if (anuitasChart) anuitasChart.destroy();
+          anuitasChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: ['Total Pokok Pinjaman', 'Total Bunga Kewajiban'],
+              datasets: [{ data: [plafon, totalBunga], backgroundColor: ['#0f172a', '#e11d48'], borderWidth: 0 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } } } }
+          });
+        } catch (e) {}
+      }
+
+      var sisa = plafon;
+      var barisHTML = "";
+      for (var i = 1; i <= tenor; i++) {
+        var porsiBunga = sisa * r;
+        var porsiPokok = pmt - porsiBunga;
+        sisa = Math.max(0, sisa - porsiPokok);
+        barisHTML += '<tr class="hover:bg-slate-50"><td class="py-2 px-3 font-bold">' + i + '</td><td class="py-2 px-3">' + formatRp(pmt) + '</td><td class="py-2 px-3 text-emerald-700">' + formatRp(porsiPokok) + '</td><td class="py-2 px-3 text-rose-600">' + formatRp(porsiBunga) + '</td><td class="py-2 px-3 font-medium">' + formatRp(sisa) + '</td></tr>';
+      }
+      tbody.innerHTML = barisHTML;
+    };
+
+    window.kompresGambarDanPreview = function(input) {
+      var file = input.files[0];
+      if (!file) return;
+      
+      mimeTypeGambar = "image/jpeg";
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        var img = new Image();
+        img.src = event.target.result;
+        img.onload = function() {
+          var canvas = document.createElement('canvas');
+          var MAX_WIDTH = 1024;
+          var width = img.width;
+          var height = img.height;
+          
+          if (width > MAX_WIDTH) {
+            height = Math.round(height *= MAX_WIDTH / width);
+            width = MAX_WIDTH;
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          var compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          document.getElementById('imgPreview').src = compressedDataUrl;
+          document.getElementById('imgPreview').classList.remove('hidden');
+          document.getElementById('teksKompresi').classList.remove('hidden');
+          base64Gambar = compressedDataUrl.split(',')[1];
+        };
+      };
+      reader.readAsDataURL(file);
+    };
+
+    window.cekServerUrl = function() {
+      if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) {
+        alert("SERVER_API_URL belum diisi dengan link /exec dari Google Apps Script.");
+        return false;
+      }
+      return true;
+    };
+
+    window.kirimData = async function() {
+      if (!cekServerUrl()) return;
+
+      var gaji = parseFloat(document.getElementById('gaji').value) || 0;
+      var cicilanLama = parseFloat(document.getElementById('cicilanLama').value) || 0;
+      var plafonA = parseFloat(document.getElementById('plafonA').value) || 0;
+      var tenorA = parseFloat(document.getElementById('tenorA').value) || 0;
+      var bungaA = parseFloat(document.getElementById('bungaA').value) || 0;
+      var plafonB = parseFloat(document.getElementById('plafonB').value) || 0;
+      var tenorB = parseFloat(document.getElementById('tenorB').value) || 0;
+      var bungaB = parseFloat(document.getElementById('bungaB').value) || 0;
+      var catatan = document.getElementById('catatan').value.trim();
+
+      if (!gaji && !catatan && !base64Gambar) {
+        alert("Silakan tuliskan cerita/pertanyaan Anda, unggah foto brosur, atau isi nominal penghasilan terlebih dahulu.");
+        return;
+      }
+
+      var userId = getUserIdPrivat();
+      var batasAman = gaji > 0 ? Math.max(0, (gaji * 0.30) - cicilanLama) : 0;
+      var angsuranA = hitungPMT(plafonA, tenorA, bungaA);
+      var angsuranB = hitungPMT(plafonB, tenorB, bungaB);
+
+      var statusA = angsuranA === 0 ? "Tidak disimulasikan" : (gaji === 0 ? "Perlu evaluasi pendapatan" : (angsuranA <= batasAman ? "LAYAK (Di bawah 30%)" : "BERISIKO (Melebihi 30%)"));
+      var statusB = angsuranB === 0 ? "Tidak disimulasikan" : (gaji === 0 ? "Perlu evaluasi pendapatan" : (angsuranB <= batasAman ? "LAYAK (Di bawah 30%)" : "BERISIKO (Melebihi 30%)"));
+
+      var infoFinansial = gaji > 0 
+        ? "- Penghasilan Tetap Bulanan: Rp" + gaji.toLocaleString('id-ID') + "\n- Cicilan Berjalan: Rp" + cicilanLama.toLocaleString('id-ID') + "\n- Batas Aman Angsuran Baru (30%): Rp" + batasAman.toLocaleString('id-ID')
+        : "- Penghasilan Tetap: Tidak diisi di form (ekstrak angka penghasilan dari cerita pengguna jika ada)";
+
+      var infoSimulasi = "";
+      if (angsuranA > 0) infoSimulasi += "\n- Simulasi Skema A: Plafon Rp" + plafonA.toLocaleString('id-ID') + ", Tenor " + tenorA + " bln, Bunga " + bungaA + "%/thn -> Angsuran Rp" + Math.round(angsuranA).toLocaleString('id-ID') + "/bln (" + statusA + ")";
+      if (angsuranB > 0) infoSimulasi += "\n- Simulasi Skema B: Plafon Rp" + plafonB.toLocaleString('id-ID') + ", Tenor " + tenorB + " bln, Bunga " + bungaB + "%/thn -> Angsuran Rp" + Math.round(angsuranB).toLocaleString('id-ID') + "/bln (" + statusB + ")";
+
+      var instruksiBrosur = base64Gambar
+        ? "\n- PENTING: Pengguna melampirkan FOTO BROSUR KREDIT. Baca dengan teliti nama produk, angka plafon, tenor (bulan/tahun), suku bunga, dan nominal cicilan bulanan pada tabel di foto brosur tersebut, lalu cocokkan langsung dengan kondisi dan kebutuhan pengguna!"
+        : "";
+
+      var promptTeks = "Anda adalah penasihat keuangan profesional. Jawab secara spesifik berdasarkan data pengguna dan gambar brosur (jika dilampirkan) dalam bahasa Indonesia baku.\n\n" +
+        "Pertanyaan & Kondisi Pengguna:\n\"" + (catatan || "Analisis kelayakan pinjaman dari data atau brosur yang dilampirkan.") + "\"\n\n" +
+        "Data Pendukung:\n" + infoFinansial + infoSimulasi + instruksiBrosur + "\n\n" +
+        "Aturan Penulisan Wajib:\n" +
+        "1. Langsung masuk ke inti analisis tanpa basa-basi pembuka, sebutkan angka spesifik dari kasus pengguna dan angka dari tabel brosur.\n" +
+        "2. Gunakan format **teks tebal** untuk menyoroti angka cicilan, tenor, nama produk, dan status kelayakan (batas aman cicilan maksimal 30% dari penghasilan).\n" +
+        "3. Susun dalam 3 bagian ringkas:\n" +
+        "   ### 1. Ringkasan Data & Batas Kemampuan\n" +
+        "   ### 2. Analisis Pilihan Produk / Tenor\n" +
+        "   ### 3. Kesimpulan & Rekomendasi Akhir\n" +
+        "4. Dilarang menggunakan emoji.";
+
+      var btn = document.getElementById('btnSubmit');
+      btn.disabled = true;
+      btn.classList.add('opacity-50');
+      
+      var detik = 0;
+      btn.innerText = "Memindai & Menganalisis dengan AI (0 detik)...";
+      timerInterval = setInterval(function() {
+        detik++;
+        btn.innerText = "Memindai & Menganalisis dengan AI (" + detik + " detik)...";
+      }, 1000);
+
+      try {
+        var response = await fetch(SERVER_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'analisisAI',
+            payload: {
+              promptTeks: promptTeks,
+              base64Gambar: base64Gambar,
+              mimeTypeGambar: mimeTypeGambar,
+              userId: userId,
+              gaji: gaji,
+              cicilanLama: cicilanLama,
+              plafonA: plafonA,
+              tenorA: tenorA,
+              bungaA: bungaA,
+              plafonB: plafonB,
+              tenorB: tenorB,
+              bungaB: bungaB,
+              batasAman: Math.round(batasAman),
+              angsuranA: Math.round(angsuranA),
+              angsuranB: Math.round(angsuranB),
+              statusA: statusA,
+              statusB: statusB,
+              catatan: catatan || "Konsultasi Brosur / Mandiri"
+            }
+          })
+        });
+
+        var res = await response.json();
+
+        clearInterval(timerInterval);
+        btn.disabled = false;
+        btn.classList.remove('opacity-50');
+        btn.innerText = "Dapatkan Penjelasan AI & Simpan ke Riwayat Saya";
+
+        var hasilDiv = document.getElementById('hasilContainer');
+        hasilDiv.classList.remove('hidden');
+        document.getElementById('outAngsuranA').innerText = formatRp(angsuranA);
+        document.getElementById('outStatusA').innerText = statusA;
+        document.getElementById('outAngsuranB').innerText = formatRp(angsuranB);
+        document.getElementById('outStatusB').innerText = statusB;
+
+        if (!res || !res.ok) {
+          document.getElementById('badgeSumberAI').innerText = "Layanan Sibuk";
+          document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-800";
+          document.getElementById('statusSimpanDB').innerText = "Belum tersimpan";
+          document.getElementById('outSaranAI').innerHTML =
+            '<div class="text-rose-700 font-bold mb-2">Server AI sedang sibuk atau terkena batas permintaan sementara:</div>' +
+            '<div class="p-3 bg-white border border-rose-200 rounded text-xs font-mono text-slate-800 mb-3 whitespace-pre-wrap">' + (res ? res.errorDetail : 'Tidak ada respons') + '</div>' +
+            '<div class="text-xs text-slate-700">Silakan tunggu sekitar 30–60 detik lalu klik tombol analisis kembali.</div>';
+          hasilDiv.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        document.getElementById('badgeSumberAI').innerText = "AI " + res.model;
+        document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800";
+        document.getElementById('statusSimpanDB').innerText = "Tersimpan (" + res.idTransaksi + ")";
+        document.getElementById('outSaranAI').innerHTML = formatTeksAI(res.text);
+        hasilDiv.scrollIntoView({ behavior: 'smooth' });
+      } catch (err) {
+        clearInterval(timerInterval);
+        btn.disabled = false;
+        btn.classList.remove('opacity-50');
+        btn.innerText = "Dapatkan Penjelasan AI & Simpan ke Riwayat Saya";
+        alert("Gagal terhubung ke server: " + err.message);
+      }
+    };
+
+    window.tarikRiwayatDatabase = async function() {
+      if (!cekServerUrl()) return;
+
+      var btn = document.getElementById('btnTarikRiwayat');
+      var wadah = document.getElementById('wadahRiwayat');
+      var userId = getUserIdPrivat();
+      btn.innerText = "Memuat...";
+
+      try {
+        var url = SERVER_API_URL + "?action=getRiwayat&userId=" + encodeURIComponent(userId);
+        var response = await fetch(url);
+        var res = await response.json();
+        var data = (res && res.data) ? res.data : [];
+
+        btn.innerText = "Muat Riwayat Saya";
+        wadah.innerHTML = "";
+        
+        if (data.length === 0) {
+          wadah.innerHTML = '<div class="text-center text-xs font-bold text-slate-500 py-10">Belum ada riwayat konsultasi untuk sesi perangkat Anda (' + userId + ').</div>';
+          return;
+        }
+
+        for (var i = 0; i < data.length; i++) {
+          var item = data[i];
+          wadah.innerHTML += 
+            '<div class="p-4 rounded border border-slate-200 bg-slate-50 flex flex-col gap-2">' +
+              '<div class="flex flex-wrap justify-between items-center border-b border-slate-200 pb-2 gap-1">' +
+                '<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">ID: ' + item.id + (item.waktu ? ' • ' + item.waktu : '') + '</span>' +
+                '<span class="text-[10px] font-bold bg-slate-200 px-2 py-0.5 rounded text-slate-700">' + item.statusA + '</span>' +
+              '</div>' +
+              '<div class="text-xs text-slate-700 font-bold">Kapasitas Maks: ' + formatRp(item.batasAman) + ' | Simulasi PMT: ' + formatRp(item.angsuranA) + '</div>' +
+              '<div class="text-[11px] text-slate-600 mt-1 italic">Pertanyaan: "' + item.catatan + '"</div>' +
+              '<div class="text-[11px] bg-white p-3 rounded border border-slate-100 mt-1 text-slate-800 leading-relaxed">' + formatTeksAI(item.saran) + '</div>' +
+            '</div>';
+        }
+      } catch (err) {
+        btn.innerText = "Muat Riwayat Saya";
+        alert("Gagal memuat riwayat: " + err.message);
+      }
+    };
+
+    window.kosongkanRiwayatSaya = async function() {
+      if (!cekServerUrl()) return;
+
+      var userId = getUserIdPrivat();
+      if (!confirm("Hapus seluruh riwayat konsultasi untuk sesi perangkat Anda (" + userId + ") agar kembali kosong?")) return;
+
+      var btn = document.getElementById('btnHapusRiwayat');
+      btn.innerText = "Menghapus...";
+      btn.disabled = true;
+
+      try {
+        await fetch(SERVER_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'hapusRiwayat',
+            userId: userId
+          })
+        });
+        btn.innerText = "Kosongkan Riwayat Saya";
+        btn.disabled = false;
+        tarikRiwayatDatabase();
+      } catch (err) {
+        btn.innerText = "Kosongkan Riwayat Saya";
+        btn.disabled = false;
+        alert("Gagal menghapus riwayat: " + err.message);
+      }
+    };
+
+    try { sinkronProfil(); } catch (e) {}
+    try { hitungSlider(); } catch (e) {}
+    try { renderDirektoriBank(); } catch (e) {}
+    try { generateTabelAnuitas(); } catch (e) {}
+  </script>
+</body>
+</html>
