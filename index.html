@@ -172,7 +172,7 @@
               <div class="pt-2 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <div class="text-xs font-bold text-slate-900">2. Lampirkan Foto Brosur Kredit (Opsional)</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">AI membaca angka di tabel brosur dalam resolusi asli tanpa kompresi.</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">AI membaca angka di tabel brosur secara presisi dan cepat.</div>
                 </div>
                 <div class="shrink-0">
                   <input type="file" id="fotoBrosur" accept="image/*" onchange="bacaGambarAsliDanPreview(this)" class="hidden">
@@ -498,8 +498,10 @@
         .replace(/>/g, "&gt;");
 
       html = html.replace(/^---$/gm, '<hr class="my-3 border-slate-200">');
-      html = html.replace(/^#{1,3}\s*(.+)$/gm, '<div class="font-bold text-slate-900 text-sm uppercase tracking-wide mt-4 mb-1.5 pt-2 border-t border-slate-200 first:mt-0 first:pt-0 first:border-0">$1</div>');
+      html = html.replace(/^#{1,3}\s*(.+)$/gm, '<div class="font-bold text-slate-900 text-sm uppercase tracking-wide mt-4 mb-2 pt-2.5 border-t border-slate-200 first:mt-0 first:pt-0 first:border-0">$1</div>');
       html = html.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
+      html = html.replace(/Layak Aman/g, '<span class="font-bold text-emerald-700">Layak Aman</span>');
+      html = html.replace(/Tidak Layak/g, '<span class="font-bold text-rose-700">Tidak Layak</span>');
       html = html.replace(/^\s*[\*\-]\s+(.+)$/gm, '<div class="flex items-start gap-2 my-1"><span class="font-bold text-emerald-700">&#8226;</span><div class="flex-1">$1</div></div>');
       html = html.replace(/\*/g, '');
       html = html.replace(/\n{2,}/g, '<div class="h-2"></div>');
@@ -717,33 +719,66 @@
       var file = input.files[0];
       if (!file) return;
 
-      mimeTypeGambar = file.type || "image/jpeg";
+      var ukuranKB = Math.round(file.size / 1024);
       var reader = new FileReader();
       reader.onload = function(event) {
         var dataUrl = event.target.result;
         document.getElementById('imgPreview').src = dataUrl;
         document.getElementById('imgPreview').classList.remove('hidden');
-        var ukuranKB = Math.round(file.size / 1024);
-        var teksEl = document.getElementById('teksKompresi');
-        teksEl.innerText = "Foto asli siap dipindai AI tanpa kompresi (" + ukuranKB + " KB).";
-        teksEl.classList.remove('hidden');
-        base64Gambar = dataUrl.split(',')[1];
+
+        // Jika file <= 800 KB (seperti 219 KB), pakai file asli tanpa proses ulang
+        if (file.size <= 800 * 1024) {
+          mimeTypeGambar = file.type || "image/jpeg";
+          base64Gambar = dataUrl.split(',')[1];
+          var teksEl = document.getElementById('teksKompresi');
+          teksEl.innerText = "Foto brosur siap dipindai AI (" + ukuranKB + " KB).";
+          teksEl.classList.remove('hidden');
+          return;
+        }
+
+        // Jika foto kamera > 800 KB, kecilkan resolusi secara ringan agar tetap tajam & cepat diunggah
+        var img = new Image();
+        img.onload = function() {
+          var maxDim = 1600;
+          var w = img.width;
+          var h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          var canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          var compressedUrl = canvas.toDataURL('image/jpeg', 0.88);
+          mimeTypeGambar = "image/jpeg";
+          base64Gambar = compressedUrl.split(',')[1];
+          var teksEl = document.getElementById('teksKompresi');
+          teksEl.innerText = "Foto brosur dioptimalkan agar pemindaian cepat (" + Math.round(base64Gambar.length * 0.75 / 1024) + " KB).";
+          teksEl.classList.remove('hidden');
+        };
+        img.src = dataUrl;
       };
       reader.readAsDataURL(file);
     };
 
-    async function panggilGeminiLangsung_(modelName, parts, signal) {
-      var url = "https://generativelanguage.googleapis.com/v1beta/models/" + modelName + ":generateContent?key=" + encodeURIComponent(GEMINI_API_KEY);
+    async function panggilGeminiLangsung_(endpointBase, modelName, parts, signal) {
+      var url = endpointBase + "/models/" + modelName + ":generateContent?key=" + encodeURIComponent(GEMINI_API_KEY);
+      var genConfig = {
+        temperature: 0.1,
+        maxOutputTokens: 2048
+      };
+      if (modelName.indexOf("2.5") !== -1) {
+        genConfig.thinkingConfig = { thinkingBudget: 0 };
+      }
+
       var res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         signal: signal,
         body: JSON.stringify({
           contents: [{ parts: parts }],
-          generationConfig: {
-            temperature: 0.15,
-            maxOutputTokens: 1100
-          }
+          generationConfig: genConfig
         })
       });
       var json = await res.json();
@@ -752,47 +787,6 @@
       }
       var errMsg = (json.error && json.error.message) ? json.error.message : ("HTTP " + res.status);
       return { ok: false, status: res.status, error: "[" + modelName + "] " + errMsg };
-    }
-
-    async function cariModel38Non25_(signal) {
-      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key=" + encodeURIComponent(GEMINI_API_KEY), { signal: signal });
-      if (!res.ok) return [];
-      var data = await res.json();
-      if (!data.models) return [];
-
-      var daftar = [];
-      for (var i = 0; i < data.models.length; i++) {
-        var m = data.models[i];
-        var methods = m.supportedGenerationMethods || [];
-        if (methods.indexOf("generateContent") !== -1) {
-          var nama = m.name.replace(/^models\//, "");
-          if (
-            nama.indexOf("gemini") !== -1 &&
-            nama.indexOf("2.5") === -1 &&
-            nama.indexOf("embedding") === -1 &&
-            nama.indexOf("imagen") === -1 &&
-            nama.indexOf("veo") === -1 &&
-            nama.indexOf("tts") === -1 &&
-            nama.indexOf("audio") === -1 &&
-            nama.indexOf("robotics") === -1 &&
-            nama.indexOf("computer-use") === -1 &&
-            nama.indexOf("deep-research") === -1
-          ) {
-            daftar.push(nama);
-          }
-        }
-      }
-
-      daftar.sort(function(a, b) {
-        var a38 = a.indexOf("3.8") !== -1 ? 0 : 1;
-        var b38 = b.indexOf("3.8") !== -1 ? 0 : 1;
-        if (a38 !== b38) return a38 - b38;
-        var aFlash = a.indexOf("flash") !== -1 ? 0 : 1;
-        var bFlash = b.indexOf("flash") !== -1 ? 0 : 1;
-        return aFlash - bFlash;
-      });
-
-      return daftar.slice(0, 2);
     }
 
     function simpanKeDatabaseLatarBelakang_(payloadSimpan) {
@@ -845,29 +839,35 @@
       var statusB = angsuranB === 0 ? "Tidak disimulasikan" : (gaji === 0 ? "Perlu evaluasi pendapatan" : (angsuranB <= batasAman ? "LAYAK (Di bawah 30%)" : "BERISIKO (Melebihi 30%)"));
 
       var infoFinansial = gaji > 0 
-        ? "- Penghasilan Tetap Bulanan: Rp" + gaji.toLocaleString('id-ID') + "\n- Cicilan Berjalan: Rp" + cicilanLama.toLocaleString('id-ID') + "\n- Batas Aman Angsuran Baru (30%): Rp" + batasAman.toLocaleString('id-ID')
-        : "- Penghasilan Tetap: Tidak diisi di form. Jika pengguna juga tidak menyebut gaji di pertanyaan, wajib hitung gaji minimal yang dibutuhkan untuk setiap pilihan di brosur dengan rumus (Angsuran Bulanan dibagi 0,30).";
+        ? "- Penghasilan Tetap Bulanan: Rp" + gaji.toLocaleString('id-ID') + "\n- Cicilan Berjalan: Rp" + cicilanLama.toLocaleString('id-ID') + "\n- Batas Aman Cicilan Maksimal (30% dari penghasilan): Rp" + batasAman.toLocaleString('id-ID')
+        : "- Penghasilan Tetap di Form: Kosong (ambil nominal gaji dari teks pertanyaan pengguna jika disebutkan; jika tidak ada sama sekali, hitung gaji minimal per bulan dengan rumus Cicilan / 0,30).";
 
       var infoSimulasi = "";
-      if (angsuranA > 0) infoSimulasi += "\n- Simulasi Skema A: Plafon Rp" + plafonA.toLocaleString('id-ID') + ", Tenor " + tenorA + " bln, Bunga " + bungaA + "%/thn -> Angsuran Rp" + Math.round(angsuranA).toLocaleString('id-ID') + "/bln (" + statusA + ")";
-      if (angsuranB > 0) infoSimulasi += "\n- Simulasi Skema B: Plafon Rp" + plafonB.toLocaleString('id-ID') + ", Tenor " + tenorB + " bln, Bunga " + bungaB + "%/thn -> Angsuran Rp" + Math.round(angsuranB).toLocaleString('id-ID') + "/bln (" + statusB + ")";
+      if (angsuranA > 0) infoSimulasi += "\n- Simulasi Manual Skema A: Plafon Rp" + plafonA.toLocaleString('id-ID') + ", Tenor " + tenorA + " bln, Bunga " + bungaA + "%/thn -> Angsuran Rp" + Math.round(angsuranA).toLocaleString('id-ID') + "/bln (" + statusA + ")";
+      if (angsuranB > 0) infoSimulasi += "\n- Simulasi Manual Skema B: Plafon Rp" + plafonB.toLocaleString('id-ID') + ", Tenor " + tenorB + " bln, Bunga " + bungaB + "%/thn -> Angsuran Rp" + Math.round(angsuranB).toLocaleString('id-ID') + "/bln (" + statusB + ")";
 
       var instruksiBrosur = base64Gambar
-        ? "\n- FOTO BROSUR TERLAMPIR: Baca dan sebutkan secara eksak nama bank/produk, nominal pinjaman (plafon), tenor (bulan/tahun), suku bunga, dan nominal cicilan bulanan dari tabel di foto brosur. Dilarang menjawab secara umum atau normatif tanpa menyebutkan angka dari brosur."
+        ? "\n- FOTO BROSUR TERLAMPIR: Baca seluruh nama produk, syarat plafon maksimal, suku bunga, dan seluruh kolom tenor beserta nominal cicilan bulanan pada tabel brosur secara presisi."
         : "";
 
-      var promptTeks = "Anda adalah analis kredit perbankan profesional. Berikan analisis kuantitatif yang tajam, rinci, padat, dan berbasis angka pasti dalam bahasa Indonesia baku.\n\n" +
-        "Pertanyaan & Kondisi Pengguna:\n\"" + (catatan || "Analisis seluruh opsi kredit pada brosur yang dilampirkan beserta syarat gaji minimal agar aman.") + "\"\n\n" +
+      var promptTeks = "Anda adalah analis kredit perbankan profesional. Jawab langsung tanpa kalimat pembuka basa-basi dalam bahasa Indonesia baku yang jelas, rinci, dan berbasis angka pasti.\n\n" +
+        "Pertanyaan & Kondisi Pengguna:\n\"" + (catatan || "Analisis seluruh pilihan produk dan tenor pada brosur yang dilampirkan.") + "\"\n\n" +
         "Data Pendukung:\n" + infoFinansial + infoSimulasi + instruksiBrosur + "\n\n" +
-        "Aturan Penulisan Wajib:\n" +
-        "1. Langsung masuk ke inti analisis tanpa basa-basi pembuka, sebutkan angka spesifik dari kasus pengguna dan seluruh angka relevan pada tabel brosur.\n" +
-        "2. Jika pengguna mencantumkan gaji, bandingkan langsung cicilan dengan batas aman 30% dan hitung selisih kurang/lebihnya dalam Rupiah. Jika pengguna tidak mencantumkan gaji, hitung secara pasti gaji minimal per bulan (Angsuran / 30%) agar cicilan tersebut dinyatakan LAYAK.\n" +
-        "3. Gunakan format **teks tebal** untuk menyoroti angka cicilan, tenor, nama produk, syarat gaji minimal, dan status kelayakan.\n" +
-        "4. Susun dalam 3 bagian terstruktur dan ringkas:\n" +
-        "   ### 1. Ringkasan Data & Batas Kemampuan\n" +
-        "   ### 2. Analisis Rinci Produk & Simulasi Angka\n" +
-        "   ### 3. Kesimpulan & Rekomendasi Akhir\n" +
-        "5. Dilarang menggunakan emoji atau saran umum yang mengambang.";
+        "Susun jawaban PERSIS dalam 3 bagian bernomor berikut:\n\n" +
+        "### 1. Ringkasan Data & Batas Kemampuan\n" +
+        "- Sebutkan penghasilan tetap per bulan pengguna, kebutuhan dana/plafon pinjaman, serta **Batas Aman Cicilan Maksimal (30% dari penghasilan)** dalam Rupiah beserta penjelasan singkat bahwa batas ini menjaga kesehatan arus kas harian dan menekan risiko gagal bayar.\n\n" +
+        "### 2. Analisis Pilihan Produk / Tenor\n" +
+        "- Evaluasi setiap produk yang tertera di tabel brosur satu per satu (berikan nomor 1, 2, 3, dst.).\n" +
+        "- Jika ada produk di brosur yang plafon maksimalnya tidak mencukupi atau peruntukannya tidak sesuai kebutuhan pengguna (misalnya KPP Subsidi/FLPP), nyatakan **Status: Tidak Layak** beserta alasan angka plafon maksimal dan peruntukannya.\n" +
+        "- Untuk produk yang sesuai kebutuhan/plafon, uraikan setiap pilihan tenor (misalnya Tenor 3 tahun, 5 tahun, 10 tahun, 15 tahun) lengkap dengan:\n" +
+        "  * Nominal cicilan bulanan eksak dari tabel brosur (dan suku bunga jika tertera).\n" +
+        "  * Perhitungan rasio cicilan terhadap gaji dalam persen `(Cicilan / Gaji x 100%)`.\n" +
+        "  * Penilaian tegas: **Status: Layak Aman** (jika cicilan <= 30% gaji) atau **Status: Tidak Layak** (jika cicilan > 30% gaji).\n\n" +
+        "### 3. Kesimpulan & Rekomendasi Akhir\n" +
+        "- Nyatakan secara tegas nama produk dan tenor paling tepat beserta nominal cicilan bulanannya dan alasan mengapa berstatus **Layak Aman** di bawah batas maksimal 30%.\n" +
+        "- Sebutkan opsi alternatif terbaik lainnya di brosur (jika ada) beserta syaratnya.\n" +
+        "- Sebutkan dokumen pendukung praktis yang perlu disiapkan sesuai profil pengguna (misalnya RAB, IMB/PBG untuk renovasi, atau dokumen kepegawaian/ASN).\n\n" +
+        "Catatan: Gunakan **teks tebal** pada nama produk, nominal Rupiah, persentase rasio, dan status kelayakan. Dilarang memakai emoji.";
 
       var parts = [{ text: promptTeks }];
       if (base64Gambar && mimeTypeGambar) {
@@ -884,10 +884,10 @@
       btn.classList.add('opacity-50');
       
       var detik = 0;
-      btn.innerText = "Menganalisis dengan Gemini 3.8 (0 detik)...";
+      btn.innerText = "Menganalisis dengan AI (0 detik)...";
       timerInterval = setInterval(function() {
         detik++;
-        btn.innerText = "Menganalisis dengan Gemini 3.8 (" + detik + " detik)...";
+        btn.innerText = "Menganalisis dengan AI (" + detik + " detik)...";
       }, 1000);
 
       var controller = new AbortController();
@@ -895,20 +895,20 @@
 
       try {
         var logErr = [];
-        var hasilAI = await panggilGeminiLangsung_("gemini-3.8-flash", parts, controller.signal);
+        var kandidat = [
+          { base: "https://generativelanguage.googleapis.com/v1beta", model: "gemini-2.5-flash" },
+          { base: "https://generativelanguage.googleapis.com/v1beta", model: "gemini-2.0-flash" },
+          { base: "https://aiplatform.googleapis.com/v1/publishers/google", model: "gemini-2.5-flash" }
+        ];
 
-        if (!hasilAI.ok) {
-          logErr.push(hasilAI.error);
-          var cadangan = await cariModel38Non25_(controller.signal);
-          for (var i = 0; i < cadangan.length; i++) {
-            if (cadangan[i] === "gemini-3.8-flash") continue;
-            var coba = await panggilGeminiLangsung_(cadangan[i], parts, controller.signal);
-            if (coba.ok) {
-              hasilAI = coba;
-              break;
-            } else {
-              logErr.push(coba.error);
-            }
+        var hasilAI = { ok: false };
+        for (var i = 0; i < kandidat.length; i++) {
+          var coba = await panggilGeminiLangsung_(kandidat[i].base, kandidat[i].model, parts, controller.signal);
+          if (coba.ok) {
+            hasilAI = coba;
+            break;
+          } else {
+            logErr.push(coba.error);
           }
         }
 
@@ -936,7 +936,7 @@
           return;
         }
 
-        document.getElementById('badgeSumberAI').innerText = "AI " + hasilAI.model + " (" + detik + " dtk)";
+        document.getElementById('badgeSumberAI').innerText = "Selesai dalam " + detik + " detik";
         document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800";
         document.getElementById('outSaranAI').innerHTML = formatTeksAI(hasilAI.text);
         hasilDiv.scrollIntoView({ behavior: 'smooth' });
@@ -967,7 +967,7 @@
         btn.classList.remove('opacity-50');
         btn.innerText = "Dapatkan Penjelasan AI & Simpan ke Riwayat Saya";
         if (err.name === 'AbortError') {
-          alert("Koneksi ke AI melewati batas 45 detik. Silakan klik tombol analisis kembali.");
+          alert("Koneksi ke AI melewati batas 45 detik. Silakan coba lagi.");
         } else {
           alert("Terjadi gangguan koneksi: " + err.message);
         }
