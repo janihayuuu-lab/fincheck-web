@@ -732,7 +732,6 @@
           var w = img.width;
           var h = img.height;
 
-          // Jika dimensi sudah <= 1400px dan <= 600 KB, pakai gambar asli langsung
           if (w <= maxDim && h <= maxDim && file.size <= 600 * 1024) {
             mimeTypeGambar = file.type || "image/jpeg";
             base64Gambar = dataUrl.split(',')[1];
@@ -762,17 +761,19 @@
       reader.readAsDataURL(file);
     };
 
-    async function panggilGemini38Cepat_(modelName, parts, signal) {
+    function jedaMs_(ms) {
+      return new Promise(function(resolve) { setTimeout(resolve, ms); });
+    }
+
+    async function panggilGeminiCepat_(modelName, parts, signal) {
       var url = "https://generativelanguage.googleapis.com/v1beta/models/" + modelName + ":generateContent?key=" + encodeURIComponent(GEMINI_API_KEY);
-      
-      // Nonaktifkan jeda thinking panjang pada Gemini 3.8 agar selesai dalam 8-15 detik
       var configs = [
         { temperature: 0.1, maxOutputTokens: 1500, thinkingConfig: { thinkingBudget: 0 } },
-        { temperature: 0.1, maxOutputTokens: 1500, thinkingConfig: { thinkingLevel: "minimal" } },
         { temperature: 0.1, maxOutputTokens: 1500 }
       ];
 
       var lastErr = "";
+      var lastStatus = 0;
       for (var c = 0; c < configs.length; c++) {
         var res = await fetch(url, {
           method: "POST",
@@ -783,20 +784,33 @@
             generationConfig: configs[c]
           })
         });
+        lastStatus = res.status;
         var json = await res.json();
         if (res.ok && json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts) {
           return { ok: true, text: json.candidates[0].content.parts[0].text, model: modelName };
         }
         var errMsg = (json.error && json.error.message) ? json.error.message : ("HTTP " + res.status);
         lastErr = "[" + modelName + "] " + errMsg;
-        if (errMsg.toLowerCase().indexOf("thinking") === -1) {
+        if (res.status !== 400) {
           break;
         }
       }
-      return { ok: false, error: lastErr };
+      return { ok: false, status: lastStatus, error: lastErr };
     }
 
-    async function cariModelAktifNon25_(signal) {
+    async function panggilDenganAutoRetry_(modelName, parts, signal) {
+      var coba1 = await panggilGeminiCepat_(modelName, parts, signal);
+      if (coba1.ok) return coba1;
+
+      var pesanLower = coba1.error.toLowerCase();
+      if (coba1.status === 503 || coba1.status === 429 || pesanLower.indexOf("high demand") !== -1 || pesanLower.indexOf("overloaded") !== -1) {
+        await jedaMs_(1500);
+        return await panggilGeminiCepat_(modelName, parts, signal);
+      }
+      return coba1;
+    }
+
+    async function cariModelCadanganTerpisah_(signal) {
       var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key=" + encodeURIComponent(GEMINI_API_KEY), { signal: signal });
       if (!res.ok) return [];
       var data = await res.json();
@@ -809,9 +823,12 @@
         if (methods.indexOf("generateContent") !== -1) {
           var nama = m.name.replace(/^models\//, "");
           if (
-            nama.indexOf("gemini") !== -1 &&
+            nama !== "gemini-3.8-flash" &&
+            nama !== "gemini-flash-latest" &&
             nama.indexOf("2.5") === -1 &&
             nama.indexOf("2.0") === -1 &&
+            nama.indexOf("1.5") === -1 &&
+            nama.indexOf("1.0") === -1 &&
             nama.indexOf("embedding") === -1 &&
             nama.indexOf("imagen") === -1 &&
             nama.indexOf("veo") === -1 &&
@@ -819,23 +836,26 @@
             nama.indexOf("audio") === -1 &&
             nama.indexOf("robotics") === -1 &&
             nama.indexOf("computer-use") === -1 &&
-            nama.indexOf("deep-research") === -1
+            nama.indexOf("deep-research") === -1 &&
+            (nama.indexOf("gemini") !== -1 || nama.indexOf("gemma-3-27b") !== -1 || nama.indexOf("gemma-3-12b") !== -1)
           ) {
             daftar.push(nama);
           }
         }
       }
 
+      function skorModel(n) {
+        if (n.indexOf("flash-lite") !== -1) return 1;
+        if (n.indexOf("flash") !== -1) return 2;
+        if (n.indexOf("pro") !== -1) return 3;
+        return 4;
+      }
+
       daftar.sort(function(a, b) {
-        var a38 = a.indexOf("3.8") !== -1 ? 0 : 1;
-        var b38 = b.indexOf("3.8") !== -1 ? 0 : 1;
-        if (a38 !== b38) return a38 - b38;
-        var aFlash = a.indexOf("flash") !== -1 ? 0 : 1;
-        var bFlash = b.indexOf("flash") !== -1 ? 0 : 1;
-        return aFlash - bFlash;
+        return skorModel(a) - skorModel(b);
       });
 
-      return daftar.slice(0, 2);
+      return daftar.slice(0, 4);
     }
 
     function simpanKeDatabaseLatarBelakang_(payloadSimpan) {
@@ -933,25 +953,28 @@
       btn.classList.add('opacity-50');
       
       var detik = 0;
-      btn.innerText = "Menganalisis dengan Gemini 3.8 (0 detik)...";
+      var labelStatus = "Menganalisis dengan AI";
+      btn.innerText = labelStatus + " (0 detik)...";
       timerInterval = setInterval(function() {
         detik++;
-        btn.innerText = "Menganalisis dengan Gemini 3.8 (" + detik + " detik)...";
+        btn.innerText = labelStatus + " (" + detik + " detik)...";
       }, 1000);
 
       var controller = new AbortController();
-      var timeoutId = setTimeout(function() { controller.abort(); }, 45000);
+      var timeoutId = setTimeout(function() { controller.abort(); }, 55000);
 
       try {
         var logErr = [];
-        var hasilAI = await panggilGemini38Cepat_("gemini-3.8-flash", parts, controller.signal);
+        var hasilAI = await panggilDenganAutoRetry_("gemini-3.8-flash", parts, controller.signal);
 
         if (!hasilAI.ok) {
           logErr.push(hasilAI.error);
-          var cadangan = await cariModelAktifNon25_(controller.signal);
+          labelStatus = "Server utama padat, beralih jalur cadangan";
+          var cadangan = await cariModelCadanganTerpisah_(controller.signal);
+
           for (var i = 0; i < cadangan.length; i++) {
-            if (cadangan[i] === "gemini-3.8-flash") continue;
-            var coba = await panggilGemini38Cepat_(cadangan[i], parts, controller.signal);
+            labelStatus = "Mencoba jalur " + cadangan[i];
+            var coba = await panggilDenganAutoRetry_(cadangan[i], parts, controller.signal);
             if (coba.ok) {
               hasilAI = coba;
               break;
@@ -975,12 +998,12 @@
         document.getElementById('outStatusB').innerText = statusB;
 
         if (!hasilAI.ok) {
-          document.getElementById('badgeSumberAI').innerText = "Layanan Sibuk";
+          document.getElementById('badgeSumberAI').innerText = "Antrean Server Penuh";
           document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-800";
           document.getElementById('statusSimpanDB').innerText = "Belum tersimpan";
           document.getElementById('outSaranAI').innerHTML =
-            '<div class="text-rose-700 font-bold mb-2">Gagal memproses permintaan AI:</div>' +
-            '<div class="p-3 bg-white border border-rose-200 rounded text-xs font-mono text-slate-800 mb-3 whitespace-pre-wrap">' + logErr.join('\n') + '</div>';
+            '<div class="text-rose-700 font-bold mb-2">Seluruh jalur AI sedang mengalami lonjakan trafik sementara. Silakan klik tombol analisis kembali dalam 10–15 detik.</div>' +
+            '<div class="p-3 bg-white border border-rose-200 rounded text-xs font-mono text-slate-800 whitespace-pre-wrap">' + logErr.join('\n') + '</div>';
           hasilDiv.scrollIntoView({ behavior: 'smooth' });
           return;
         }
@@ -1016,7 +1039,7 @@
         btn.classList.remove('opacity-50');
         btn.innerText = "Dapatkan Penjelasan AI & Simpan ke Riwayat Saya";
         if (err.name === 'AbortError') {
-          alert("Koneksi ke AI melewati batas 45 detik. Silakan coba lagi.");
+          alert("Koneksi melewati batas waktu karena antrean server AI sedang penuh. Silakan coba kirim ulang.");
         } else {
           alert("Terjadi gangguan koneksi: " + err.message);
         }
