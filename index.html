@@ -726,22 +726,22 @@
         document.getElementById('imgPreview').src = dataUrl;
         document.getElementById('imgPreview').classList.remove('hidden');
 
-        // Jika file <= 800 KB (seperti 219 KB), pakai file asli tanpa proses ulang
-        if (file.size <= 800 * 1024) {
-          mimeTypeGambar = file.type || "image/jpeg";
-          base64Gambar = dataUrl.split(',')[1];
-          var teksEl = document.getElementById('teksKompresi');
-          teksEl.innerText = "Foto brosur siap dipindai AI (" + ukuranKB + " KB).";
-          teksEl.classList.remove('hidden');
-          return;
-        }
-
-        // Jika foto kamera > 800 KB, kecilkan resolusi secara ringan agar tetap tajam & cepat diunggah
         var img = new Image();
         img.onload = function() {
-          var maxDim = 1600;
+          var maxDim = 1400;
           var w = img.width;
           var h = img.height;
+
+          // Jika dimensi sudah <= 1400px dan <= 600 KB, pakai gambar asli langsung
+          if (w <= maxDim && h <= maxDim && file.size <= 600 * 1024) {
+            mimeTypeGambar = file.type || "image/jpeg";
+            base64Gambar = dataUrl.split(',')[1];
+            var teksEl = document.getElementById('teksKompresi');
+            teksEl.innerText = "Foto brosur siap dipindai AI (" + ukuranKB + " KB).";
+            teksEl.classList.remove('hidden');
+            return;
+          }
+
           if (w > maxDim || h > maxDim) {
             if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
             else { w = Math.round(w * maxDim / h); h = maxDim; }
@@ -750,11 +750,11 @@
           canvas.width = w;
           canvas.height = h;
           canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-          var compressedUrl = canvas.toDataURL('image/jpeg', 0.88);
+          var compressedUrl = canvas.toDataURL('image/jpeg', 0.86);
           mimeTypeGambar = "image/jpeg";
           base64Gambar = compressedUrl.split(',')[1];
           var teksEl = document.getElementById('teksKompresi');
-          teksEl.innerText = "Foto brosur dioptimalkan agar pemindaian cepat (" + Math.round(base64Gambar.length * 0.75 / 1024) + " KB).";
+          teksEl.innerText = "Foto brosur siap dipindai cepat (" + Math.round(base64Gambar.length * 0.75 / 1024) + " KB).";
           teksEl.classList.remove('hidden');
         };
         img.src = dataUrl;
@@ -762,31 +762,80 @@
       reader.readAsDataURL(file);
     };
 
-    async function panggilGeminiLangsung_(endpointBase, modelName, parts, signal) {
-      var url = endpointBase + "/models/" + modelName + ":generateContent?key=" + encodeURIComponent(GEMINI_API_KEY);
-      var genConfig = {
-        temperature: 0.1,
-        maxOutputTokens: 2048
-      };
-      if (modelName.indexOf("2.5") !== -1) {
-        genConfig.thinkingConfig = { thinkingBudget: 0 };
+    async function panggilGemini38Cepat_(modelName, parts, signal) {
+      var url = "https://generativelanguage.googleapis.com/v1beta/models/" + modelName + ":generateContent?key=" + encodeURIComponent(GEMINI_API_KEY);
+      
+      // Nonaktifkan jeda thinking panjang pada Gemini 3.8 agar selesai dalam 8-15 detik
+      var configs = [
+        { temperature: 0.1, maxOutputTokens: 1500, thinkingConfig: { thinkingBudget: 0 } },
+        { temperature: 0.1, maxOutputTokens: 1500, thinkingConfig: { thinkingLevel: "minimal" } },
+        { temperature: 0.1, maxOutputTokens: 1500 }
+      ];
+
+      var lastErr = "";
+      for (var c = 0; c < configs.length; c++) {
+        var res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          signal: signal,
+          body: JSON.stringify({
+            contents: [{ parts: parts }],
+            generationConfig: configs[c]
+          })
+        });
+        var json = await res.json();
+        if (res.ok && json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts) {
+          return { ok: true, text: json.candidates[0].content.parts[0].text, model: modelName };
+        }
+        var errMsg = (json.error && json.error.message) ? json.error.message : ("HTTP " + res.status);
+        lastErr = "[" + modelName + "] " + errMsg;
+        if (errMsg.toLowerCase().indexOf("thinking") === -1) {
+          break;
+        }
+      }
+      return { ok: false, error: lastErr };
+    }
+
+    async function cariModelAktifNon25_(signal) {
+      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key=" + encodeURIComponent(GEMINI_API_KEY), { signal: signal });
+      if (!res.ok) return [];
+      var data = await res.json();
+      if (!data.models) return [];
+
+      var daftar = [];
+      for (var i = 0; i < data.models.length; i++) {
+        var m = data.models[i];
+        var methods = m.supportedGenerationMethods || [];
+        if (methods.indexOf("generateContent") !== -1) {
+          var nama = m.name.replace(/^models\//, "");
+          if (
+            nama.indexOf("gemini") !== -1 &&
+            nama.indexOf("2.5") === -1 &&
+            nama.indexOf("2.0") === -1 &&
+            nama.indexOf("embedding") === -1 &&
+            nama.indexOf("imagen") === -1 &&
+            nama.indexOf("veo") === -1 &&
+            nama.indexOf("tts") === -1 &&
+            nama.indexOf("audio") === -1 &&
+            nama.indexOf("robotics") === -1 &&
+            nama.indexOf("computer-use") === -1 &&
+            nama.indexOf("deep-research") === -1
+          ) {
+            daftar.push(nama);
+          }
+        }
       }
 
-      var res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: signal,
-        body: JSON.stringify({
-          contents: [{ parts: parts }],
-          generationConfig: genConfig
-        })
+      daftar.sort(function(a, b) {
+        var a38 = a.indexOf("3.8") !== -1 ? 0 : 1;
+        var b38 = b.indexOf("3.8") !== -1 ? 0 : 1;
+        if (a38 !== b38) return a38 - b38;
+        var aFlash = a.indexOf("flash") !== -1 ? 0 : 1;
+        var bFlash = b.indexOf("flash") !== -1 ? 0 : 1;
+        return aFlash - bFlash;
       });
-      var json = await res.json();
-      if (res.ok && json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts) {
-        return { ok: true, text: json.candidates[0].content.parts[0].text, model: modelName };
-      }
-      var errMsg = (json.error && json.error.message) ? json.error.message : ("HTTP " + res.status);
-      return { ok: false, status: res.status, error: "[" + modelName + "] " + errMsg };
+
+      return daftar.slice(0, 2);
     }
 
     function simpanKeDatabaseLatarBelakang_(payloadSimpan) {
@@ -884,10 +933,10 @@
       btn.classList.add('opacity-50');
       
       var detik = 0;
-      btn.innerText = "Menganalisis dengan AI (0 detik)...";
+      btn.innerText = "Menganalisis dengan Gemini 3.8 (0 detik)...";
       timerInterval = setInterval(function() {
         detik++;
-        btn.innerText = "Menganalisis dengan AI (" + detik + " detik)...";
+        btn.innerText = "Menganalisis dengan Gemini 3.8 (" + detik + " detik)...";
       }, 1000);
 
       var controller = new AbortController();
@@ -895,20 +944,20 @@
 
       try {
         var logErr = [];
-        var kandidat = [
-          { base: "https://generativelanguage.googleapis.com/v1beta", model: "gemini-2.5-flash" },
-          { base: "https://generativelanguage.googleapis.com/v1beta", model: "gemini-2.0-flash" },
-          { base: "https://aiplatform.googleapis.com/v1/publishers/google", model: "gemini-2.5-flash" }
-        ];
+        var hasilAI = await panggilGemini38Cepat_("gemini-3.8-flash", parts, controller.signal);
 
-        var hasilAI = { ok: false };
-        for (var i = 0; i < kandidat.length; i++) {
-          var coba = await panggilGeminiLangsung_(kandidat[i].base, kandidat[i].model, parts, controller.signal);
-          if (coba.ok) {
-            hasilAI = coba;
-            break;
-          } else {
-            logErr.push(coba.error);
+        if (!hasilAI.ok) {
+          logErr.push(hasilAI.error);
+          var cadangan = await cariModelAktifNon25_(controller.signal);
+          for (var i = 0; i < cadangan.length; i++) {
+            if (cadangan[i] === "gemini-3.8-flash") continue;
+            var coba = await panggilGemini38Cepat_(cadangan[i], parts, controller.signal);
+            if (coba.ok) {
+              hasilAI = coba;
+              break;
+            } else {
+              logErr.push(coba.error);
+            }
           }
         }
 
@@ -936,7 +985,7 @@
           return;
         }
 
-        document.getElementById('badgeSumberAI').innerText = "Selesai dalam " + detik + " detik";
+        document.getElementById('badgeSumberAI').innerText = "AI " + hasilAI.model + " (" + detik + " dtk)";
         document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800";
         document.getElementById('outSaranAI').innerHTML = formatTeksAI(hasilAI.text);
         hasilDiv.scrollIntoView({ behavior: 'smooth' });
