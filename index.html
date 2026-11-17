@@ -172,10 +172,10 @@
               <div class="pt-2 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <div class="text-xs font-bold text-slate-900">2. Lampirkan Foto Brosur Kredit (Opsional)</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">AI membaca angka di tabel brosur dengan resolusi tajam.</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">AI membaca angka di tabel brosur dalam resolusi asli tanpa kompresi.</div>
                 </div>
                 <div class="shrink-0">
-                  <input type="file" id="fotoBrosur" accept="image/*" onchange="kompresGambarDanPreview(this)" class="hidden">
+                  <input type="file" id="fotoBrosur" accept="image/*" onchange="bacaGambarAsliDanPreview(this)" class="hidden">
                   <label for="fotoBrosur" class="inline-block cursor-pointer px-4 py-2.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
                     Pilih File / Jepret Brosur
                   </label>
@@ -381,10 +381,7 @@
   </div>
 
   <script>
-    // 1. LINK GOOGLE APPS SCRIPT (/exec) SUDAH TERPASANG:
-    var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbx_zFJBWrFjWm_qtacWjig_OBF54fx3r70n6UYkYlkCMOokN8Z1DGvlPeXtMV5bRWfl/exec";
-
-    // 2. TEMPEL LINK GOOGLE FORM KUESIONER DI SINI (JIKA SUDAH SIAP):
+    var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbyiXuqIanppHkn7cDafI1OM97H4kI56KNiO0yk2uvRLLIqPcFElnwFooZkvvnMsW5Hr/exec";
     var LINK_KUESIONER = "";
 
     var base64Gambar = "";
@@ -724,37 +721,21 @@
       tbody.innerHTML = barisHTML;
     };
 
-    window.kompresGambarDanPreview = function(input) {
+    window.bacaGambarAsliDanPreview = function(input) {
       var file = input.files[0];
       if (!file) return;
-      
-      mimeTypeGambar = "image/jpeg";
+
+      mimeTypeGambar = file.type || "image/jpeg";
       var reader = new FileReader();
       reader.onload = function(event) {
-        var img = new Image();
-        img.src = event.target.result;
-        img.onload = function() {
-          var canvas = document.createElement('canvas');
-          var MAX_WIDTH = 1024;
-          var width = img.width;
-          var height = img.height;
-          
-          if (width > MAX_WIDTH) {
-            height = Math.round(height *= MAX_WIDTH / width);
-            width = MAX_WIDTH;
-          }
-          
-          canvas.width = width;
-          canvas.height = height;
-          var ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-          
-          var compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
-          document.getElementById('imgPreview').src = compressedDataUrl;
-          document.getElementById('imgPreview').classList.remove('hidden');
-          document.getElementById('teksKompresi').classList.remove('hidden');
-          base64Gambar = compressedDataUrl.split(',')[1];
-        };
+        var dataUrl = event.target.result;
+        document.getElementById('imgPreview').src = dataUrl;
+        document.getElementById('imgPreview').classList.remove('hidden');
+        var ukuranKB = Math.round(file.size / 1024);
+        var teksEl = document.getElementById('teksKompresi');
+        teksEl.innerText = "Foto asli siap dipindai AI tanpa kompresi (" + ukuranKB + " KB).";
+        teksEl.classList.remove('hidden');
+        base64Gambar = dataUrl.split(',')[1];
       };
       reader.readAsDataURL(file);
     };
@@ -795,37 +776,38 @@
 
       var infoFinansial = gaji > 0 
         ? "- Penghasilan Tetap Bulanan: Rp" + gaji.toLocaleString('id-ID') + "\n- Cicilan Berjalan: Rp" + cicilanLama.toLocaleString('id-ID') + "\n- Batas Aman Angsuran Baru (30%): Rp" + batasAman.toLocaleString('id-ID')
-        : "- Penghasilan Tetap: Tidak diisi di form (ekstrak angka penghasilan dari cerita pengguna jika ada)";
+        : "- Penghasilan Tetap: Tidak diisi di form. Jika pengguna juga tidak menyebut gaji di pertanyaan, wajib hitung gaji minimal yang dibutuhkan untuk setiap pilihan di brosur dengan rumus (Angsuran Bulanan dibagi 0,30).";
 
       var infoSimulasi = "";
       if (angsuranA > 0) infoSimulasi += "\n- Simulasi Skema A: Plafon Rp" + plafonA.toLocaleString('id-ID') + ", Tenor " + tenorA + " bln, Bunga " + bungaA + "%/thn -> Angsuran Rp" + Math.round(angsuranA).toLocaleString('id-ID') + "/bln (" + statusA + ")";
       if (angsuranB > 0) infoSimulasi += "\n- Simulasi Skema B: Plafon Rp" + plafonB.toLocaleString('id-ID') + ", Tenor " + tenorB + " bln, Bunga " + bungaB + "%/thn -> Angsuran Rp" + Math.round(angsuranB).toLocaleString('id-ID') + "/bln (" + statusB + ")";
 
       var instruksiBrosur = base64Gambar
-        ? "\n- PENTING: Pengguna melampirkan FOTO BROSUR KREDIT. Baca dengan teliti nama produk, angka plafon, tenor (bulan/tahun), suku bunga, dan nominal cicilan bulanan pada tabel di foto brosur tersebut, lalu cocokkan langsung dengan kondisi dan kebutuhan pengguna!"
+        ? "\n- FOTO BROSUR TERLAMPIR: Baca dan sebutkan secara eksak nama bank/produk, nominal pinjaman (plafon), tenor (bulan/tahun), suku bunga, dan nominal cicilan bulanan dari tabel di foto brosur. Dilarang menjawab secara umum atau normatif tanpa menyebutkan angka dari brosur."
         : "";
 
-      var promptTeks = "Anda adalah penasihat keuangan profesional. Jawab secara spesifik berdasarkan data pengguna dan gambar brosur (jika dilampirkan) dalam bahasa Indonesia baku.\n\n" +
-        "Pertanyaan & Kondisi Pengguna:\n\"" + (catatan || "Analisis kelayakan pinjaman dari data atau brosur yang dilampirkan.") + "\"\n\n" +
+      var promptTeks = "Anda adalah analis kredit perbankan profesional. Berikan analisis kuantitatif yang tajam, rinci, dan berbasis angka pasti dalam bahasa Indonesia baku.\n\n" +
+        "Pertanyaan & Kondisi Pengguna:\n\"" + (catatan || "Analisis seluruh opsi kredit pada brosur yang dilampirkan beserta syarat gaji minimal agar aman.") + "\"\n\n" +
         "Data Pendukung:\n" + infoFinansial + infoSimulasi + instruksiBrosur + "\n\n" +
         "Aturan Penulisan Wajib:\n" +
-        "1. Langsung masuk ke inti analisis tanpa basa-basi pembuka, sebutkan angka spesifik dari kasus pengguna dan angka dari tabel brosur.\n" +
-        "2. Gunakan format **teks tebal** untuk menyoroti angka cicilan, tenor, nama produk, dan status kelayakan (batas aman cicilan maksimal 30% dari penghasilan).\n" +
-        "3. Susun dalam 3 bagian ringkas:\n" +
+        "1. Langsung masuk ke inti analisis tanpa basa-basi pembuka, sebutkan angka spesifik dari kasus pengguna dan seluruh angka relevan pada tabel brosur.\n" +
+        "2. Jika pengguna mencantumkan gaji, bandingkan langsung cicilan dengan batas aman 30% dan hitung selisih kurang/lebihnya dalam Rupiah. Jika pengguna tidak mencantumkan gaji, hitung secara pasti gaji minimal per bulan (Angsuran / 30%) agar cicilan tersebut dinyatakan LAYAK.\n" +
+        "3. Gunakan format **teks tebal** untuk menyoroti angka cicilan, tenor, nama produk, syarat gaji minimal, dan status kelayakan.\n" +
+        "4. Susun dalam 3 bagian terstruktur:\n" +
         "   ### 1. Ringkasan Data & Batas Kemampuan\n" +
-        "   ### 2. Analisis Pilihan Produk / Tenor\n" +
+        "   ### 2. Analisis Rinci Produk & Simulasi Angka\n" +
         "   ### 3. Kesimpulan & Rekomendasi Akhir\n" +
-        "4. Dilarang menggunakan emoji.";
+        "5. Dilarang menggunakan emoji atau saran umum yang mengambang.";
 
       var btn = document.getElementById('btnSubmit');
       btn.disabled = true;
       btn.classList.add('opacity-50');
       
       var detik = 0;
-      btn.innerText = "Memindai & Menganalisis dengan AI (0 detik)...";
+      btn.innerText = "Menganalisis dengan Gemini 3.8 (0 detik)...";
       timerInterval = setInterval(function() {
         detik++;
-        btn.innerText = "Memindai & Menganalisis dengan AI (" + detik + " detik)...";
+        btn.innerText = "Menganalisis dengan Gemini 3.8 (" + detik + " detik)...";
       }, 1000);
 
       try {
@@ -876,9 +858,9 @@
           document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-800";
           document.getElementById('statusSimpanDB').innerText = "Belum tersimpan";
           document.getElementById('outSaranAI').innerHTML =
-            '<div class="text-rose-700 font-bold mb-2">Server AI sedang sibuk atau terkena batas permintaan sementara:</div>' +
+            '<div class="text-rose-700 font-bold mb-2">Gemini 3.8 sedang menerima antrean permintaan sementara:</div>' +
             '<div class="p-3 bg-white border border-rose-200 rounded text-xs font-mono text-slate-800 mb-3 whitespace-pre-wrap">' + (res ? res.errorDetail : 'Tidak ada respons') + '</div>' +
-            '<div class="text-xs text-slate-700">Silakan tunggu sekitar 30–60 detik lalu klik tombol analisis kembali.</div>';
+            '<div class="text-xs text-slate-700">Silakan tunggu sekitar 15–30 detik lalu klik tombol analisis kembali.</div>';
           hasilDiv.scrollIntoView({ behavior: 'smooth' });
           return;
         }
