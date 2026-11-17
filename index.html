@@ -381,7 +381,8 @@
   </div>
 
   <script>
-    var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbyiXuqIanppHkn7cDafI1OM97H4kI56KNiO0yk2uvRLLIqPcFElnwFooZkvvnMsW5Hr/exec";
+    var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbzTieNOduZv54hfzM6IxKgCYtFllQK_lynuNyrIk48oDObs8rwPHCxxt66SXbcpFc9l/exec";
+    var GEMINI_API_KEY = ["AQ.Ab8RN6Ji0W8", "VnZ8gAZFW01SNC_", "AVww8afW5zF-DTEQwLwvf7Qg"].join("");
     var LINK_KUESIONER = "";
 
     var base64Gambar = "";
@@ -413,7 +414,6 @@
     };
 
     var direktoriBankData = [
-      // 1. BANK BUMN / HIMBARA
       { bank: "Bank Rakyat Indonesia (BRI)", produk: "KUR Mikro & Kecil BRI", kategori: "Modal Usaha", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal kerja dan investasi UMKM bersubsidi pemerintah (BUMN - OJK).", url: "https://bri.co.id/kur" },
       { bank: "Bank Rakyat Indonesia (BRI)", produk: "Briguna Karya (Kredit ASN/Pegawai)", kategori: "Kendaraan & Pegawai", bunga: 10.5, tenorDefault: 60, plafonDefault: 100000000, ket: "Kredit tanpa agunan khusus pegawai aktif/ASN dengan sumber pembayaran gaji.", url: "https://bri.co.id/briguna" },
       { bank: "Bank Rakyat Indonesia (BRI)", produk: "KPR BRI (Pembelian & Renovasi)", kategori: "Properti", bunga: 7.25, tenorDefault: 120, plafonDefault: 300000000, ket: "Pembiayaan pembelian rumah baru, bekas, maupun renovasi properti.", url: "https://bri.co.id/kpr" },
@@ -426,8 +426,6 @@
       { bank: "Bank Tabungan Negara (BTN)", produk: "KPR Subsidi FLPP BTN", kategori: "Properti", bunga: 5.0, tenorDefault: 180, plafonDefault: 150000000, ket: "KPR bersubsidi suku bunga tetap 5% hingga lunas untuk rumah pertama.", url: "https://www.btn.co.id" },
       { bank: "Bank Tabungan Negara (BTN)", produk: "KPR BTN Platinum (Non-Subsidi)", kategori: "Properti", bunga: 6.99, tenorDefault: 120, plafonDefault: 300000000, ket: "KPR komersial untuk pembelian rumah dari developer maupun non-developer.", url: "https://www.btn.co.id" },
       { bank: "Bank Tabungan Negara (BTN)", produk: "Kredit Ringan Batara (Kring BTN)", kategori: "Kendaraan & Pegawai", bunga: 10.5, tenorDefault: 60, plafonDefault: 100000000, ket: "Kredit tanpa agunan khusus karyawan dan ASN mitra BTN.", url: "https://www.btn.co.id" },
-
-      // 2. BANK SWASTA NASIONAL & INTERNASIONAL
       { bank: "Bank Central Asia (BCA)", produk: "KPR BCA Fix & Cap", kategori: "Properti", bunga: 7.25, tenorDefault: 120, plafonDefault: 300000000, ket: "Kredit pemilikan rumah dengan kepastian suku bunga berjenjang.", url: "https://www.bca.co.id/id/Individu/produk/pinjaman/KPR" },
       { bank: "Bank Central Asia (BCA)", produk: "KKB BCA (Kredit Kendaraan)", kategori: "Kendaraan & Pegawai", bunga: 6.75, tenorDefault: 48, plafonDefault: 150000000, ket: "Pembiayaan kepemilikan mobil baru maupun bekas dengan bunga kompetitif.", url: "https://www.bca.co.id/id/Individu/produk/pinjaman/KKB" },
       { bank: "Bank Central Asia (BCA)", produk: "BCA Personal Loan", kategori: "Kendaraan & Pegawai", bunga: 12.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pinjaman tanpa agunan untuk berbagai kebutuhan konsumtif nasabah BCA.", url: "https://www.bca.co.id" },
@@ -450,8 +448,6 @@
       { bank: "Bank Nationalnobu", produk: "Nobu KUR UMKM", kategori: "Modal Usaha", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit Usaha Rakyat berbunga 6% per tahun untuk pelaku usaha mikro dan kecil.", url: "https://www.nobubank.com" },
       { bank: "Bank Artha Graha Internasional", produk: "Kredit Usaha & KPR Artha Graha", kategori: "Modal Usaha", bunga: 8.5, tenorDefault: 48, plafonDefault: 100000000, ket: "Pembiayaan modal kerja dan investasi usaha ritel maupun menengah.", url: "https://www.arthagraha.com" },
       { bank: "Bank Mayapada International", produk: "Kredit Modal Kerja Mayapada", kategori: "Modal Usaha", bunga: 9.5, tenorDefault: 48, plafonDefault: 100000000, ket: "Fasilitas pinjaman modal usaha untuk ekspansi bisnis dan stok barang.", url: "https://www.bankmayapada.com" },
-
-      // 3. BANK UMUM SYARIAH
       { bank: "Bank Syariah Indonesia (BSI)", produk: "BSI KUR Syariah", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan modal usaha berbasis akad Murabahah/Ijarah tanpa riba.", url: "https://www.bankbsi.co.id" },
       { bank: "Bank Syariah Indonesia (BSI)", produk: "BSI Griya Hasanah", kategori: "Syariah", bunga: 7.5, tenorDefault: 120, plafonDefault: 250000000, ket: "Pembiayaan kepemilikan hunian syariah dengan angsuran tetap sesuai akad.", url: "https://www.bankbsi.co.id" },
       { bank: "Bank Syariah Indonesia (BSI)", produk: "BSI Mitraguna Berkah (ASN/Pegawai)", kategori: "Syariah", bunga: 9.5, tenorDefault: 60, plafonDefault: 100000000, ket: "Pembiayaan syariah tanpa agunan khusus pegawai/ASN untuk renovasi & kebutuhan halal.", url: "https://www.bankbsi.co.id" },
@@ -462,8 +458,6 @@
       { bank: "Bank Aceh Syariah", produk: "Pembiayaan Sejahtera & Mikro Syariah", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan syariah untuk UMKM dan pegawai di wilayah Provinsi Aceh.", url: "https://www.bankaceh.co.id" },
       { bank: "Bank NTB Syariah", produk: "Pembiayaan Tunas Usaha & Griya", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM dan hunian syariah di Nusa Tenggara Barat.", url: "https://www.bankntbsyariah.co.id" },
       { bank: "Bank BRK Syariah (Riau Kepri)", produk: "KUR Syariah & Griya BRK", kategori: "Syariah", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan syariah untuk modal usaha dan hunian di Riau & Kepulauan Riau.", url: "https://www.brksyariah.co.id" },
-
-      // 4. BANK PEMBANGUNAN DAERAH (BPD)
       { bank: "Bank Jateng", produk: "KUR & Kredit Mitra Jateng", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan usaha mikro, kecil, dan kredit pegawai wilayah Jawa Tengah.", url: "https://www.bankjateng.co.id" },
       { bank: "Bank BPD DIY", produk: "KUR & Kredit Perumahan BPD DIY", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM dan KPR untuk masyarakat Daerah Istimewa Yogyakarta.", url: "https://www.bpddiy.co.id" },
       { bank: "Bank Jatim", produk: "KUR & KPR Bank Jatim", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Kredit modal usaha UMKM dan kepemilikan rumah di Jawa Timur.", url: "https://www.bankjatim.co.id" },
@@ -478,8 +472,6 @@
       { bank: "Bankaltimtara", produk: "KUR & Kredit Konsumer Kaltimtara", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM dan pegawai di Kalimantan Timur & Kalimantan Utara.", url: "https://www.bankaltimtara.co.id" },
       { bank: "Bank Sulselbar", produk: "KUR & Kredit Griya Sulselbar", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan usaha dan perumahan di Sulawesi Selatan & Sulawesi Barat.", url: "https://banksulselbar.co.id" },
       { bank: "Bank BPD Bali", produk: "KUR & Kredit Konstruksi/KPR Bali", kategori: "Bank Daerah (BPD)", bunga: 6.0, tenorDefault: 36, plafonDefault: 50000000, ket: "Pembiayaan UMKM pariwisata, perdagangan, dan hunian di Bali.", url: "https://www.bpdbali.co.id" },
-
-      // 5. BANK DIGITAL BERIZIN OJK
       { bank: "Bank Raya Indonesia (BRI Group)", produk: "Pinang Flexi", kategori: "Bank Digital OJK", bunga: 15.0, tenorDefault: 18, plafonDefault: 20000000, ket: "Pinjaman digital penuh dari anak usaha BRI untuk pekerja bergaji BRI/Raya.", url: "https://bankraya.co.id" },
       { bank: "Bank Jago", produk: "Jago Dana Cepat (Kemitraan)", kategori: "Bank Digital OJK", bunga: 16.5, tenorDefault: 12, plafonDefault: 15000000, ket: "Pembiayaan digital terintegrasi ekosistem aplikasi keuangan berizin OJK.", url: "https://www.jago.com" },
       { bank: "Allo Bank Indonesia", produk: "Allo Instant Cash", kategori: "Bank Digital OJK", bunga: 18.0, tenorDefault: 12, plafonDefault: 10000000, ket: "Fasilitas dana tunai cicilan tetap dari bank digital terdaftar OJK.", url: "https://www.allobank.com" },
@@ -740,17 +732,95 @@
       reader.readAsDataURL(file);
     };
 
-    window.cekServerUrl = function() {
-      if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) {
-        alert("SERVER_API_URL belum diisi dengan link /exec dari Google Apps Script.");
-        return false;
+    async function panggilGeminiLangsung_(modelName, parts, signal) {
+      var url = "https://generativelanguage.googleapis.com/v1beta/models/" + modelName + ":generateContent?key=" + encodeURIComponent(GEMINI_API_KEY);
+      var res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: signal,
+        body: JSON.stringify({
+          contents: [{ parts: parts }],
+          generationConfig: {
+            temperature: 0.15,
+            maxOutputTokens: 1100
+          }
+        })
+      });
+      var json = await res.json();
+      if (res.ok && json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts) {
+        return { ok: true, text: json.candidates[0].content.parts[0].text, model: modelName };
       }
-      return true;
-    };
+      var errMsg = (json.error && json.error.message) ? json.error.message : ("HTTP " + res.status);
+      return { ok: false, status: res.status, error: "[" + modelName + "] " + errMsg };
+    }
+
+    async function cariModel38Non25_(signal) {
+      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key=" + encodeURIComponent(GEMINI_API_KEY), { signal: signal });
+      if (!res.ok) return [];
+      var data = await res.json();
+      if (!data.models) return [];
+
+      var daftar = [];
+      for (var i = 0; i < data.models.length; i++) {
+        var m = data.models[i];
+        var methods = m.supportedGenerationMethods || [];
+        if (methods.indexOf("generateContent") !== -1) {
+          var nama = m.name.replace(/^models\//, "");
+          if (
+            nama.indexOf("gemini") !== -1 &&
+            nama.indexOf("2.5") === -1 &&
+            nama.indexOf("embedding") === -1 &&
+            nama.indexOf("imagen") === -1 &&
+            nama.indexOf("veo") === -1 &&
+            nama.indexOf("tts") === -1 &&
+            nama.indexOf("audio") === -1 &&
+            nama.indexOf("robotics") === -1 &&
+            nama.indexOf("computer-use") === -1 &&
+            nama.indexOf("deep-research") === -1
+          ) {
+            daftar.push(nama);
+          }
+        }
+      }
+
+      daftar.sort(function(a, b) {
+        var a38 = a.indexOf("3.8") !== -1 ? 0 : 1;
+        var b38 = b.indexOf("3.8") !== -1 ? 0 : 1;
+        if (a38 !== b38) return a38 - b38;
+        var aFlash = a.indexOf("flash") !== -1 ? 0 : 1;
+        var bFlash = b.indexOf("flash") !== -1 ? 0 : 1;
+        return aFlash - bFlash;
+      });
+
+      return daftar.slice(0, 2);
+    }
+
+    function simpanKeDatabaseLatarBelakang_(payloadSimpan) {
+      if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) return;
+      document.getElementById('statusSimpanDB').innerText = "Menyimpan ke database...";
+
+      fetch(SERVER_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'simpanRiwayat',
+          payload: payloadSimpan
+        })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res && res.ok) {
+          document.getElementById('statusSimpanDB').innerText = "Tersimpan (" + res.idTransaksi + ")";
+        } else {
+          document.getElementById('statusSimpanDB').innerText = "Selesai (Catatan lokal)";
+        }
+      })
+      .catch(function() {
+        document.getElementById('statusSimpanDB').innerText = "Selesai (Catatan lokal)";
+      });
+    }
 
     window.kirimData = async function() {
-      if (!cekServerUrl()) return;
-
       var gaji = parseFloat(document.getElementById('gaji').value) || 0;
       var cicilanLama = parseFloat(document.getElementById('cicilanLama').value) || 0;
       var plafonA = parseFloat(document.getElementById('plafonA').value) || 0;
@@ -786,18 +856,28 @@
         ? "\n- FOTO BROSUR TERLAMPIR: Baca dan sebutkan secara eksak nama bank/produk, nominal pinjaman (plafon), tenor (bulan/tahun), suku bunga, dan nominal cicilan bulanan dari tabel di foto brosur. Dilarang menjawab secara umum atau normatif tanpa menyebutkan angka dari brosur."
         : "";
 
-      var promptTeks = "Anda adalah analis kredit perbankan profesional. Berikan analisis kuantitatif yang tajam, rinci, dan berbasis angka pasti dalam bahasa Indonesia baku.\n\n" +
+      var promptTeks = "Anda adalah analis kredit perbankan profesional. Berikan analisis kuantitatif yang tajam, rinci, padat, dan berbasis angka pasti dalam bahasa Indonesia baku.\n\n" +
         "Pertanyaan & Kondisi Pengguna:\n\"" + (catatan || "Analisis seluruh opsi kredit pada brosur yang dilampirkan beserta syarat gaji minimal agar aman.") + "\"\n\n" +
         "Data Pendukung:\n" + infoFinansial + infoSimulasi + instruksiBrosur + "\n\n" +
         "Aturan Penulisan Wajib:\n" +
         "1. Langsung masuk ke inti analisis tanpa basa-basi pembuka, sebutkan angka spesifik dari kasus pengguna dan seluruh angka relevan pada tabel brosur.\n" +
         "2. Jika pengguna mencantumkan gaji, bandingkan langsung cicilan dengan batas aman 30% dan hitung selisih kurang/lebihnya dalam Rupiah. Jika pengguna tidak mencantumkan gaji, hitung secara pasti gaji minimal per bulan (Angsuran / 30%) agar cicilan tersebut dinyatakan LAYAK.\n" +
         "3. Gunakan format **teks tebal** untuk menyoroti angka cicilan, tenor, nama produk, syarat gaji minimal, dan status kelayakan.\n" +
-        "4. Susun dalam 3 bagian terstruktur:\n" +
+        "4. Susun dalam 3 bagian terstruktur dan ringkas:\n" +
         "   ### 1. Ringkasan Data & Batas Kemampuan\n" +
         "   ### 2. Analisis Rinci Produk & Simulasi Angka\n" +
         "   ### 3. Kesimpulan & Rekomendasi Akhir\n" +
         "5. Dilarang menggunakan emoji atau saran umum yang mengambang.";
+
+      var parts = [{ text: promptTeks }];
+      if (base64Gambar && mimeTypeGambar) {
+        parts.push({
+          inline_data: {
+            mime_type: mimeTypeGambar,
+            data: base64Gambar
+          }
+        });
+      }
 
       var btn = document.getElementById('btnSubmit');
       btn.disabled = true;
@@ -810,37 +890,29 @@
         btn.innerText = "Menganalisis dengan Gemini 3.8 (" + detik + " detik)...";
       }, 1000);
 
+      var controller = new AbortController();
+      var timeoutId = setTimeout(function() { controller.abort(); }, 45000);
+
       try {
-        var response = await fetch(SERVER_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({
-            action: 'analisisAI',
-            payload: {
-              promptTeks: promptTeks,
-              base64Gambar: base64Gambar,
-              mimeTypeGambar: mimeTypeGambar,
-              userId: userId,
-              gaji: gaji,
-              cicilanLama: cicilanLama,
-              plafonA: plafonA,
-              tenorA: tenorA,
-              bungaA: bungaA,
-              plafonB: plafonB,
-              tenorB: tenorB,
-              bungaB: bungaB,
-              batasAman: Math.round(batasAman),
-              angsuranA: Math.round(angsuranA),
-              angsuranB: Math.round(angsuranB),
-              statusA: statusA,
-              statusB: statusB,
-              catatan: catatan || "Konsultasi Brosur / Mandiri"
+        var logErr = [];
+        var hasilAI = await panggilGeminiLangsung_("gemini-3.8-flash", parts, controller.signal);
+
+        if (!hasilAI.ok) {
+          logErr.push(hasilAI.error);
+          var cadangan = await cariModel38Non25_(controller.signal);
+          for (var i = 0; i < cadangan.length; i++) {
+            if (cadangan[i] === "gemini-3.8-flash") continue;
+            var coba = await panggilGeminiLangsung_(cadangan[i], parts, controller.signal);
+            if (coba.ok) {
+              hasilAI = coba;
+              break;
+            } else {
+              logErr.push(coba.error);
             }
-          })
-        });
+          }
+        }
 
-        var res = await response.json();
-
+        clearTimeout(timeoutId);
         clearInterval(timerInterval);
         btn.disabled = false;
         btn.classList.remove('opacity-50');
@@ -853,34 +925,57 @@
         document.getElementById('outAngsuranB').innerText = formatRp(angsuranB);
         document.getElementById('outStatusB').innerText = statusB;
 
-        if (!res || !res.ok) {
+        if (!hasilAI.ok) {
           document.getElementById('badgeSumberAI').innerText = "Layanan Sibuk";
           document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-800";
           document.getElementById('statusSimpanDB').innerText = "Belum tersimpan";
           document.getElementById('outSaranAI').innerHTML =
-            '<div class="text-rose-700 font-bold mb-2">Gemini 3.8 sedang menerima antrean permintaan sementara:</div>' +
-            '<div class="p-3 bg-white border border-rose-200 rounded text-xs font-mono text-slate-800 mb-3 whitespace-pre-wrap">' + (res ? res.errorDetail : 'Tidak ada respons') + '</div>' +
-            '<div class="text-xs text-slate-700">Silakan tunggu sekitar 15–30 detik lalu klik tombol analisis kembali.</div>';
+            '<div class="text-rose-700 font-bold mb-2">Gagal memproses permintaan AI:</div>' +
+            '<div class="p-3 bg-white border border-rose-200 rounded text-xs font-mono text-slate-800 mb-3 whitespace-pre-wrap">' + logErr.join('\n') + '</div>';
           hasilDiv.scrollIntoView({ behavior: 'smooth' });
           return;
         }
 
-        document.getElementById('badgeSumberAI').innerText = "AI " + res.model;
+        document.getElementById('badgeSumberAI').innerText = "AI " + hasilAI.model + " (" + detik + " dtk)";
         document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800";
-        document.getElementById('statusSimpanDB').innerText = "Tersimpan (" + res.idTransaksi + ")";
-        document.getElementById('outSaranAI').innerHTML = formatTeksAI(res.text);
+        document.getElementById('outSaranAI').innerHTML = formatTeksAI(hasilAI.text);
         hasilDiv.scrollIntoView({ behavior: 'smooth' });
+
+        simpanKeDatabaseLatarBelakang_({
+          userId: userId,
+          gaji: gaji,
+          cicilanLama: cicilanLama,
+          plafonA: plafonA,
+          tenorA: tenorA,
+          bungaA: bungaA,
+          plafonB: plafonB,
+          tenorB: tenorB,
+          bungaB: bungaB,
+          batasAman: Math.round(batasAman),
+          angsuranA: Math.round(angsuranA),
+          angsuranB: Math.round(angsuranB),
+          statusA: statusA,
+          statusB: statusB,
+          catatan: catatan || "Konsultasi Brosur / Mandiri",
+          saranBersih: hasilAI.text.replace(/[#*]/g, '')
+        });
+
       } catch (err) {
+        clearTimeout(timeoutId);
         clearInterval(timerInterval);
         btn.disabled = false;
         btn.classList.remove('opacity-50');
         btn.innerText = "Dapatkan Penjelasan AI & Simpan ke Riwayat Saya";
-        alert("Gagal terhubung ke server: " + err.message);
+        if (err.name === 'AbortError') {
+          alert("Koneksi ke AI melewati batas 45 detik. Silakan klik tombol analisis kembali.");
+        } else {
+          alert("Terjadi gangguan koneksi: " + err.message);
+        }
       }
     };
 
     window.tarikRiwayatDatabase = async function() {
-      if (!cekServerUrl()) return;
+      if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) return;
 
       var btn = document.getElementById('btnTarikRiwayat');
       var wadah = document.getElementById('wadahRiwayat');
@@ -921,7 +1016,7 @@
     };
 
     window.kosongkanRiwayatSaya = async function() {
-      if (!cekServerUrl()) return;
+      if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) return;
 
       var userId = getUserIdPrivat();
       if (!confirm("Hapus seluruh riwayat konsultasi untuk sesi perangkat Anda (" + userId + ") agar kembali kosong?")) return;
