@@ -39,6 +39,7 @@
       
       <nav class="py-4 space-y-1 flex-1 overflow-y-auto">
         <button type="button" onclick="bukaHalaman('beranda')" data-page="beranda" class="nav-item active w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Beranda Utama</button>
+        <button type="button" onclick="bukaHalaman('kalkulator')" data-page="kalkulator" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Kalkulator & Cari Bank</button>
         <button type="button" onclick="bukaHalaman('analisis')" data-page="analisis" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Konsultasi & Pindai Brosur</button>
         <button type="button" onclick="bukaHalaman('rekomendasi')" data-page="rekomendasi" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Direktori Produk Bank (64)</button>
         <button type="button" onclick="bukaHalaman('anuitas')" data-page="anuitas" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Tabel & Grafik Anuitas</button>
@@ -85,14 +86,14 @@
             <div class="text-xs font-bold tracking-widest uppercase text-emerald-400">Pendamping Keputusan Finansial</div>
             <h1 class="text-xl md:text-2xl font-bold mt-2">Pahami kemampuan bayar sebelum mengambil cicilan.</h1>
             <p class="text-sm text-slate-300 mt-3 max-w-2xl leading-relaxed">
-              Anda dapat mengunggah foto brosur kredit agar AI membantu menghitung kesanggupan cicilan sesuai penghasilan Anda. Anda juga bisa membandingkan 64 produk pinjaman dari 52 bank resmi yang diawasi OJK. Selain itu, FinCheck menyediakan kalkulator untuk melihat rincian cicilan pokok dan bunga setiap bulan hingga lunas.
+              Anda dapat mengunggah foto brosur kredit agar AI membantu menghitung kesanggupan cicilan sesuai penghasilan Anda. Anda juga bisa membandingkan 64 produk pinjaman dari 52 bank resmi yang diawasi OJK secara otomatis. Selain itu, FinCheck menyediakan kalkulator untuk melihat rincian cicilan pokok dan bunga setiap bulan hingga lunas.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
-              <button type="button" onclick="bukaHalaman('analisis')" class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-lg hover:bg-emerald-700 transition cursor-pointer">
-                Mulai Konsultasi & Pindai Brosur
+              <button type="button" onclick="bukaHalaman('kalkulator')" class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-lg hover:bg-emerald-700 transition cursor-pointer">
+                Hitung Kelayakan & Cari Bank
               </button>
-              <button type="button" onclick="bukaHalaman('rekomendasi')" class="px-5 py-2.5 bg-slate-800 text-white border border-slate-700 font-bold text-xs rounded-lg hover:bg-slate-700 transition cursor-pointer">
-                Jelajahi 64 Produk Bank OJK
+              <button type="button" onclick="bukaHalaman('analisis')" class="px-5 py-2.5 bg-slate-800 text-white border border-slate-700 font-bold text-xs rounded-lg hover:bg-slate-700 transition cursor-pointer">
+                Konsultasi & Pindai Brosur AI
               </button>
             </div>
           </div>
@@ -136,49 +137,155 @@
               </button>
             </div>
 
-            <!-- Kartu Akses Langsung Konsultasi AI -->
+            <!-- Kartu Akses Langsung Konsultasi AI & Pencari Bank -->
             <div class="card-panel rounded-xl p-6 flex flex-col justify-between space-y-5">
               <div class="space-y-4">
                 <div>
-                  <h3 class="text-sm font-bold text-slate-900 uppercase">Konsultasi & Pindai Brosur AI</h3>
-                  <p class="text-xs text-slate-500 mt-1">Punya foto brosur kredit dari bank atau dealer? Biarkan AI membacanya untuk Anda.</p>
+                  <h3 class="text-sm font-bold text-slate-900 uppercase">Pilih Cara Evaluasi Kredit</h3>
+                  <p class="text-xs text-slate-500 mt-1">Gunakan hitung otomatis berbasis angka atau konsultasi brosur bersama AI.</p>
                 </div>
 
                 <div class="space-y-3 pt-1">
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
-                    <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+                    <span class="w-6 h-6 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Tulis Penghasilan & Kebutuhan:</strong> Ceritakan gaji bulanan serta tujuan pinjaman Anda dengan bahasa sehari-hari.
+                      <strong class="text-slate-900">Kalkulator & Pencari Bank Otomatis (Instan):</strong> Masukkan gaji dan dana yang dibutuhkan, lalu sistem langsung mencarikan produk bank resmi OJK yang cicilannya aman di bawah 30% gaji.
                     </div>
                   </div>
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Unggah Foto Brosur (Bisa Banyak):</strong> Lampirkan satu atau beberapa foto brosur penawaran kredit sekaligus.
+                      <strong class="text-slate-900">Konsultasi & Pindai Brosur AI:</strong> Unggah satu atau banyak foto brosur kredit sekaligus agar AI membacakan tabelnya dan memberi saran tenor terbaik.
                     </div>
                   </div>
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Dapatkan Rekomendasi Aman:</strong> AI menilai mana produk dan tenor yang cicilannya aman di bawah batas 30% gaji.
+                      <strong class="text-slate-900">Direktori 64 Produk Bank OJK:</strong> Jelajahi daftar pinjaman dari 52 bank resmi lengkap dengan tautan situs bank dan sumber suku bunganya.
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="space-y-2.5 pt-2">
-                <button type="button" onclick="bukaHalaman('analisis')" class="w-full py-3 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition cursor-pointer">
-                  Buka Konsultasi & Pindai Brosur AI
+                <button type="button" onclick="bukaHalaman('kalkulator')" class="w-full py-3 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition cursor-pointer">
+                  Mulai Hitung & Cari Bank Otomatis
                 </button>
-                <button type="button" onclick="bukaHalaman('rekomendasi')" class="w-full py-2.5 bg-slate-100 text-slate-800 text-xs font-bold rounded-lg hover:bg-slate-200 transition cursor-pointer">
-                  Bandingkan 64 Produk Bank OJK
+                <button type="button" onclick="bukaHalaman('analisis')" class="w-full py-2.5 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                  Buka Konsultasi & Pindai Brosur AI
                 </button>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- HALAMAN 2: KONSULTASI & PINDAI BROSUR -->
+        <!-- HALAMAN 2: KALKULATOR KELAYAKAN & PENCARI BANK OTOMATIS -->
+        <section id="page-kalkulator" class="hidden space-y-6">
+          <div class="card-panel rounded-xl p-6 space-y-5">
+            <div class="border-b border-slate-200 pb-4">
+              <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Kalkulator Kelayakan & Pencari Bank Otomatis</h2>
+              <p class="text-xs text-slate-500 mt-1">Masukkan data keuangan Anda untuk menghitung batas cicilan sehat (maksimal 30% gaji) dan mencocokkannya secara instan dengan 64 produk bank resmi OJK.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
+              <div>
+                <label class="block text-xs font-bold text-slate-900 mb-1">1. Gaji / Penghasilan Bersih per Bulan (Rp)</label>
+                <input type="number" id="calcGaji" value="8000000" min="0" step="100000" placeholder="Contoh: 8000000" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
+                <div class="text-[11px] text-slate-500 mt-1">Penghasilan tetap bulanan setelah potongan wajib.</div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-900 mb-1">2. Cicilan Lain yang Sedang Berjalan / Bulan (Rp)</label>
+                <input type="number" id="calcCicilanLama" value="0" min="0" step="100000" placeholder="Isi 0 jika tidak ada" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
+                <div class="text-[11px] text-slate-500 mt-1">Total angsuran aktif saat ini (motor, kartu kredit, dll).</div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-900 mb-1">3. Kebutuhan Dana Pinjaman (Rp)</label>
+                <input type="number" id="calcPinjaman" value="50000000" min="1000000" step="1000000" placeholder="Contoh: 50000000" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
+                <div class="text-[11px] text-slate-500 mt-1">Nominal dana bersih yang ingin dipinjam dari bank.</div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-900 mb-1">4. Lama Cicilan (Tenor) yang Diinginkan</label>
+                <select id="calcTenor" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
+                  <option value="12">12 Bulan (1 Tahun)</option>
+                  <option value="24">24 Bulan (2 Tahun)</option>
+                  <option value="36" selected>36 Bulan (3 Tahun)</option>
+                  <option value="48">48 Bulan (4 Tahun)</option>
+                  <option value="60">60 Bulan (5 Tahun)</option>
+                  <option value="120">120 Bulan (10 Tahun)</option>
+                  <option value="180">180 Bulan (15 Tahun)</option>
+                </select>
+                <div class="text-[11px] text-slate-500 mt-1">Semakin panjang tenor, cicilan per bulan semakin ringan.</div>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-slate-900 mb-1">5. Tujuan / Jenis Pinjaman</label>
+                <select id="calcKategori" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
+                  <option value="Semua">Semua Jenis Pinjaman (Tampilkan Semua 64 Produk)</option>
+                  <option value="Modal Usaha">Modal Usaha / Kredit Usaha Rakyat (KUR)</option>
+                  <option value="Properti">Pembelian Rumah / Renovasi (KPR)</option>
+                  <option value="Syariah">Pembiayaan Syariah</option>
+                  <option value="Bank Daerah (BPD)">Bank Pembangunan Daerah (BPD)</option>
+                  <option value="Kendaraan & Pegawai">Kredit Pegawai / Multiguna / Kendaraan</option>
+                  <option value="Bank Digital OJK">Pinjaman Bank Digital Resmi OJK</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" onclick="hitungKelayakanDanCariBank()" class="w-full py-3.5 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition cursor-pointer">
+              Hitung Kelayakan & Carikan Produk Bank Paling Sesuai
+            </button>
+          </div>
+
+          <!-- Hasil Perhitungan & Rekomendasi Bank -->
+          <div id="hasilKalkulatorContainer" class="hidden space-y-6">
+            <!-- Kartu Ringkasan Kapasitas -->
+            <div class="card-panel rounded-xl p-6 space-y-4 border-l-4 border-emerald-600">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                <h3 class="text-base font-bold text-slate-900 uppercase">Hasil Evaluasi Kemampuan Bayar Anda</h3>
+                <span id="badgeStatusKapasitas" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800">Kapasitas Tersedia</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+                  <div class="text-[11px] text-slate-500 font-bold">Batas Maksimal Cicilan (30% Gaji)</div>
+                  <div id="outCalcBatas30" class="text-lg font-bold text-slate-900 mt-1">Rp 0</div>
+                </div>
+                <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+                  <div class="text-[11px] text-slate-500 font-bold">Cicilan Lama Berjalan</div>
+                  <div id="outCalcCicilanLama" class="text-lg font-bold text-slate-700 mt-1">Rp 0</div>
+                </div>
+                <div class="p-3.5 rounded-lg bg-emerald-50 border border-emerald-200">
+                  <div class="text-[11px] text-emerald-800 font-bold">Sisa Kapasitas Cicilan Baru</div>
+                  <div id="outCalcSisaKapasitas" class="text-lg font-bold text-emerald-700 mt-1">Rp 0 / bln</div>
+                </div>
+              </div>
+
+              <!-- Kotak Saran Otomatis jika tidak ada produk yang layak -->
+              <div id="kotakSaranPenyesuaian" class="hidden p-4 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-950 leading-relaxed space-y-1"></div>
+            </div>
+
+            <!-- Daftar Produk Bank Hasil Pencocokan -->
+            <div class="card-panel rounded-xl p-6 space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
+                <div>
+                  <h3 class="text-base font-bold text-slate-900 uppercase">Rekomendasi Produk Bank OJK yang Paling Sesuai</h3>
+                  <p id="subjudulHasilBank" class="text-xs text-slate-500 mt-0.5">Diurutkan dari cicilan paling ringan dan status paling aman.</p>
+                </div>
+                <label class="inline-flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 px-3 py-2 rounded-lg cursor-pointer">
+                  <input type="checkbox" id="chkHanyaLayak" onchange="hitungKelayakanDanCariBank()" class="accent-emerald-700">
+                  <span>Hanya tampilkan yang Layak Aman</span>
+                </label>
+              </div>
+
+              <div id="wadahHasilBankKalkulator" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HALAMAN 3: KONSULTASI & PINDAI BROSUR -->
         <section id="page-analisis" class="hidden space-y-6">
           <div class="card-panel rounded-xl p-6 space-y-5">
             <div class="border-b border-slate-200 pb-4">
@@ -265,7 +372,7 @@
           </div>
         </section>
 
-        <!-- HALAMAN 3: DIREKTORI PRODUK BANK -->
+        <!-- HALAMAN 4: DIREKTORI PRODUK BANK -->
         <section id="page-rekomendasi" class="hidden space-y-6">
           <div class="card-panel rounded-xl p-6 space-y-5">
             <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -305,7 +412,7 @@
           </div>
         </section>
 
-        <!-- HALAMAN 4: TABEL & GRAFIK ANUITAS -->
+        <!-- HALAMAN 5: TABEL & GRAFIK ANUITAS -->
         <section id="page-anuitas" class="hidden space-y-6">
           <div class="card-panel rounded-xl p-6 space-y-5">
             <div class="border-b border-slate-200 pb-4">
@@ -359,7 +466,7 @@
           </div>
         </section>
 
-        <!-- HALAMAN 5: RIWAYAT PRIVAT PENGGUNA -->
+        <!-- HALAMAN 6: RIWAYAT PRIVAT PENGGUNA -->
         <section id="page-riwayat" class="hidden space-y-6">
           <div class="card-panel rounded-xl p-6 space-y-5">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-4 gap-3">
@@ -507,6 +614,12 @@
       return (plafon * r) / (1 - Math.pow(1 + r, -tenor));
     };
 
+    window.hitungPlafonMaksimal = function(cicilanMaks, tenor, bunga) {
+      if (!cicilanMaks || cicilanMaks <= 0 || !tenor || !bunga) return 0;
+      var r = (bunga / 100) / 12;
+      return cicilanMaks * (1 - Math.pow(1 + r, -tenor)) / r;
+    };
+
     window.formatTeksAI = function(teks) {
       if (!teks) return "";
       var html = teks
@@ -542,7 +655,7 @@
     };
 
     window.bukaHalaman = function(namaHalaman) {
-      var daftarHalaman = ['beranda', 'analisis', 'rekomendasi', 'anuitas', 'riwayat'];
+      var daftarHalaman = ['beranda', 'kalkulator', 'analisis', 'rekomendasi', 'anuitas', 'riwayat'];
       for (var i = 0; i < daftarHalaman.length; i++) {
         var el = document.getElementById('page-' + daftarHalaman[i]);
         if (el) el.classList.add('hidden');
@@ -562,6 +675,7 @@
 
       var judulMap = {
         beranda: 'Beranda Utama',
+        kalkulator: 'Kalkulator & Cari Bank Otomatis',
         analisis: 'Konsultasi & Pindai Brosur',
         rekomendasi: 'Direktori 64 Produk Bank OJK',
         anuitas: 'Tabel & Grafik Anuitas',
@@ -578,6 +692,119 @@
 
       tutupMobileMenu();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    /* LOGIKA KALKULATOR KELAYAKAN & PENCARI BANK OTOMATIS */
+    window.hitungKelayakanDanCariBank = function() {
+      var gaji = parseFloat(document.getElementById('calcGaji').value) || 0;
+      var cicilanLama = parseFloat(document.getElementById('calcCicilanLama').value) || 0;
+      var pinjaman = parseFloat(document.getElementById('calcPinjaman').value) || 0;
+      var tenor = parseInt(document.getElementById('calcTenor').value) || 0;
+      var kategori = document.getElementById('calcKategori').value;
+      var hanyaLayak = document.getElementById('chkHanyaLayak').checked;
+
+      if (gaji <= 0 || pinjaman <= 0 || tenor <= 0) {
+        alert("Mohon isi Gaji Bersih per Bulan dan Kebutuhan Dana Pinjaman dengan angka lebih dari 0.");
+        return;
+      }
+
+      var batas30 = gaji * 0.30;
+      var sisaKapasitas = Math.max(0, batas30 - cicilanLama);
+
+      document.getElementById('outCalcBatas30').innerText = formatRp(batas30);
+      document.getElementById('outCalcCicilanLama').innerText = formatRp(cicilanLama);
+      document.getElementById('outCalcSisaKapasitas').innerText = formatRp(sisaKapasitas) + " / bln";
+
+      var badgeKap = document.getElementById('badgeStatusKapasitas');
+      if (sisaKapasitas <= 0) {
+        badgeKap.innerText = "Beban Cicilan Lama Penuh (>= 30%)";
+        badgeKap.className = "text-xs font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-800";
+      } else {
+        badgeKap.innerText = "Kapasitas Cicilan Tersedia";
+        badgeKap.className = "text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800";
+      }
+
+      var kandidat = direktoriBankData.filter(function(item) {
+        return kategori === "Semua" || item.kategori === kategori;
+      }).map(function(item) {
+        var cicilanBaru = hitungPMT(pinjaman, tenor, item.bunga);
+        var totalCicilanSemua = cicilanLama + cicilanBaru;
+        var rasioPersen = (totalCicilanSemua / gaji) * 100;
+        var layak = (sisaKapasitas > 0) && (cicilanBaru <= sisaKapasitas);
+        return {
+          data: item,
+          cicilanBaru: cicilanBaru,
+          rasioPersen: rasioPersen,
+          layak: layak
+        };
+      });
+
+      kandidat.sort(function(a, b) {
+        if (a.layak !== b.layak) return a.layak ? -1 : 1;
+        return a.cicilanBaru - b.cicilanBaru;
+      });
+
+      var jumlahLayak = kandidat.filter(function(x) { return x.layak; }).length;
+      var tampilList = hanyaLayak ? kandidat.filter(function(x) { return x.layak; }) : kandidat;
+
+      var kotakSaran = document.getElementById('kotakSaranPenyesuaian');
+      if (jumlahLayak === 0) {
+        kotakSaran.classList.remove('hidden');
+        if (sisaKapasitas <= 0) {
+          kotakSaran.innerHTML = '<strong>Perhatian:</strong> Total cicilan lama Anda (' + formatRp(cicilanLama) + '/bln) sudah mencapai atau melebihi batas sehat 30% gaji (' + formatRp(batas30) + '/bln). Disarankan melunasi sebagian kewajiban lama terlebih dahulu sebelum mengajukan pinjaman baru.';
+        } else {
+          var bungaTerendah = kandidat.length > 0 ? kandidat[0].data.bunga : 6.0;
+          var plafonMaksAman = hitungPlafonMaksimal(sisaKapasitas, tenor, bungaTerendah);
+          kotakSaran.innerHTML = '<strong>Saran Penyesuaian Otomatis:</strong> Dengan sisa kapasitas cicilan <strong>' + formatRp(sisaKapasitas) + '/bulan</strong> pada tenor <strong>' + tenor + ' bulan</strong>, pinjaman sebesar <strong>' + formatRp(pinjaman) + '</strong> masih melebihi batas aman 30%. Agar tetap <strong>Layak Aman</strong>, Anda dapat memperpanjang lama cicilan (tenor) atau menyesuaikan nominal pinjaman maksimal menjadi sekitar <strong>' + formatRp(plafonMaksAman) + '</strong> (acuan bunga ' + bungaTerendah + '%/thn).';
+        }
+      } else {
+        kotakSaran.classList.add('hidden');
+      }
+
+      document.getElementById('subjudulHasilBank').innerText = "Ditemukan " + jumlahLayak + " dari " + kandidat.length + " produk bank yang berstatus Layak Aman untuk kebutuhan " + formatRp(pinjaman) + " (" + tenor + " bln).";
+
+      var wadah = document.getElementById('wadahHasilBankKalkulator');
+      wadah.innerHTML = "";
+
+      if (tampilList.length === 0) {
+        wadah.innerHTML = '<div class="col-span-2 text-center py-8 text-xs font-bold text-slate-500">Tidak ada produk yang memenuhi batas 30% untuk nominal dan tenor ini. Hilangkan centang filter di atas untuk melihat rincian seluruh produk.</div>';
+      } else {
+        for (var i = 0; i < tampilList.length; i++) {
+          var row = tampilList[i];
+          var item = row.data;
+          var badgeHtml = row.layak
+            ? '<span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800">' + (i === 0 ? 'Paling Cocok • ' : '') + 'Layak Aman</span>'
+            : '<span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-rose-100 text-rose-800">Melebihi Batas 30%</span>';
+
+          var cardBorder = row.layak ? 'border-emerald-200 bg-emerald-50/30' : 'border-slate-200 bg-slate-50';
+          var textCicilanColor = row.layak ? 'text-emerald-700' : 'text-rose-700';
+
+          wadah.innerHTML +=
+            '<div class="p-4 rounded-xl border ' + cardBorder + ' flex flex-col justify-between gap-3">' +
+              '<div class="space-y-1.5">' +
+                '<div class="flex items-center justify-between gap-2 flex-wrap">' +
+                  badgeHtml +
+                  '<span class="text-xs font-bold text-slate-900">Bunga ' + item.bunga + '% / thn</span>' +
+                '</div>' +
+                '<div class="font-bold text-sm text-slate-900 pt-1">' + item.bank + ' — ' + item.produk + '</div>' +
+                '<div class="text-[11px] font-bold text-slate-500">Kategori: ' + item.kategori + '</div>' +
+                '<div class="p-2.5 rounded-lg bg-white border border-slate-200 mt-2 space-y-1">' +
+                  '<div class="flex justify-between text-xs"><span class="text-slate-600">Cicilan Anda (' + tenor + ' bln):</span><strong class="' + textCicilanColor + '">' + formatRp(row.cicilanBaru) + ' / bln</strong></div>' +
+                  '<div class="flex justify-between text-[11px]"><span class="text-slate-500">Total Beban Utang terhadap Gaji:</span><strong class="text-slate-800">' + row.rasioPersen.toFixed(1).replace('.', ',') + '% (Batas 30%)</strong></div>' +
+                '</div>' +
+                '<div class="text-[10px] text-slate-500 italic pt-1">' + item.sumber + '</div>' +
+              '</div>' +
+              '<div class="flex items-center gap-2 pt-2 border-t border-slate-200">' +
+                '<button type="button" onclick="simulasikanBankKeAnuitas(' + pinjaman + ',' + item.bunga + ',' + tenor + ')" class="flex-1 py-2 px-3 bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 text-xs font-bold rounded-lg transition cursor-pointer">Lihat Tabel Anuitas</button>' +
+                '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg text-center transition">Situs Resmi</a>' +
+              '</div>' +
+            '</div>';
+        }
+      }
+
+      var container = document.getElementById('hasilKalkulatorContainer');
+      container.classList.remove('hidden');
+      container.scrollIntoView({ behavior: 'smooth' });
     };
 
     window.isiContohPrompt = function(teks) {
