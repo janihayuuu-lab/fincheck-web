@@ -40,7 +40,7 @@
       <nav class="py-4 space-y-1 flex-1 overflow-y-auto">
         <button type="button" onclick="bukaHalaman('beranda')" data-page="beranda" class="nav-item active w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Beranda Utama</button>
         <button type="button" onclick="bukaHalaman('kalkulator')" data-page="kalkulator" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Kalkulator & Cari Bank</button>
-        <button type="button" onclick="bukaHalaman('analisis')" data-page="analisis" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Konsultasi & Pindai Brosur</button>
+        <button type="button" onclick="bukaHalaman('analisis')" data-page="analisis" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Room Chat & Pindai Brosur</button>
         <button type="button" onclick="bukaHalaman('rekomendasi')" data-page="rekomendasi" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Direktori Produk Resmi (22)</button>
         <button type="button" onclick="bukaHalaman('anuitas')" data-page="anuitas" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Tabel & Grafik Anuitas</button>
         <button type="button" onclick="bukaHalaman('riwayat')" data-page="riwayat" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition text-emerald-400 cursor-pointer">Riwayat Privat Saya</button>
@@ -86,14 +86,14 @@
             <div class="text-xs font-bold tracking-widest uppercase text-emerald-400">Pendamping Keputusan Finansial</div>
             <h1 class="text-xl md:text-2xl font-bold mt-2">Pahami kemampuan bayar sebelum mengambil cicilan.</h1>
             <p class="text-sm text-slate-300 mt-3 max-w-2xl leading-relaxed">
-              Anda dapat membandingkan 22 produk kredit dan pembiayaan syariah terverifikasi dari 8 bank (BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, dan Danamon) per November 2026, menambahkan simulasi brosur sendiri (efektif maupun flat), atau mengunggah foto brosur agar AI menghitung kesanggupan cicilan Anda.
+              Anda dapat membandingkan 22 produk kredit dan pembiayaan syariah terverifikasi dari 8 bank (BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, dan Danamon) per November 2026, menambahkan simulasi brosur sendiri (efektif maupun flat), atau berdiskusi di Room Chat Multi-AI sambil memindai foto brosur.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
               <button type="button" onclick="bukaHalaman('kalkulator')" class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-lg hover:bg-emerald-700 transition cursor-pointer">
                 Hitung Kelayakan & Cari Bank
               </button>
               <button type="button" onclick="bukaHalaman('analisis')" class="px-5 py-2.5 bg-slate-800 text-white border border-slate-700 font-bold text-xs rounded-lg hover:bg-slate-700 transition cursor-pointer">
-                Konsultasi & Pindai Brosur AI
+                Buka Room Chat & Pindai Brosur AI
               </button>
             </div>
           </div>
@@ -142,26 +142,26 @@
               <div class="space-y-4">
                 <div>
                   <h3 class="text-sm font-bold text-slate-900 uppercase">Pilih Cara Evaluasi Kredit</h3>
-                  <p class="text-xs text-slate-500 mt-1">Gunakan hitung otomatis berbasis data resmi atau konsultasi brosur bersama AI.</p>
+                  <p class="text-xs text-slate-500 mt-1">Gunakan hitung otomatis berbasis data resmi atau ruang obrolan brosur bersama AI.</p>
                 </div>
 
                 <div class="space-y-3 pt-1">
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Kalkulator & Pencari Bank Otomatis (22 Produk + Input Mandiri):</strong> Masukkan gaji dan kebutuhan dana Anda untuk mencocokkan 22 produk resmi dari 8 bank konvensional &amp; syariah sekaligus membandingkan brosur sendiri (bunga efektif atau flat).
+                      <strong class="text-slate-900">Kalkulator & Pencari Bank Otomatis (22 Produk + Input Mandiri):</strong> Masukkan gaji dan kebutuhan dana Anda untuk mencocokkan 22 produk resmi dari 8 bank sekaligus membandingkan brosur sendiri (bunga efektif atau flat).
                     </div>
                   </div>
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Konsultasi & Pindai Brosur AI:</strong> Unggah satu atau banyak foto brosur kredit yang Anda pegang agar AI membacakan tabelnya dan memberi saran tenor terbaik.
+                      <strong class="text-slate-900">Room Chat & Pindai Brosur Multi-AI:</strong> Unggah satu atau banyak foto brosur kredit lalu berdiskusi bolak-balik dengan AI cadangan berlapis (Google Gemini + OpenRouter) untuk menanyakan simulasi tenor maupun syarat dokumen.
                     </div>
                   </div>
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Direktori 22 Produk Resmi (8 Bank):</strong> Mencakup BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, dan Danamon berdasarkan regulasi pemerintah (Permenko 1/2026 &amp; Kepmen PKP 1722/2026) serta publikasi SBDK/margin aktif per November 2026.
+                      <strong class="text-slate-900">Direktori 22 Produk Resmi (8 Bank):</strong> Mencakup BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, dan Danamon berdasarkan regulasi pemerintah (Permenko 1/2026 &amp; Kepmen PKP 1722/2026) serta publikasi aktif per November 2026.
                     </div>
                   </div>
                 </div>
@@ -172,7 +172,7 @@
                   Mulai Hitung & Cari Bank Otomatis
                 </button>
                 <button type="button" onclick="bukaHalaman('analisis')" class="w-full py-2.5 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition cursor-pointer">
-                  Buka Konsultasi & Pindai Brosur AI
+                  Buka Room Chat & Pindai Brosur AI
                 </button>
               </div>
             </div>
@@ -308,85 +308,83 @@
           </div>
         </section>
 
-        <!-- HALAMAN 3: KONSULTASI & PINDAI BROSUR -->
-        <section id="page-analisis" class="hidden space-y-6">
-          <div class="card-panel rounded-xl p-6 space-y-5">
-            <div class="border-b border-slate-200 pb-4">
-              <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Konsultasi Keuangan & Pindai Brosur</h2>
-              <p class="text-xs text-slate-500 mt-1">Ceritakan kondisi keuangan Anda dan lampirkan satu atau beberapa foto brosur kredit untuk dinilai oleh AI.</p>
-            </div>
-
-            <div class="p-5 rounded-xl border border-slate-300 bg-slate-50 space-y-4">
+        <!-- HALAMAN 3: ROOM CHAT & PINDAI BROSUR AI -->
+        <section id="page-analisis" class="hidden space-y-5">
+          <div class="card-panel rounded-xl p-5 md:p-6 space-y-4">
+            <!-- Header Room Chat & Status Koneksi AI -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
               <div>
-                <label class="block text-xs font-bold text-slate-900 mb-1.5">1. Ceritakan Kondisi Keuangan & Pertanyaan Anda</label>
-                <textarea id="catatan" rows="4" placeholder="Contoh: Gaji saya 10 juta per bulan dan tidak punya cicilan lain. Saya ingin merenovasi rumah dengan dana 300 juta. Produk dan lama cicilan (tenor) mana di brosur yang paling aman untuk saya?" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900"></textarea>
-                
-                <div class="mt-2 flex flex-wrap items-center gap-1.5">
-                  <span class="text-[11px] text-slate-500 font-bold">Contoh cepat:</span>
-                  <button type="button" onclick="isiContohPrompt('Gaji saya 8 juta per bulan dan belum punya cicilan lain. Tolong pilihkan produk dan tenor paling aman dari brosur ini.')" class="text-[11px] px-2.5 py-1 rounded bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 cursor-pointer">Gaji 8 Juta</button>
-                  <button type="button" onclick="isiContohPrompt('Saya bergaji 12 juta per bulan dengan cicilan motor 1 juta. Bandingkan semua brosur yang saya unggah ini, mana yang paling ringan dan layak?')" class="text-[11px] px-2.5 py-1 rounded bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 cursor-pointer">Gaji 12 Juta + Cicilan Lama</button>
-                  <button type="button" onclick="isiContohPrompt('Tolong jelaskan isi tabel brosur ini dan hitung berapa minimal gaji bulanan agar cicilannya aman.')" class="text-[11px] px-2.5 py-1 rounded bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 cursor-pointer">Hitung Minimal Gaji</button>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Room Chat & Pindai Brosur AI</h2>
+                  <span id="indikatorKoneksiAI" class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">Multi-AI Siap (Gemini + OpenRouter)</span>
                 </div>
+                <p class="text-xs text-slate-500 mt-1">Unggah foto brosur dan berdiskusi bolak-balik dengan AI. Jika server utama sibuk, sistem otomatis berpindah ke penyedia cadangan.</p>
               </div>
-
-              <div class="pt-3 border-t border-slate-200 space-y-3">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div>
-                    <div class="text-xs font-bold text-slate-900">2. Lampirkan Foto Brosur Kredit (Bisa Banyak Foto)</div>
-                    <div class="text-[11px] text-slate-500 mt-0.5">Anda dapat menambahkan beberapa halaman atau beberapa brosur bank sekaligus untuk dibandingkan.</div>
-                  </div>
-                  <div class="flex flex-wrap gap-2 shrink-0">
-                    <input type="file" id="fotoBrosurGaleri" accept="image/*" multiple onchange="prosesFileBrosur(this)" class="hidden">
-                    <label for="fotoBrosurGaleri" class="inline-block cursor-pointer px-3.5 py-2.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
-                      Pilih dari Galeri (Bisa Banyak)
-                    </label>
-
-                    <input type="file" id="fotoBrosurKamera" accept="image/*" capture="environment" onchange="prosesFileBrosur(this)" class="hidden">
-                    <label for="fotoBrosurKamera" class="inline-block cursor-pointer px-3.5 py-2.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
-                      Jepret Kamera
-                    </label>
-                  </div>
-                </div>
-
-                <div id="barStatusBrosur" class="hidden flex items-center justify-between bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-lg">
-                  <span id="teksJumlahBrosur" class="text-xs font-bold text-emerald-800">0 foto brosur siap dipindai AI</span>
-                  <button type="button" onclick="hapusSemuaBrosur()" class="text-[11px] font-bold text-rose-700 underline cursor-pointer">Hapus Semua Foto</button>
-                </div>
-                <div id="wadahPreviewBrosur" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 pt-1"></div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-900 leading-relaxed">
-                <strong>Perlindungan Privasi:</strong> Hanya unggah atau potret <strong>brosur penawaran kredit umum</strong>. Demi keamanan data pribadi Anda, <strong>dilarang mengunggah foto KTP, Kartu Keluarga, slip gaji asli, maupun buku tabungan</strong>.
-              </div>
-
-              <div class="p-3 rounded-lg bg-slate-100 border border-slate-200 text-[11px] text-slate-700 leading-relaxed">
-                <strong>Catatan Penggunaan di HP:</strong> Fitur unggah foto dan kamera berjalan normal pada browser utama seperti <strong>Google Chrome</strong>, <strong>Safari</strong>, atau <strong>Samsung Internet</strong>. Jika Anda membuka tautan ini langsung dari dalam aplikasi chat (seperti WhatsApp/Instagram), tombol kamera sering kali diblokir oleh aplikasi chat tersebut—silakan ketuk menu titik tiga lalu pilih <strong>Buka di Chrome / Browser</strong>, atau gunakan tombol <strong>Pilih dari Galeri</strong>.
+              <div class="flex flex-wrap gap-2 shrink-0">
+                <button type="button" id="btnTesKoneksiAI" onclick="tesKoneksiMultiAI()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 text-xs font-bold rounded-lg transition cursor-pointer">
+                  Tes Koneksi Multi-AI
+                </button>
+                <button type="button" onclick="resetRoomChat()" class="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold rounded-lg transition cursor-pointer">
+                  Sesi Chat Baru
+                </button>
               </div>
             </div>
 
-            <button type="button" id="btnSubmit" onclick="kirimData()" class="w-full py-3.5 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition cursor-pointer">
-              Analisis dengan AI & Simpan ke Riwayat Saya
-            </button>
-          </div>
-
-          <div id="hasilContainer" class="hidden card-panel rounded-xl p-6 space-y-5 border-l-4 border-emerald-600">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <div class="flex items-center gap-2">
-                <h3 class="text-lg font-bold text-slate-900 uppercase">Hasil Evaluasi & Kesimpulan</h3>
-                <span id="badgeSumberAI" class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">AI Selesai</span>
+            <!-- Area Gelembung Room Chat -->
+            <div id="wadahGelembungChat" class="h-[400px] overflow-y-auto p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
+              <!-- Pesan Pembuka dari AI -->
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">AI</div>
+                <div class="max-w-[85%] rounded-2xl rounded-tl-none bg-white border border-slate-200 p-3.5 text-xs text-slate-800 leading-relaxed shadow-xs">
+                  <div class="font-bold text-emerald-700 mb-1">Konsultan Keuangan FinCheck</div>
+                  Halo! Silakan lampirkan <strong>foto brosur kredit</strong> (bisa beberapa halaman sekaligus) dan ceritakan <strong>gaji bersih bulanan</strong> serta <strong>kebutuhan dana</strong> Anda di bawah. Setelah brosur dipindai, Anda juga bisa terus bertanya lanjutan di ruang obrolan ini.
+                </div>
               </div>
-              <span id="statusSimpanDB" class="text-[11px] font-bold text-emerald-700">Menyimpan...</span>
             </div>
-            <div class="p-5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-slate-800 leading-relaxed" id="outSaranAI"></div>
 
-            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 no-print">
-              <div class="text-xs text-emerald-900">
-                <div class="font-bold">Sudah selesai mencoba fitur ini?</div>
-                <div class="mt-0.5">Bantu evaluasi proyek literasi keuangan kami dengan mengisi kuesioner singkat (1 menit).</div>
+            <!-- Lampiran Foto Brosur & Contoh Pertanyaan Cepat -->
+            <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="text-xs font-bold text-slate-900">Lampirkan Foto Brosur Kredit (Opsional, Maks. 6 Foto)</div>
+                <div class="flex flex-wrap gap-2">
+                  <input type="file" id="fotoBrosurGaleri" accept="image/*" multiple onchange="prosesFileBrosur(this)" class="hidden">
+                  <label for="fotoBrosurGaleri" class="inline-block cursor-pointer px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
+                    Pilih dari Galeri
+                  </label>
+
+                  <input type="file" id="fotoBrosurKamera" accept="image/*" capture="environment" onchange="prosesFileBrosur(this)" class="hidden">
+                  <label for="fotoBrosurKamera" class="inline-block cursor-pointer px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
+                    Jepret Kamera
+                  </label>
+                </div>
               </div>
-              <button type="button" onclick="bukaKuesioner()" class="shrink-0 px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg transition cursor-pointer">
-                Isi Kuesioner Uji Coba
-              </button>
+
+              <div id="barStatusBrosur" class="hidden flex items-center justify-between bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg">
+                <span id="teksJumlahBrosur" class="text-xs font-bold text-emerald-800">0 foto brosur siap dikirim</span>
+                <button type="button" onclick="hapusSemuaBrosur()" class="text-[11px] font-bold text-rose-700 underline cursor-pointer">Hapus Semua</button>
+              </div>
+              <div id="wadahPreviewBrosur" class="hidden grid grid-cols-3 sm:grid-cols-6 gap-2"></div>
+
+              <!-- Tombol Prompt Cepat -->
+              <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                <span class="text-[11px] text-slate-500 font-bold">Pertanyaan cepat:</span>
+                <button type="button" onclick="isiContohPrompt('Gaji saya 8 juta per bulan dan belum punya cicilan lain. Tolong pilihkan produk dan tenor paling aman dari brosur ini.')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Gaji 8 Juta</button>
+                <button type="button" onclick="isiContohPrompt('Saya bergaji 12 juta per bulan dengan cicilan motor 1 juta. Bandingkan semua produk di brosur ini, mana yang paling ringan dan layak?')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Gaji 12 Juta + Cicilan Lama</button>
+                <button type="button" onclick="isiContohPrompt('Kalau lama cicilannya diubah menjadi 48 bulan atau 60 bulan, bagaimana perubahannya terhadap batas aman 30% gaji saya?')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Tanya Lanjutan Tenor</button>
+              </div>
+
+              <!-- Kotak Input Pesan Room Chat -->
+              <div class="flex flex-col sm:flex-row gap-2 pt-1">
+                <textarea id="catatan" rows="2" onkeydown="cekEnterKirim(event)" placeholder="Ketik kondisi gaji, kebutuhan pinjaman, atau pertanyaan lanjutan Anda di sini... (Tekan Enter untuk kirim)" class="flex-1 px-3.5 py-2.5 text-sm rounded-lg bg-slate-50 border border-slate-300 focus:bg-white focus:outline-none focus:border-slate-900"></textarea>
+                <button type="button" id="btnSubmit" onclick="kirimData()" class="px-5 py-3 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition shrink-0 cursor-pointer">
+                  Kirim Pesan
+                </button>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 pt-1">
+                <span><strong>Privasi:</strong> Jangan unggah foto KTP, KK, atau slip gaji asli (cukup brosur kredit).</span>
+                <span id="statusSimpanDB" class="font-bold text-emerald-700"></span>
+              </div>
             </div>
           </div>
         </section>
@@ -402,11 +400,10 @@
               <span id="jumlahTampilBank" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 self-start sm:self-auto">Menampilkan 22 produk</span>
             </div>
 
-            <!-- Panduan Literasi Bunga Efektif, Margin Syariah, & SBDK untuk Orang Awam -->
             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-2">
               <div class="font-bold text-slate-900 uppercase tracking-wide text-[11px]">Panduan Membaca Suku Bunga, Margin Syariah &amp; Acuan Data (Per Nov 2026)</div>
               <p>
-                <strong>1. Apa arti "Bunga Efektif (Anuitas) / thn"?</strong> Tarif imbal jasa tahunan pada bank konvensional yang dihitung dari <strong>sisa pokok pinjaman yang belum lunas setiap bulan</strong> (bukan dikali langsung ke pinjaman awal). Makin lama cicilan berjalan, porsi bunga makin mengecil dan porsi pelunasan pokok makin membesar.
+                <strong>1. Apa arti "Bunga Efektif (Anuitas) / thn"?</strong> Tarif imbal jasa tahunan pada bank konvensional yang dihitung dari <strong>sisa pokok pinjaman yang belum lunas setiap bulan</strong>. Makin lama cicilan berjalan, porsi bunga makin mengecil dan porsi pelunasan pokok makin membesar.
               </p>
               <p>
                 <strong>2. Apa arti "Margin Syariah Setara Efektif"?</strong> Pada bank syariah (<strong>BSI</strong> dan <strong>BSN</strong>), tidak berlaku bunga melainkan <strong>margin jual-beli (murabahah)</strong> atau <strong>ujrah (sewa)</strong>. Angka persen di bawah menyatakan tingkat margin yang setara dengan hitungan efektif tahunan agar dapat disimulasikan secara adil.
@@ -532,14 +529,16 @@
   </div>
 
   <script>
-    var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbzTieNOduZv54hfzM6IxKgCYtFllQK_lynuNyrIk48oDObs8rwPHCxxt66SXbcpFc9l/exec";
-    var GEMINI_API_KEY = ["AQ.Ab8RN6Ji0W8", "VnZ8gAZFW01SNC_", "AVww8afW5zF-DTEQwLwvf7Qg"].join("");
+    /* =========================================================================
+       KONFIGURASI SERVER GOOGLE APPS SCRIPT (OPSI B: SEMUA API KEY DI SERVER)
+       ========================================================================= */
+    var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbwjHS9Bm4qKk2Xma23te8D5wMlhhw8Lt6dEGkxue5R-SIBgUM_JRAQdNLRrpLpy9Kt2/exec";
     var LINK_KUESIONER = "";
 
     var daftarGambarBrosur = [];
     var penawaranMandiriList = [];
+    var riwayatChatSesi = [];
     var anuitasChart = null;
-    var timerInterval = null;
     var kategoriBankAktif = "Semua";
 
     window.bukaKuesioner = function() {
@@ -905,14 +904,14 @@
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
-      html = html.replace(/^---$/gm, '<hr class="my-3 border-slate-200">');
-      html = html.replace(/^#{1,3}\s*(.+)$/gm, '<div class="font-bold text-slate-900 text-sm uppercase tracking-wide mt-4 mb-2 pt-2.5 border-t border-slate-200 first:mt-0 first:pt-0 first:border-0">$1</div>');
+      html = html.replace(/^---$/gm, '<hr class="my-2.5 border-slate-200">');
+      html = html.replace(/^#{1,3}\s*(.+)$/gm, '<div class="font-bold text-slate-900 text-xs uppercase tracking-wide mt-3 mb-1.5 pt-2 border-t border-slate-200 first:mt-0 first:pt-0 first:border-0">$1</div>');
       html = html.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
       html = html.replace(/Layak Aman/g, '<span class="font-bold text-emerald-700">Layak Aman</span>');
       html = html.replace(/Tidak Layak/g, '<span class="font-bold text-rose-700">Tidak Layak</span>');
       html = html.replace(/^\s*[\*\-]\s+(.+)$/gm, '<div class="flex items-start gap-2 my-1"><span class="font-bold text-emerald-700">&#8226;</span><div class="flex-1">$1</div></div>');
       html = html.replace(/\*/g, '');
-      html = html.replace(/\n{2,}/g, '<div class="h-2"></div>');
+      html = html.replace(/\n{2,}/g, '<div class="h-1.5"></div>');
       html = html.replace(/\n/g, '<br>');
 
       return html;
@@ -954,7 +953,7 @@
       var judulMap = {
         beranda: 'Beranda Utama',
         kalkulator: 'Kalkulator & Cari Bank Otomatis',
-        analisis: 'Konsultasi & Pindai Brosur',
+        analisis: 'Room Chat & Pindai Brosur AI',
         rekomendasi: 'Direktori 22 Produk Terverifikasi (8 Bank)',
         anuitas: 'Tabel & Grafik Anuitas',
         riwayat: 'Riwayat Konsultasi Privat Saya'
@@ -1065,7 +1064,6 @@
         };
       });
 
-      /* Gabungkan Penawaran Mandiri (jika ada) */
       for (var m = 0; m < penawaranMandiriList.length; m++) {
         var pm = penawaranMandiriList[m];
         var cicilanM = pm.metode === "flat"
@@ -1183,6 +1181,13 @@
       if (box) {
         box.value = teks;
         box.focus();
+      }
+    };
+
+    window.cekEnterKirim = function(e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        kirimData();
       }
     };
 
@@ -1332,6 +1337,7 @@
       tbody.innerHTML = barisHTML;
     };
 
+    /* PROSES GAMBAR BROSUR */
     function kompresSatuFile_(file) {
       return new Promise(function(resolve, reject) {
         var reader = new FileReader();
@@ -1383,7 +1389,7 @@
 
       for (var i = 0; i < files.length; i++) {
         if (daftarGambarBrosur.length >= 6) {
-          alert("Maksimal 6 foto brosur dalam satu kali analisis agar proses AI tetap cepat.");
+          alert("Maksimal 6 foto brosur dalam satu kali kirim agar proses AI tetap cepat.");
           break;
         }
         try {
@@ -1421,122 +1427,143 @@
 
       bar.classList.remove('hidden');
       wadah.classList.remove('hidden');
-      teks.innerText = daftarGambarBrosur.length + " foto brosur siap dipindai AI";
+      teks.innerText = daftarGambarBrosur.length + " foto brosur siap dikirim";
       wadah.innerHTML = "";
 
       for (var i = 0; i < daftarGambarBrosur.length; i++) {
         var gbr = daftarGambarBrosur[i];
         wadah.innerHTML +=
-          '<div class="relative rounded-lg border border-slate-300 bg-white p-1.5 flex flex-col gap-1">' +
-            '<img src="' + gbr.previewUrl + '" alt="Brosur ' + (i + 1) + '" class="w-full h-28 object-cover rounded">' +
-            '<div class="flex items-center justify-between px-1">' +
-              '<span class="text-[10px] font-bold text-slate-700 truncate">Brosur ' + (i + 1) + '</span>' +
-              '<button type="button" onclick="hapusSatuBrosur(' + i + ')" class="text-[10px] font-bold text-rose-600 hover:text-rose-800 cursor-pointer">Hapus</button>' +
+          '<div class="relative rounded-lg border border-slate-300 bg-white p-1 flex flex-col gap-1">' +
+            '<img src="' + gbr.previewUrl + '" alt="Brosur ' + (i + 1) + '" class="w-full h-16 object-cover rounded">' +
+            '<div class="flex items-center justify-between px-0.5">' +
+              '<span class="text-[9px] font-bold text-slate-700 truncate">Brosur ' + (i + 1) + '</span>' +
+              '<button type="button" onclick="hapusSatuBrosur(' + i + ')" class="text-[9px] font-bold text-rose-600 hover:text-rose-800 cursor-pointer">Hapus</button>' +
             '</div>' +
           '</div>';
       }
     };
 
-    function jedaMs_(ms) {
-      return new Promise(function(resolve) { setTimeout(resolve, ms); });
-    }
+    /* =========================================================================
+       TES KONEKSI MULTI-AI LEWAT GOOGLE APPS SCRIPT (OPSI B)
+       ========================================================================= */
+    window.tesKoneksiMultiAI = async function() {
+      var badge = document.getElementById('indikatorKoneksiAI');
+      var btn = document.getElementById('btnTesKoneksiAI');
 
-    async function panggilGeminiCepat_(modelName, parts, signal) {
-      var url = "https://generativelanguage.googleapis.com/v1beta/models/" + modelName + ":generateContent?key=" + encodeURIComponent(GEMINI_API_KEY);
-      var configs = [
-        { temperature: 0.1, maxOutputTokens: 1800, thinkingConfig: { thinkingBudget: 0 } },
-        { temperature: 0.1, maxOutputTokens: 1800 }
-      ];
+      btn.disabled = true;
+      btn.innerText = "Menguji Server...";
+      badge.innerText = "Menguji Jalur Multi-AI...";
+      badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300";
 
-      var lastErr = "";
-      var lastStatus = 0;
-      for (var c = 0; c < configs.length; c++) {
-        var res = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          signal: signal,
-          body: JSON.stringify({
-            contents: [{ parts: parts }],
-            generationConfig: configs[c]
-          })
+      try {
+        var res = await fetch(SERVER_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'tesKoneksiAI' })
         });
-        lastStatus = res.status;
         var json = await res.json();
-        if (res.ok && json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts) {
-          return { ok: true, text: json.candidates[0].content.parts[0].text, model: modelName };
+
+        btn.disabled = false;
+        btn.innerText = "Tes Koneksi Multi-AI";
+
+        if (json && json.ok) {
+          badge.innerText = "Terhubung: " + json.provider + " (" + json.model + ")";
+          badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
+          alert(
+            "Koneksi Multi-AI Berhasil!\n\n" +
+            "• Jalur 1 (Google Gemini): " + json.statusGemini + "\n" +
+            "• Jalur 2 (OpenRouter): " + json.statusOpenRouter
+          );
+        } else {
+          badge.innerText = "Server Perlu Update Deploy";
+          badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
+          alert("Koneksi Multi-AI belum merespons: " + (json.error || "Pastikan Code.gs di Google Apps Script sudah diperbarui dan di-Deploy versi baru."));
         }
-        var errMsg = (json.error && json.error.message) ? json.error.message : ("HTTP " + res.status);
-        lastErr = "[" + modelName + "] " + errMsg;
-        if (res.status !== 400) {
-          break;
-        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerText = "Tes Koneksi Multi-AI";
+        badge.innerText = "Gangguan Server";
+        badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
+        alert("Gagal terhubung ke Google Apps Script: " + err.message);
       }
-      return { ok: false, status: lastStatus, error: lastErr };
+    };
+
+    /* =========================================================================
+       ROOM CHAT INTERAKTIF (MULTI-TURN VIA APPS SCRIPT)
+       ========================================================================= */
+    function tambahGelembungUser_(teks, jumlahFoto, previewUrls) {
+      var wadah = document.getElementById('wadahGelembungChat');
+      var fotoHtml = "";
+      if (previewUrls && previewUrls.length > 0) {
+        fotoHtml = '<div class="flex flex-wrap gap-1.5 mt-2">';
+        for (var i = 0; i < previewUrls.length; i++) {
+          fotoHtml += '<img src="' + previewUrls[i] + '" alt="Lampiran" class="w-16 h-16 object-cover rounded border border-emerald-500">';
+        }
+        fotoHtml += '</div>';
+      }
+
+      var teksAman = (teks || ("Memindai " + jumlahFoto + " foto brosur kredit"))
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+
+      wadah.innerHTML +=
+        '<div class="flex items-start justify-end gap-3">' +
+          '<div class="max-w-[85%] rounded-2xl rounded-tr-none bg-slate-900 text-white p-3.5 text-xs leading-relaxed shadow-xs">' +
+            '<div class="font-bold text-emerald-400 mb-1">Anda</div>' +
+            '<div>' + teksAman + '</div>' +
+            fotoHtml +
+          '</div>' +
+        '</div>';
+      wadah.scrollTop = wadah.scrollHeight;
     }
 
-    async function panggilDenganAutoRetry_(modelName, parts, signal) {
-      var coba1 = await panggilGeminiCepat_(modelName, parts, signal);
-      if (coba1.ok) return coba1;
-
-      var pesanLower = coba1.error.toLowerCase();
-      if (coba1.status === 503 || coba1.status === 429 || pesanLower.indexOf("high demand") !== -1 || pesanLower.indexOf("overloaded") !== -1) {
-        await jedaMs_(1500);
-        return await panggilGeminiCepat_(modelName, parts, signal);
-      }
-      return coba1;
+    function tambahGelembungLoading_(idLoading) {
+      var wadah = document.getElementById('wadahGelembungChat');
+      wadah.innerHTML +=
+        '<div id="' + idLoading + '" class="flex items-start gap-3">' +
+          '<div class="w-8 h-8 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">AI</div>' +
+          '<div class="max-w-[85%] rounded-2xl rounded-tl-none bg-white border border-slate-200 p-3.5 text-xs text-slate-600 italic shadow-xs">' +
+            'Sedang memproses lewat jalur Multi-AI (Gemini &amp; OpenRouter)...' +
+          '</div>' +
+        '</div>';
+      wadah.scrollTop = wadah.scrollHeight;
     }
 
-    async function cariModelCadanganTerpisah_(signal) {
-      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/models?key=" + encodeURIComponent(GEMINI_API_KEY), { signal: signal });
-      if (!res.ok) return [];
-      var data = await res.json();
-      if (!data.models) return [];
+    function gantiGelembungLoading_(idLoading, htmlKonten, isError, labelProvider) {
+      var el = document.getElementById(idLoading);
+      if (!el) return;
+      var borderClass = isError ? "border-rose-300 bg-rose-50 text-rose-900" : "border-slate-200 bg-white text-slate-800";
+      var headerText = isError ? "Peringatan Koneksi Multi-AI" : ("Konsultan Keuangan FinCheck • " + labelProvider);
+      var headerColor = isError ? "text-rose-700" : "text-emerald-700";
 
-      var daftar = [];
-      for (var i = 0; i < data.models.length; i++) {
-        var m = data.models[i];
-        var methods = m.supportedGenerationMethods || [];
-        if (methods.indexOf("generateContent") !== -1) {
-          var nama = m.name.replace(/^models\//, "");
-          if (
-            nama !== "gemini-3.8-flash" &&
-            nama !== "gemini-flash-latest" &&
-            nama.indexOf("2.5") === -1 &&
-            nama.indexOf("2.0") === -1 &&
-            nama.indexOf("1.5") === -1 &&
-            nama.indexOf("1.0") === -1 &&
-            nama.indexOf("embedding") === -1 &&
-            nama.indexOf("imagen") === -1 &&
-            nama.indexOf("veo") === -1 &&
-            nama.indexOf("tts") === -1 &&
-            nama.indexOf("audio") === -1 &&
-            nama.indexOf("robotics") === -1 &&
-            nama.indexOf("computer-use") === -1 &&
-            nama.indexOf("deep-research") === -1 &&
-            (nama.indexOf("gemini") !== -1 || nama.indexOf("gemma-3-27b") !== -1 || nama.indexOf("gemma-3-12b") !== -1)
-          ) {
-            daftar.push(nama);
-          }
-        }
-      }
-
-      function skorModel(n) {
-        if (n.indexOf("flash-lite") !== -1) return 1;
-        if (n.indexOf("flash") !== -1) return 2;
-        if (n.indexOf("pro") !== -1) return 3;
-        return 4;
-      }
-
-      daftar.sort(function(a, b) {
-        return skorModel(a) - skorModel(b);
-      });
-
-      return daftar.slice(0, 4);
+      el.innerHTML =
+        '<div class="w-8 h-8 rounded-full ' + (isError ? 'bg-rose-600' : 'bg-emerald-700') + ' text-white text-xs font-bold flex items-center justify-center shrink-0">AI</div>' +
+        '<div class="max-w-[85%] rounded-2xl rounded-tl-none border ' + borderClass + ' p-3.5 text-xs leading-relaxed shadow-xs">' +
+          '<div class="font-bold ' + headerColor + ' mb-1.5">' + headerText + '</div>' +
+          '<div>' + htmlKonten + '</div>' +
+        '</div>';
+      var wadah = document.getElementById('wadahGelembungChat');
+      wadah.scrollTop = wadah.scrollHeight;
     }
+
+    window.resetRoomChat = function() {
+      riwayatChatSesi = [];
+      daftarGambarBrosur = [];
+      renderPreviewBrosur();
+      var wadah = document.getElementById('wadahGelembungChat');
+      wadah.innerHTML =
+        '<div class="flex items-start gap-3">' +
+          '<div class="w-8 h-8 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">AI</div>' +
+          '<div class="max-w-[85%] rounded-2xl rounded-tl-none bg-white border border-slate-200 p-3.5 text-xs text-slate-800 leading-relaxed shadow-xs">' +
+            '<div class="font-bold text-emerald-700 mb-1">Konsultan Keuangan FinCheck (Sesi Baru)</div>' +
+            'Ruang obrolan telah dibersihkan. Silakan lampirkan foto brosur baru atau tulis pertanyaan keuangan Anda di bawah.' +
+          '</div>' +
+        '</div>';
+    };
 
     function simpanKeDatabaseLatarBelakang_(payloadSimpan) {
       if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) return;
-      document.getElementById('statusSimpanDB').innerText = "Menyimpan ke database...";
+      var statusEl = document.getElementById('statusSimpanDB');
+      if (statusEl) statusEl.innerText = "Menyimpan ke riwayat...";
 
       fetch(SERVER_API_URL, {
         method: 'POST',
@@ -1548,53 +1575,54 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(res) {
-        if (res && res.ok) {
-          document.getElementById('statusSimpanDB').innerText = "Tersimpan (" + res.idTransaksi + ")";
-        } else {
-          document.getElementById('statusSimpanDB').innerText = "Selesai (Catatan lokal)";
+        if (statusEl) {
+          statusEl.innerText = (res && res.ok) ? ("Tersimpan (" + res.idTransaksi + ")") : "Tersimpan lokal";
         }
       })
       .catch(function() {
-        document.getElementById('statusSimpanDB').innerText = "Selesai (Catatan lokal)";
+        if (statusEl) statusEl.innerText = "Tersimpan lokal";
       });
     }
 
     window.kirimData = async function() {
-      var catatan = document.getElementById('catatan').value.trim();
+      var inputBox = document.getElementById('catatan');
+      var catatan = inputBox.value.trim();
 
       if (!catatan && daftarGambarBrosur.length === 0) {
-        alert("Silakan tuliskan pertanyaan/kondisi keuangan Anda atau lampirkan minimal satu foto brosur terlebih dahulu.");
+        alert("Silakan ketik pesan/kondisi keuangan Anda atau lampirkan foto brosur terlebih dahulu.");
         return;
       }
 
-      var userId = getUserIdPrivat();
-      var instruksiBrosur = daftarGambarBrosur.length > 0
-        ? "\n- FOTO BROSUR TERLAMPIR (" + daftarGambarBrosur.length + " gambar): Baca seluruh nama produk, syarat batas pinjaman maksimal, suku bunga atau margin syariah (bedakan bunga efektif/anuitas vs bunga flat jika tertera), dan seluruh pilihan lama cicilan (tenor) beserta nominal cicilan bulanan pada semua gambar brosur secara presisi."
-        : "";
+      var jumlahFotoSaatIni = daftarGambarBrosur.length;
+      var previewSaatIni = daftarGambarBrosur.map(function(g) { return g.previewUrl; });
+      tambahGelembungUser_(catatan, jumlahFotoSaatIni, previewSaatIni);
 
-      var promptTeks = "Anda adalah konsultan literasi keuangan yang ramah dan mudah dipahami masyarakat awam. Jawab langsung tanpa kalimat pembuka basa-basi dalam bahasa Indonesia yang jelas, rapi, dan berbasis angka pasti.\n\n" +
-        "Pertanyaan & Kondisi Pengguna:\n\"" + (catatan || "Tolong jelaskan dan bandingkan seluruh pilihan produk serta tenor pada foto brosur yang dilampirkan.") + "\"\n\n" +
-        "Instruksi Data:" + instruksiBrosur + "\n" +
-        "- Ambil nominal penghasilan bulanan dan kebutuhan dana dari cerita pengguna. Jika pengguna tidak menyebutkan gaji bulanannya, hitung gaji minimal per bulan yang disarankan dengan rumus: Cicilan Bulanan / 0,30.\n\n" +
-        "Susun jawaban PERSIS dalam 3 bagian bernomor berikut:\n\n" +
-        "### 1. Ringkasan Data & Batas Kemampuan\n" +
-        "- Sebutkan penghasilan tetap per bulan pengguna (atau gaji minimal yang dibutuhkan jika belum disebutkan), kebutuhan dana pinjaman, serta **Batas Aman Cicilan Maksimal (30% dari penghasilan)** dalam Rupiah beserta penjelasan singkat dalam bahasa sederhana bahwa batas 30% menjaga kebutuhan hidup sehari-hari tetap aman.\n\n" +
-        "### 2. Analisis Pilihan Produk / Tenor\n" +
-        "- Evaluasi setiap produk yang tertera pada seluruh foto brosur satu per satu (berikan nomor 1, 2, 3, dst.).\n" +
-        "- Jika ada produk di brosur yang batas pinjaman maksimalnya tidak mencukupi atau peruntukannya tidak sesuai kebutuhan pengguna (misalnya KPR Subsidi/FLPP), nyatakan **Status: Tidak Layak** beserta alasan yang mudah dipahami.\n" +
-        "- Untuk produk yang sesuai kebutuhan, uraikan setiap pilihan lama cicilan (tenor) lengkap dengan:\n" +
-        "  * Nominal cicilan bulanan dari tabel brosur (dan suku bunga/margin jika tertera).\n" +
-        "  * Perhitungan rasio cicilan terhadap gaji dalam persen `(Cicilan / Gaji x 100%)`.\n" +
-        "  * Penilaian tegas: **Status: Layak Aman** (jika cicilan <= 30% gaji) atau **Status: Tidak Layak** (jika cicilan > 30% gaji).\n\n" +
-        "### 3. Kesimpulan & Rekomendasi Akhir\n" +
-        "- Nyatakan secara tegas nama produk dan lama cicilan (tenor) paling tepat beserta nominal cicilan bulanannya dan alasan mengapa berstatus **Layak Aman** di bawah batas maksimal 30%.\n" +
-        "- Sebutkan opsi alternatif terbaik lainnya di brosur (jika ada).\n" +
-        "- Sebutkan dokumen persyaratan praktis yang perlu disiapkan pengguna.\n\n" +
-        "Catatan: Gunakan **teks tebal** pada nama produk, nominal Rupiah, persentase rasio, dan status kelayakan. Hindari istilah teknis yang membingungkan orang awam dan dilarang memakai emoji.";
+      inputBox.value = "";
+      var idLoading = "msg-loading-" + Date.now();
+      tambahGelembungLoading_(idLoading);
 
-      var parts = [{ text: promptTeks }];
+      var isTurnPertama = (riwayatChatSesi.length === 0);
+      var instruksiSistem = "";
+
+      if (isTurnPertama) {
+        instruksiSistem =
+          "Anda adalah konsultan literasi keuangan FinCheck yang ramah, akurat, dan mudah dipahami masyarakat awam. Jawab dalam bahasa Indonesia tanpa emoji.\n" +
+          "Aturan Evaluasi:\n" +
+          "1. Batas cicilan sehat maksimal adalah 30% dari penghasilan bersih bulanan (setelah dikurangi cicilan lain yang sedang berjalan).\n" +
+          "2. Jika terdapat foto brosur, baca semua nama produk, batas plafon, suku bunga/margin syariah (bedakan bunga efektif/anuitas vs bunga flat), dan tabel cicilan per tenor secara teliti.\n" +
+          "3. Evaluasi setiap pilihan tenor/produk dengan rasio `(Total Cicilan / Gaji x 100%)` dan nyatakan tegas **Status: Layak Aman** (<= 30%) atau **Status: Tidak Layak** (> 30%).\n" +
+          "4. Jika pengguna belum menyebutkan gaji, hitung gaji minimal per bulan yang aman dengan rumus `Cicilan Bulanan / 0,30`.\n" +
+          "5. Gunakan **teks tebal** pada nama produk, nominal Rupiah, persentase, dan status kelayakan.\n\n" +
+          "Pesan Pengguna:\n";
+      } else {
+        instruksiSistem =
+          "Lanjutkan percakapan konsultasi keuangan sebelumnya dengan tetap berpedoman pada data brosur dan gaji yang telah dibahas, menggunakan standar batas cicilan aman maksimal 30% gaji dan bahasa Indonesia yang jelas tanpa emoji.\n\n" +
+          "Pertanyaan Lanjutan Pengguna:\n";
+      }
+
+      var partsTurnIni = [{ text: instruksiSistem + (catatan || "Tolong pindai dan analisis seluruh pilihan produk serta tenor pada foto brosur yang dilampirkan.") }];
       for (var g = 0; g < daftarGambarBrosur.length; g++) {
-        parts.push({
+        partsTurnIni.push({
           inline_data: {
             mime_type: daftarGambarBrosur[g].mimeType,
             data: daftarGambarBrosur[g].data
@@ -1602,100 +1630,87 @@
         });
       }
 
+      daftarGambarBrosur = [];
+      renderPreviewBrosur();
+
+      riwayatChatSesi.push({
+        role: "user",
+        parts: partsTurnIni
+      });
+
       var btn = document.getElementById('btnSubmit');
       btn.disabled = true;
       btn.classList.add('opacity-50');
-      
-      var detik = 0;
-      var labelStatus = "Menganalisis dengan AI";
-      btn.innerText = labelStatus + " (0 detik)...";
-      timerInterval = setInterval(function() {
-        detik++;
-        btn.innerText = labelStatus + " (" + detik + " detik)...";
-      }, 1000);
-
-      var controller = new AbortController();
-      var timeoutId = setTimeout(function() { controller.abort(); }, 60000);
+      btn.innerText = "Mengirim...";
 
       try {
-        var logErr = [];
-        var hasilAI = await panggilDenganAutoRetry_("gemini-3.8-flash", parts, controller.signal);
+        var res = await fetch(SERVER_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'chatAI',
+            contents: riwayatChatSesi
+          })
+        });
 
-        if (!hasilAI.ok) {
-          logErr.push(hasilAI.error);
-          labelStatus = "Server utama padat, beralih jalur cadangan";
-          var cadangan = await cariModelCadanganTerpisah_(controller.signal);
+        var hasilAI = await res.json();
 
-          for (var i = 0; i < cadangan.length; i++) {
-            labelStatus = "Mencoba jalur " + cadangan[i];
-            var coba = await panggilDenganAutoRetry_(cadangan[i], parts, controller.signal);
-            if (coba.ok) {
-              hasilAI = coba;
-              break;
-            } else {
-              logErr.push(coba.error);
-            }
-          }
-        }
-
-        clearTimeout(timeoutId);
-        clearInterval(timerInterval);
         btn.disabled = false;
         btn.classList.remove('opacity-50');
-        btn.innerText = "Analisis dengan AI & Simpan ke Riwayat Saya";
+        btn.innerText = "Kirim Pesan";
 
-        var hasilDiv = document.getElementById('hasilContainer');
-        hasilDiv.classList.remove('hidden');
-
-        if (!hasilAI.ok) {
-          document.getElementById('badgeSumberAI').innerText = "Antrean Server Penuh";
-          document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-800";
-          document.getElementById('statusSimpanDB').innerText = "Belum tersimpan";
-          document.getElementById('outSaranAI').innerHTML =
-            '<div class="text-rose-700 font-bold mb-2">Seluruh jalur AI sedang mengalami lonjakan trafik sementara. Silakan klik tombol analisis kembali dalam 10–15 detik.</div>' +
-            '<div class="p-3 bg-white border border-rose-200 rounded text-xs font-mono text-slate-800 whitespace-pre-wrap">' + logErr.join('\n') + '</div>';
-          hasilDiv.scrollIntoView({ behavior: 'smooth' });
+        if (!hasilAI || !hasilAI.ok) {
+          riwayatChatSesi.pop();
+          var badgeErr = document.getElementById('indikatorKoneksiAI');
+          if (badgeErr) {
+            badgeErr.innerText = "Koneksi Gagal";
+            badgeErr.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
+          }
+          gantiGelembungLoading_(
+            idLoading,
+            'Gagal memproses permintaan Multi-AI:<br><code>' + (hasilAI && hasilAI.error ? hasilAI.error : 'Pastikan Code.gs sudah di-Deploy versi baru.') + '</code>',
+            true,
+            "Gagal Terhubung"
+          );
           return;
         }
 
-        document.getElementById('badgeSumberAI').innerText = "AI " + hasilAI.model + " (" + detik + " dtk)";
-        document.getElementById('badgeSumberAI').className = "text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800";
-        document.getElementById('outSaranAI').innerHTML = formatTeksAI(hasilAI.text);
-        hasilDiv.scrollIntoView({ behavior: 'smooth' });
+        riwayatChatSesi.push({
+          role: "model",
+          parts: [{ text: hasilAI.text }]
+        });
+
+        var labelProviderModel = (hasilAI.provider || "AI") + " (" + (hasilAI.model || "aktif") + ")";
+        var badgeOk = document.getElementById('indikatorKoneksiAI');
+        if (badgeOk) {
+          badgeOk.innerText = "Aktif: " + labelProviderModel;
+          badgeOk.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
+        }
+
+        gantiGelembungLoading_(idLoading, formatTeksAI(hasilAI.text), false, labelProviderModel);
 
         simpanKeDatabaseLatarBelakang_({
-          userId: userId,
-          gaji: 0,
-          cicilanLama: 0,
-          plafonA: 0,
-          tenorA: 0,
-          bungaA: 0,
-          plafonB: 0,
-          tenorB: 0,
-          bungaB: 0,
-          batasAman: 0,
-          angsuranA: 0,
-          angsuranB: 0,
-          statusA: daftarGambarBrosur.length > 0 ? ("Pindai " + daftarGambarBrosur.length + " Brosur") : "Konsultasi AI",
-          statusB: "-",
-          catatan: catatan || ("Pindai " + daftarGambarBrosur.length + " Foto Brosur"),
+          userId: getUserIdPrivat(),
+          statusA: jumlahFotoSaatIni > 0 ? ("Room Chat + " + jumlahFotoSaatIni + " Brosur") : "Room Chat AI",
+          catatan: catatan || ("Pindai " + jumlahFotoSaatIni + " Foto Brosur"),
           saranBersih: hasilAI.text.replace(/[#*]/g, '')
         });
 
       } catch (err) {
-        clearTimeout(timeoutId);
-        clearInterval(timerInterval);
+        riwayatChatSesi.pop();
         btn.disabled = false;
         btn.classList.remove('opacity-50');
-        btn.innerText = "Analisis dengan AI & Simpan ke Riwayat Saya";
-        if (err.name === 'AbortError') {
-          alert("Koneksi melewati batas waktu karena antrean server AI sedang penuh. Silakan coba kirim ulang.");
-        } else {
-          alert("Terjadi gangguan koneksi: " + err.message);
-        }
+        btn.innerText = "Kirim Pesan";
+        gantiGelembungLoading_(
+          idLoading,
+          'Koneksi ke server Google Apps Script terputus (' + err.message + '). Pastikan Code.gs sudah di-Deploy versi baru.',
+          true,
+          "Gangguan Server"
+        );
       }
     };
 
+    /* RIWAYAT DATABASE PRIVAT */
     window.tarikRiwayatDatabase = async function() {
       if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) return;
 
