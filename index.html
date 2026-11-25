@@ -30,7 +30,7 @@
       <div class="p-6 border-b border-slate-800 flex items-center justify-between">
         <div>
           <div class="text-white font-bold text-xl tracking-wide">FINCHECK</div>
-          <div class="text-[11px] text-slate-400 tracking-wider uppercase mt-1">Sistem Evaluasi Kredit</div>
+          <div class="text-[11px] text-slate-400 tracking-wider uppercase mt-1">Evaluasi Kredit &amp; Anuitas</div>
         </div>
         <button type="button" onclick="tutupMobileMenu()" class="md:hidden px-2.5 py-1 rounded border border-slate-700 text-xs text-slate-300 hover:text-white cursor-pointer">
           Tutup
@@ -39,10 +39,10 @@
       
       <nav class="py-4 space-y-1 flex-1 overflow-y-auto">
         <button type="button" onclick="bukaHalaman('beranda')" data-page="beranda" class="nav-item active w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Beranda Utama</button>
-        <button type="button" onclick="bukaHalaman('kalkulator')" data-page="kalkulator" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Kalkulator & Cari Bank</button>
-        <button type="button" onclick="bukaHalaman('analisis')" data-page="analisis" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Room Chat & Pindai Brosur</button>
-        <button type="button" onclick="bukaHalaman('rekomendasi')" data-page="rekomendasi" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Direktori Produk Resmi (22)</button>
-        <button type="button" onclick="bukaHalaman('anuitas')" data-page="anuitas" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Tabel & Grafik Anuitas</button>
+        <button type="button" onclick="bukaHalaman('kalkulator')" data-page="kalkulator" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Kalkulator &amp; Cari Bank</button>
+        <button type="button" onclick="bukaHalaman('analisis')" data-page="analisis" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Room Chat &amp; Pindai Brosur</button>
+        <button type="button" onclick="bukaHalaman('rekomendasi')" data-page="rekomendasi" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Direktori Produk Resmi (13)</button>
+        <button type="button" onclick="bukaHalaman('anuitas')" data-page="anuitas" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition cursor-pointer">Tabel, Grafik &amp; Materi Anuitas</button>
         <button type="button" onclick="bukaHalaman('riwayat')" data-page="riwayat" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 transition text-emerald-400 cursor-pointer">Riwayat Privat Saya</button>
         
         <div class="px-6 pt-4">
@@ -53,8 +53,8 @@
       </nav>
 
       <div class="p-6 border-t border-slate-800 text-[11px] text-slate-400 leading-relaxed space-y-2">
-        <div>Standar kelayakan bank mengacu pada batas cicilan sehat maksimal 30% dari penghasilan bersih.</div>
-        <div class="text-slate-500">Proyek Literasi Keuangan — Siswa Kelas XI SMAN 1 Klaten.</div>
+        <div>Batas aman cicilan bulanan maksimal 30% dari penghasilan bersih.</div>
+        <div class="text-slate-300 font-bold">Proyek Matematika Keuangan — Kelompok 1 Kelas XI B SMAN 1 Klaten.</div>
       </div>
     </aside>
 
@@ -70,11 +70,11 @@
           </button>
           <div>
             <div id="breadcrumbTitle" class="text-sm font-bold text-slate-900 uppercase tracking-wide">Beranda Utama</div>
-            <div class="md:hidden text-[10px] text-slate-500">FinCheck — Evaluasi Kredit & Anuitas</div>
+            <div class="md:hidden text-[10px] text-slate-500">FinCheck — Evaluasi Kredit &amp; Anuitas</div>
           </div>
         </div>
         <div class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md">
-          Batas Sehat: Maks. 30% Gaji
+          Batas Aman: Maks. 30% Gaji
         </div>
       </header>
 
@@ -83,17 +83,17 @@
         <!-- HALAMAN 1: BERANDA -->
         <section id="page-beranda" class="space-y-6">
           <div class="rounded-xl bg-slate-900 text-white p-6 md:p-8 border border-slate-800">
-            <div class="text-xs font-bold tracking-widest uppercase text-emerald-400">Pendamping Keputusan Finansial</div>
-            <h1 class="text-xl md:text-2xl font-bold mt-2">Pahami kemampuan bayar sebelum mengambil cicilan.</h1>
+            <div class="text-xs font-bold tracking-widest uppercase text-emerald-400">Pendamping Keputusan Kredit</div>
+            <h1 class="text-xl md:text-2xl font-bold mt-2">Ukur kemampuan bayar sebelum mengambil cicilan.</h1>
             <p class="text-sm text-slate-300 mt-3 max-w-2xl leading-relaxed">
-              Anda dapat membandingkan 22 produk kredit dan pembiayaan syariah terverifikasi dari 8 bank (BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, dan Danamon) per November 2026, menambahkan simulasi brosur sendiri (efektif maupun flat), atau berdiskusi di Room Chat Multi-AI sambil memindai foto brosur.
+              Hitung rasio cicilan sehat terhadap penghasilan, bandingkan 13 produk kredit terverifikasi dari 6 bank (BRI, Mandiri, BNI, BTN, BCA, dan Danamon) per November 2026, atau pindai foto brosur kredit langsung bersama asisten AI.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
               <button type="button" onclick="bukaHalaman('kalkulator')" class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-lg hover:bg-emerald-700 transition cursor-pointer">
-                Hitung Kelayakan & Cari Bank
+                Hitung Kelayakan &amp; Cari Bank
               </button>
               <button type="button" onclick="bukaHalaman('analisis')" class="px-5 py-2.5 bg-slate-800 text-white border border-slate-700 font-bold text-xs rounded-lg hover:bg-slate-700 transition cursor-pointer">
-                Buka Room Chat & Pindai Brosur AI
+                Room Chat &amp; Pindai Brosur AI
               </button>
             </div>
           </div>
@@ -103,20 +103,20 @@
             <div class="card-panel rounded-xl p-6 space-y-5">
               <div>
                 <h3 class="text-sm font-bold text-slate-900 uppercase">Simulasi Cicilan Cepat (Metode Anuitas)</h3>
-                <p class="text-xs text-slate-500 mt-1">Hitung perkiraan cicilan bulanan berdasarkan suku bunga efektif tahunan setelah dikurangi uang muka (DP).</p>
+                <p class="text-xs text-slate-500 mt-1">Hitung cicilan tetap bulanan dari sisa pinjaman setelah dikurangi uang muka (DP).</p>
               </div>
 
               <div class="space-y-4">
                 <div>
-                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Harga Barang / Total Pinjaman</span><span id="lblSliderBarang" class="text-slate-900">Rp 150.000.000</span></div>
+                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Harga Barang / Kebutuhan Dana</span><span id="lblSliderBarang" class="text-slate-900">Rp 150.000.000</span></div>
                   <input type="range" id="sliderBarang" min="2000000" max="500000000" step="1000000" value="150000000" oninput="hitungSlider()" class="w-full accent-slate-900">
                 </div>
                 <div>
-                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Uang Muka (DP) Dibayar Awal</span><span id="lblSliderDP" class="text-slate-900">Rp 30.000.000</span></div>
+                  <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Uang Muka (DP)</span><span id="lblSliderDP" class="text-slate-900">Rp 30.000.000</span></div>
                   <input type="range" id="sliderDP" min="0" max="250000000" step="500000" value="30000000" oninput="hitungSlider()" class="w-full accent-slate-900">
                 </div>
                 <div class="p-2.5 bg-slate-50 border border-slate-200 rounded text-xs flex justify-between font-bold text-slate-700">
-                  <span>Pinjaman Bersih (Setelah DP):</span><span id="outPlafonBersih">Rp 120.000.000</span>
+                  <span>Pokok Pinjaman (Plafon Bersih):</span><span id="outPlafonBersih">Rp 120.000.000</span>
                 </div>
                 <div>
                   <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Suku Bunga Efektif per Tahun</span><span id="lblSliderBunga" class="text-slate-900">6%</span></div>
@@ -129,39 +129,39 @@
               </div>
 
               <div class="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-center">
-                <div class="text-xs text-emerald-800 font-bold uppercase tracking-wider">Perkiraan Cicilan per Bulan</div>
+                <div class="text-xs text-emerald-800 font-bold uppercase tracking-wider">Cicilan Tetap per Bulan</div>
                 <div id="outSliderPMT" class="text-3xl font-bold text-emerald-700 mt-1">Rp 2.319.936</div>
               </div>
               <button type="button" onclick="kirimSliderKeTabel()" class="w-full py-3 bg-slate-900 text-white text-xs font-bold uppercase rounded-lg hover:bg-slate-800 transition cursor-pointer">
-                Lihat Tabel & Grafik Cicilan Lengkap
+                Lihat Rincian Tabel &amp; Grafik Anuitas
               </button>
             </div>
 
-            <!-- Kartu Akses Langsung -->
+            <!-- Kartu Panduan Fitur -->
             <div class="card-panel rounded-xl p-6 flex flex-col justify-between space-y-5">
               <div class="space-y-4">
                 <div>
-                  <h3 class="text-sm font-bold text-slate-900 uppercase">Pilih Cara Evaluasi Kredit</h3>
-                  <p class="text-xs text-slate-500 mt-1">Gunakan hitung otomatis berbasis data resmi atau ruang obrolan brosur bersama AI.</p>
+                  <h3 class="text-sm font-bold text-slate-900 uppercase">Alur Evaluasi Kredit</h3>
+                  <p class="text-xs text-slate-500 mt-1">Gunakan fitur di bawah sesuai kebutuhan perhitungan Anda.</p>
                 </div>
 
                 <div class="space-y-3 pt-1">
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Kalkulator & Pencari Bank Otomatis (22 Produk + Input Mandiri):</strong> Masukkan gaji dan kebutuhan dana Anda untuk mencocokkan 22 produk resmi dari 8 bank sekaligus membandingkan brosur sendiri (bunga efektif atau flat).
+                      <strong class="text-slate-900">Kalkulator &amp; Pencari Bank:</strong> Masukkan gaji bersih dan kebutuhan dana untuk mengetahui batas cicilan 30% serta membandingkan 13 produk resmi maupun penawaran brosur mandiri (efektif atau flat).
                     </div>
                   </div>
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Room Chat & Pindai Brosur Multi-AI:</strong> Unggah satu atau banyak foto brosur kredit lalu berdiskusi bolak-balik dengan AI cadangan berlapis (Google Gemini + OpenRouter) untuk menanyakan simulasi tenor maupun syarat dokumen.
+                      <strong class="text-slate-900">Room Chat &amp; Pindai Brosur AI:</strong> Kirim foto brosur kredit beserta kondisi gaji Anda untuk mendapatkan evaluasi kelayakan setiap pilihan tenor secara interaktif.
                     </div>
                   </div>
                   <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-3">
                     <span class="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
                     <div class="text-xs text-slate-700 leading-relaxed">
-                      <strong class="text-slate-900">Direktori 22 Produk Resmi (8 Bank):</strong> Mencakup BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, dan Danamon berdasarkan regulasi pemerintah (Permenko 1/2026 &amp; Kepmen PKP 1722/2026) serta publikasi aktif per November 2026.
+                      <strong class="text-slate-900">Tabel, Grafik &amp; Materi Anuitas:</strong> Pelajari pembagian porsi pokok dan bunga setiap bulan lengkap dengan konsep matematika keuangan di baliknya.
                     </div>
                   </div>
                 </div>
@@ -169,10 +169,10 @@
 
               <div class="space-y-2.5 pt-2">
                 <button type="button" onclick="bukaHalaman('kalkulator')" class="w-full py-3 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition cursor-pointer">
-                  Mulai Hitung & Cari Bank Otomatis
+                  Mulai Hitung Kelayakan Kredit
                 </button>
-                <button type="button" onclick="bukaHalaman('analisis')" class="w-full py-2.5 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition cursor-pointer">
-                  Buka Room Chat & Pindai Brosur AI
+                <button type="button" onclick="bukaHalaman('anuitas')" class="w-full py-2.5 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                  Baca Materi &amp; Tabel Anuitas
                 </button>
               </div>
             </div>
@@ -183,8 +183,8 @@
         <section id="page-kalkulator" class="hidden space-y-6">
           <div class="card-panel rounded-xl p-6 space-y-5">
             <div class="border-b border-slate-200 pb-4">
-              <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Kalkulator Kelayakan & Pencari Bank Otomatis</h2>
-              <p class="text-xs text-slate-500 mt-1">Masukkan data keuangan Anda untuk menghitung batas cicilan sehat (maksimal 30% gaji) dan mencocokkannya secara instan dengan 22 produk terverifikasi dari 8 bank.</p>
+              <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Kalkulator Kelayakan &amp; Pencari Bank</h2>
+              <p class="text-xs text-slate-500 mt-1">Hitung batas cicilan aman (maksimal 30% gaji bersih) dan cocokkan secara otomatis dengan 13 produk bank terverifikasi per November 2026.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
@@ -201,13 +201,13 @@
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-900 mb-1">3. Kebutuhan Dana Pinjaman (Rp)</label>
+                <label class="block text-xs font-bold text-slate-900 mb-1">3. Kebutuhan Pokok Pinjaman / Plafon (Rp)</label>
                 <input type="number" id="calcPinjaman" value="50000000" min="1000000" step="1000000" placeholder="Contoh: 50000000" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
-                <div class="text-[11px] text-slate-500 mt-1">Nominal dana bersih yang ingin dipinjam dari bank.</div>
+                <div class="text-[11px] text-slate-500 mt-1">Nominal dana bersih yang dipinjam dari bank (setelah DP).</div>
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-900 mb-1">4. Lama Cicilan (Tenor) yang Diinginkan</label>
+                <label class="block text-xs font-bold text-slate-900 mb-1">4. Lama Cicilan (Tenor)</label>
                 <select id="calcTenor" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
                   <option value="12">12 Bulan (1 Tahun)</option>
                   <option value="24">24 Bulan (2 Tahun)</option>
@@ -218,18 +218,17 @@
                   <option value="180">180 Bulan (15 Tahun)</option>
                   <option value="240">240 Bulan (20 Tahun)</option>
                 </select>
-                <div class="text-[11px] text-slate-500 mt-1">Semakin panjang tenor, cicilan bulanan semakin ringan.</div>
+                <div class="text-[11px] text-slate-500 mt-1">Tenor lebih panjang memperkecil cicilan bulanan, tetapi memperbesar total bunga.</div>
               </div>
 
               <div class="md:col-span-2">
-                <label class="block text-xs font-bold text-slate-900 mb-1">5. Tujuan / Kategori Pinjaman</label>
+                <label class="block text-xs font-bold text-slate-900 mb-1">5. Tujuan Pinjaman</label>
                 <select id="calcKategori" class="w-full px-3.5 py-2.5 text-sm rounded-lg bg-white border border-slate-300 focus:outline-none focus:border-slate-900">
-                  <option value="Semua">Semua Kategori Terverifikasi (22 Produk dari 8 Bank)</option>
-                  <option value="Modal Usaha">Modal Usaha / Kredit Usaha Rakyat (KUR) &amp; UMKM</option>
+                  <option value="Semua">Semua Kategori Terverifikasi (13 Produk dari 6 Bank)</option>
+                  <option value="Modal Usaha">Modal Usaha / Kredit Usaha Rakyat (KUR)</option>
                   <option value="Properti Subsidi">Rumah Pertama Bersubsidi (KPR FLPP)</option>
-                  <option value="Properti Komersial">Pembelian / Renovasi / Take Over Rumah Komersial (KPR / Griya)</option>
-                  <option value="Kendaraan">Pembiayaan Kendaraan Bermotor (OTO / KKB)</option>
-                  <option value="Multiguna">Kredit Multiguna / Refinancing / Non-KPR</option>
+                  <option value="Properti Komersial">Pembelian / Renovasi / Take Over Rumah Komersial (KPR)</option>
+                  <option value="Multiguna">Kredit Multiguna / Refinancing</option>
                 </select>
               </div>
             </div>
@@ -237,27 +236,27 @@
             <!-- Tambah Penawaran Mandiri (Efektif vs Flat) -->
             <div class="p-4 rounded-xl border border-dashed border-slate-300 bg-white space-y-3">
               <div>
-                <div class="text-xs font-bold text-slate-900 uppercase">Opsional: Tambahkan Penawaran Brosur Mandiri untuk Dibandingkan (Efektif vs. Flat)</div>
-                <p class="text-[11px] text-slate-500 mt-0.5">Punya brosur dari bank lain (misal Bank Jateng, BPR, atau leasing)? Masukkan angkanya di sini agar ikut dibandingkan secara objektif.</p>
+                <div class="text-xs font-bold text-slate-900 uppercase">Opsional: Tambahkan Penawaran Brosur Mandiri (Bunga Efektif atau Flat)</div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Masukkan angka bunga dari brosur bank atau lembaga pembiayaan lain untuk dibandingkan secara setara.</p>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-4 gap-2.5">
-                <input type="text" id="customNamaBank" placeholder="Nama Bank / Produk (misal: Bank Jateng)" class="sm:col-span-2 px-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:border-slate-900">
+                <input type="text" id="customNamaBank" placeholder="Nama Bank / Produk" class="sm:col-span-2 px-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:border-slate-900">
                 <input type="number" id="customBunga" step="0.01" min="0.1" placeholder="Bunga %/thn (misal: 8.5)" class="px-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:border-slate-900">
                 <select id="customMetode" class="px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-slate-900">
-                  <option value="efektif">Bunga Efektif (Anuitas)</option>
-                  <option value="flat">Bunga Flat</option>
+                  <option value="efektif">Metode Bunga Efektif (Anuitas)</option>
+                  <option value="flat">Metode Bunga Flat</option>
                 </select>
               </div>
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <button type="button" onclick="tambahPenawaranMandiri()" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition cursor-pointer">
-                  + Tambah ke Daftar Perbandingan
+                  + Tambah ke Perbandingan
                 </button>
                 <div id="wadahTagMandiri" class="flex flex-wrap gap-1.5"></div>
               </div>
             </div>
 
             <button type="button" onclick="hitungKelayakanDanCariBank()" class="w-full py-3.5 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition cursor-pointer">
-              Hitung Kelayakan & Carikan Produk Terverifikasi
+              Hitung Kelayakan &amp; Cocokkan Produk
             </button>
           </div>
 
@@ -265,7 +264,7 @@
           <div id="hasilKalkulatorContainer" class="hidden space-y-6">
             <div class="card-panel rounded-xl p-6 space-y-4 border-l-4 border-emerald-600">
               <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
-                <h3 class="text-base font-bold text-slate-900 uppercase">Hasil Evaluasi Kemampuan Bayar Anda</h3>
+                <h3 class="text-base font-bold text-slate-900 uppercase">Hasil Evaluasi Kemampuan Bayar</h3>
                 <span id="badgeStatusKapasitas" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800">Kapasitas Tersedia</span>
               </div>
 
@@ -290,7 +289,7 @@
             <div class="card-panel rounded-xl p-6 space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
                 <div>
-                  <h3 class="text-base font-bold text-slate-900 uppercase">Hasil Pencocokan Produk Kredit &amp; Syariah Terverifikasi</h3>
+                  <h3 class="text-base font-bold text-slate-900 uppercase">Hasil Pencocokan Produk Kredit</h3>
                   <p id="subjudulHasilBank" class="text-xs text-slate-500 mt-0.5">Diurutkan dari cicilan paling ringan dan status paling aman.</p>
                 </div>
                 <label class="inline-flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 px-3 py-2 rounded-lg cursor-pointer">
@@ -300,7 +299,7 @@
               </div>
 
               <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-700 leading-relaxed">
-                <strong>Catatan Penting Simulasi:</strong> Seluruh produk resmi bank di bawah disimulasikan menggunakan <strong>metode anuitas / bunga efektif (atau margin syariah setara efektif)</strong> per tahun yang dihitung dari sisa pokok pinjaman dan <strong>belum mencakup biaya provisi, administrasi, asuransi, atau notaris</strong>. Untuk produk berlabel <em>Promo Fixed Awal</em> atau <em>Acuan SBDK</em>, tarif dapat berubah setelah masa fixed berakhir atau menyesuaikan profil risiko debitur.
+                <strong>Catatan Simulasi:</strong> Seluruh produk bank resmi di bawah dihitung dengan <strong>metode anuitas (bunga efektif per tahun)</strong> dari sisa pokok pinjaman dan <strong>belum mencakup biaya tambahan</strong> seperti provisi, administrasi, penilaian agunan (appraisal), notaris, maupun asuransi. Produk berlabel <em>Fixed Awal / Berjenjang</em> dapat berubah setelah masa promo berakhir, sedangkan angka <em>Acuan SBDK</em> adalah tarif dasar terendah bank sebelum ditambah premi risiko debitur.
               </div>
 
               <div id="wadahHasilBankKalkulator" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
@@ -311,38 +310,32 @@
         <!-- HALAMAN 3: ROOM CHAT & PINDAI BROSUR AI -->
         <section id="page-analisis" class="hidden space-y-5">
           <div class="card-panel rounded-xl p-5 md:p-6 space-y-4">
-            <!-- Header Room Chat & Status Koneksi AI -->
+            <!-- Header Room Chat -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
               <div>
                 <div class="flex items-center gap-2 flex-wrap">
-                  <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Room Chat & Pindai Brosur AI</h2>
-                  <span id="indikatorKoneksiAI" class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">Multi-AI Siap (Gemini + OpenRouter)</span>
+                  <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wide">Room Chat &amp; Pindai Brosur AI</h2>
+                  <span id="indikatorKoneksiAI" class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">Asisten AI Siap</span>
                 </div>
-                <p class="text-xs text-slate-500 mt-1">Unggah foto brosur dan berdiskusi bolak-balik dengan AI. Jika server utama sibuk, sistem otomatis berpindah ke penyedia cadangan.</p>
+                <p class="text-xs text-slate-500 mt-1">Unggah foto brosur kredit dan tulis penghasilan bulanan Anda untuk menganalisis kelayakan cicilan secara interaktif.</p>
               </div>
-              <div class="flex flex-wrap gap-2 shrink-0">
-                <button type="button" id="btnTesKoneksiAI" onclick="tesKoneksiMultiAI()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 text-xs font-bold rounded-lg transition cursor-pointer">
-                  Tes Koneksi Multi-AI
-                </button>
-                <button type="button" onclick="resetRoomChat()" class="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold rounded-lg transition cursor-pointer">
-                  Sesi Chat Baru
-                </button>
-              </div>
+              <button type="button" onclick="resetRoomChat()" class="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold rounded-lg transition shrink-0 self-start sm:self-auto cursor-pointer">
+                Mulai Obrolan Baru
+              </button>
             </div>
 
             <!-- Area Gelembung Room Chat -->
             <div id="wadahGelembungChat" class="h-[400px] overflow-y-auto p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
-              <!-- Pesan Pembuka dari AI -->
               <div class="flex items-start gap-3">
                 <div class="w-8 h-8 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">AI</div>
                 <div class="max-w-[85%] rounded-2xl rounded-tl-none bg-white border border-slate-200 p-3.5 text-xs text-slate-800 leading-relaxed shadow-xs">
-                  <div class="font-bold text-emerald-700 mb-1">Konsultan Keuangan FinCheck</div>
-                  Halo! Silakan lampirkan <strong>foto brosur kredit</strong> (bisa beberapa halaman sekaligus) dan ceritakan <strong>gaji bersih bulanan</strong> serta <strong>kebutuhan dana</strong> Anda di bawah. Setelah brosur dipindai, Anda juga bisa terus bertanya lanjutan di ruang obrolan ini.
+                  <div class="font-bold text-emerald-700 mb-1">Asisten Keuangan FinCheck</div>
+                  Silakan lampirkan <strong>foto brosur kredit</strong> (maksimal 6 foto) lalu tulis <strong>gaji bersih per bulan</strong> dan <strong>kebutuhan pinjaman</strong> Anda di bawah. Setelah hasil pindai muncul, Anda dapat mengajukan pertanyaan lanjutan di ruang ini.
                 </div>
               </div>
             </div>
 
-            <!-- Lampiran Foto Brosur & Contoh Pertanyaan Cepat -->
+            <!-- Lampiran Foto Brosur & Kotak Pesan -->
             <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-3">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div class="text-xs font-bold text-slate-900">Lampirkan Foto Brosur Kredit (Opsional, Maks. 6 Foto)</div>
@@ -354,7 +347,7 @@
 
                   <input type="file" id="fotoBrosurKamera" accept="image/*" capture="environment" onchange="prosesFileBrosur(this)" class="hidden">
                   <label for="fotoBrosurKamera" class="inline-block cursor-pointer px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800 transition">
-                    Jepret Kamera
+                    Ambil Foto Kamera
                   </label>
                 </div>
               </div>
@@ -365,68 +358,67 @@
               </div>
               <div id="wadahPreviewBrosur" class="hidden grid grid-cols-3 sm:grid-cols-6 gap-2"></div>
 
-              <!-- Tombol Prompt Cepat -->
+              <!-- Contoh Pertanyaan Cepat -->
               <div class="flex flex-wrap items-center gap-1.5 pt-1">
-                <span class="text-[11px] text-slate-500 font-bold">Pertanyaan cepat:</span>
-                <button type="button" onclick="isiContohPrompt('Gaji saya 8 juta per bulan dan belum punya cicilan lain. Tolong pilihkan produk dan tenor paling aman dari brosur ini.')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Gaji 8 Juta</button>
-                <button type="button" onclick="isiContohPrompt('Saya bergaji 12 juta per bulan dengan cicilan motor 1 juta. Bandingkan semua produk di brosur ini, mana yang paling ringan dan layak?')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Gaji 12 Juta + Cicilan Lama</button>
-                <button type="button" onclick="isiContohPrompt('Kalau lama cicilannya diubah menjadi 48 bulan atau 60 bulan, bagaimana perubahannya terhadap batas aman 30% gaji saya?')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Tanya Lanjutan Tenor</button>
+                <span class="text-[11px] text-slate-500 font-bold">Contoh pertanyaan:</span>
+                <button type="button" onclick="isiContohPrompt('Gaji bersih saya Rp 8.000.000 per bulan dan belum punya cicilan lain. Tolong pilihkan produk dan tenor paling aman dari brosur ini.')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Gaji 8 Juta</button>
+                <button type="button" onclick="isiContohPrompt('Gaji bersih saya Rp 12.000.000 per bulan dengan cicilan motor Rp 1.000.000. Bandingkan semua pilihan tenor di brosur ini terhadap batas aman 30% gaji.')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Gaji 12 Juta + Cicilan Lama</button>
+                <button type="button" onclick="isiContohPrompt('Jika lama cicilan diubah menjadi 48 bulan atau 60 bulan, apakah angsurannya masuk batas aman 30% gaji saya?')" class="text-[11px] px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 cursor-pointer">Tanya Ubah Tenor</button>
               </div>
 
               <!-- Kotak Input Pesan Room Chat -->
               <div class="flex flex-col sm:flex-row gap-2 pt-1">
-                <textarea id="catatan" rows="2" onkeydown="cekEnterKirim(event)" placeholder="Ketik kondisi gaji, kebutuhan pinjaman, atau pertanyaan lanjutan Anda di sini... (Tekan Enter untuk kirim)" class="flex-1 px-3.5 py-2.5 text-sm rounded-lg bg-slate-50 border border-slate-300 focus:bg-white focus:outline-none focus:border-slate-900"></textarea>
+                <textarea id="catatan" rows="2" onkeydown="cekEnterKirim(event)" placeholder="Tulis gaji bulanan, kebutuhan dana, atau pertanyaan lanjutan di sini... (Tekan Enter untuk kirim)" class="flex-1 px-3.5 py-2.5 text-sm rounded-lg bg-slate-50 border border-slate-300 focus:bg-white focus:outline-none focus:border-slate-900"></textarea>
                 <button type="button" id="btnSubmit" onclick="kirimData()" class="px-5 py-3 bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-800 transition shrink-0 cursor-pointer">
                   Kirim Pesan
                 </button>
               </div>
 
               <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 pt-1">
-                <span><strong>Privasi:</strong> Jangan unggah foto KTP, KK, atau slip gaji asli (cukup brosur kredit).</span>
+                <span><strong>Privasi:</strong> Cukup unggah foto brosur kredit; jangan unggah foto KTP, KK, atau slip gaji asli.</span>
                 <span id="statusSimpanDB" class="font-bold text-emerald-700"></span>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- HALAMAN 4: DIREKTORI 22 PRODUK TERVERIFIKASI (8 BANK) -->
+        <!-- HALAMAN 4: DIREKTORI 13 PRODUK TERVERIFIKASI (6 BANK) -->
         <section id="page-rekomendasi" class="hidden space-y-6">
           <div class="card-panel rounded-xl p-6 space-y-5">
             <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <h2 class="text-lg font-bold text-slate-900 uppercase">Direktori 22 Produk Terverifikasi — 8 Bank (Nov 2026)</h2>
-                <p class="text-xs text-slate-500 mt-1">Mencakup BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, dan Danamon berdasarkan regulasi dan publikasi resmi per November 2026.</p>
+                <h2 class="text-lg font-bold text-slate-900 uppercase">Direktori 13 Produk Kredit Terverifikasi (Nov 2026)</h2>
+                <p class="text-xs text-slate-500 mt-1">Data bersumber langsung dari regulasi pemerintah yang berlaku dan publikasi resmi 6 bank (BRI, Mandiri, BNI, BTN, BCA, dan Danamon).</p>
               </div>
-              <span id="jumlahTampilBank" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 self-start sm:self-auto">Menampilkan 22 produk</span>
+              <span id="jumlahTampilBank" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 self-start sm:self-auto">Menampilkan 13 produk</span>
             </div>
 
             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-2">
-              <div class="font-bold text-slate-900 uppercase tracking-wide text-[11px]">Panduan Membaca Suku Bunga, Margin Syariah &amp; Acuan Data (Per Nov 2026)</div>
+              <div class="font-bold text-slate-900 uppercase tracking-wide text-[11px]">Cara Membaca Suku Bunga &amp; Sumber Regulasi (Per November 2026)</div>
               <p>
-                <strong>1. Apa arti "Bunga Efektif (Anuitas) / thn"?</strong> Tarif imbal jasa tahunan pada bank konvensional yang dihitung dari <strong>sisa pokok pinjaman yang belum lunas setiap bulan</strong>. Makin lama cicilan berjalan, porsi bunga makin mengecil dan porsi pelunasan pokok makin membesar.
+                <strong>1. Bunga Efektif (Anuitas) per Tahun:</strong> Suku bunga tahunan yang dihitung dari <strong>sisa pokok pinjaman setiap bulan</strong>. Pada program <strong>KUR</strong> dan <strong>KPR FLPP</strong>, istilah <em>"tetap sepanjang tenor"</em> berarti tarif bunganya tidak berubah dari awal hingga lunas dan tetap dihitung menggunakan rumus anuitas.
               </p>
               <p>
-                <strong>2. Apa arti "Margin Syariah Setara Efektif"?</strong> Pada bank syariah (<strong>BSI</strong> dan <strong>BSN</strong>), tidak berlaku bunga melainkan <strong>margin jual-beli (murabahah)</strong> atau <strong>ujrah (sewa)</strong>. Angka persen di bawah menyatakan tingkat margin yang setara dengan hitungan efektif tahunan agar dapat disimulasikan secara adil.
+                <strong>2. Suku Bunga Dasar Kredit (SBDK — POJK No. 13 Tahun 2024):</strong> Indikasi tarif dasar efektif terendah bank konvensional yang <strong>belum mencakup premi risiko debitur</strong>. Suku bunga kontrak akhir di bank dapat lebih tinggi menyesuaikan profil risiko pemohon.
               </p>
               <p>
-                <strong>3. Sumber Acuan Resmi:</strong> Tarif <strong>KUR (3% &amp; 6%)</strong> mengacu pada <em>Permenko Bidang Perekonomian No. 1 Tahun 2026</em>, dan <strong>KPR Subsidi FLPP (5%)</strong> mengacu pada <em>Kepmen PKP No. 1722/KPTS/M/2026</em> (batas harga rumah tapak Jawa Tengah Rp 166.000.000). Sementara itu, <strong>SBDK</strong> sesuai <em>POJK No. 13 Tahun 2024</em> merupakan indikasi tarif dasar terendah bank konvensional sebelum ditambah premi risiko nasabah.
+                <strong>3. Payung Regulasi Resmi:</strong> Tarif <strong>KUR (3% &amp; 6%)</strong> mengacu pada <em>Permenko Bidang Perekonomian No. 1 Tahun 2026</em>, dan <strong>KPR Subsidi FLPP (5%)</strong> mengacu pada <em>Kepmen PKP No. 1722/KPTS/M/2026</em> (batas harga rumah tapak Jawa Tengah Rp 166.000.000; batas gaji MBR Rp 8,5 juta lajang atau Rp 10 juta kawin).
               </p>
             </div>
 
             <div class="space-y-3">
               <div class="flex flex-col sm:flex-row gap-2">
-                <input type="text" id="cariBankInput" oninput="renderDirektoriBank()" placeholder="Cari nama bank atau produk (BRI, Mandiri, BNI, BTN, BSI, BSN, BCA, Danamon, KUR, FLPP, OTO)..." class="flex-1 px-3.5 py-2.5 text-sm rounded-lg bg-slate-50 border border-slate-300 focus:bg-white focus:outline-none focus:border-slate-900">
+                <input type="text" id="cariBankInput" oninput="renderDirektoriBank()" placeholder="Cari nama bank atau produk (BRI, Mandiri, BNI, BTN, BCA, Danamon, KUR, FLPP)..." class="flex-1 px-3.5 py-2.5 text-sm rounded-lg bg-slate-50 border border-slate-300 focus:bg-white focus:outline-none focus:border-slate-900">
                 <button type="button" onclick="cariTarifResmiGoogle()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition shrink-0 cursor-pointer">
                   Cek Tarif Bank Lain di Google
                 </button>
               </div>
               
               <div class="flex flex-wrap gap-2">
-                <button type="button" onclick="setKategoriBank('Semua', this)" class="filter-btn active px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 transition cursor-pointer">Semua (22)</button>
-                <button type="button" onclick="setKategoriBank('Modal Usaha', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Modal Usaha / KUR &amp; UMKM (7)</button>
-                <button type="button" onclick="setKategoriBank('Properti Subsidi', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Properti Subsidi FLPP (5)</button>
-                <button type="button" onclick="setKategoriBank('Properti Komersial', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Properti Komersial (8)</button>
-                <button type="button" onclick="setKategoriBank('Kendaraan', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Kendaraan / OTO (1)</button>
+                <button type="button" onclick="setKategoriBank('Semua', this)" class="filter-btn active px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 transition cursor-pointer">Semua (13)</button>
+                <button type="button" onclick="setKategoriBank('Modal Usaha', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Modal Usaha / KUR (4)</button>
+                <button type="button" onclick="setKategoriBank('Properti Subsidi', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Properti Subsidi FLPP (2)</button>
+                <button type="button" onclick="setKategoriBank('Properti Komersial', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Properti Komersial (6)</button>
                 <button type="button" onclick="setKategoriBank('Multiguna', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition cursor-pointer">Multiguna (1)</button>
               </div>
             </div>
@@ -435,40 +427,40 @@
           </div>
         </section>
 
-        <!-- HALAMAN 5: TABEL & GRAFIK ANUITAS -->
+        <!-- HALAMAN 5: TABEL, GRAFIK & LITERASI ANUITAS -->
         <section id="page-anuitas" class="hidden space-y-6">
           <div class="card-panel rounded-xl p-6 space-y-5">
             <div class="border-b border-slate-200 pb-4">
-              <h2 class="text-lg font-bold text-slate-900 uppercase">Tabel & Grafik Cicilan Anuitas</h2>
-              <p class="text-xs text-slate-500 mt-1">Rincian pembagian cicilan bulanan untuk membayar pokok pinjaman dan bunga efektif bank dari bulan pertama hingga lunas.</p>
+              <h2 class="text-lg font-bold text-slate-900 uppercase">Tabel &amp; Grafik Cicilan Anuitas</h2>
+              <p class="text-xs text-slate-500 mt-1">Rincian pembagian cicilan bulanan antara pelunasan pokok pinjaman dan pembayaran bunga efektif dari bulan pertama hingga lunas.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 no-print">
               <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">Total Pinjaman (Rp)</label>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">Pokok Pinjaman / Plafon (Rp)</label>
                 <input type="number" id="tblPlafon" value="120000000" class="w-full px-3 py-2 text-sm rounded border border-slate-300">
               </div>
               <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">Suku Bunga / Margin Efektif (%/Tahun)</label>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">Suku Bunga Efektif (%/Tahun)</label>
                 <input type="number" step="0.01" id="tblBunga" value="6" class="w-full px-3 py-2 text-sm rounded border border-slate-300">
               </div>
               <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">Lama Cicilan (Bulan)</label>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">Lama Cicilan / Tenor (Bulan)</label>
                 <input type="number" id="tblTenor" value="60" class="w-full px-3 py-2 text-sm rounded border border-slate-300">
               </div>
             </div>
 
             <div class="flex gap-2 no-print">
-              <button type="button" onclick="generateTabelAnuitas()" class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded cursor-pointer">Hitung & Buat Tabel</button>
+              <button type="button" onclick="generateTabelAnuitas()" class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded cursor-pointer">Hitung &amp; Buat Tabel</button>
               <button type="button" onclick="window.print()" class="px-4 py-2 bg-slate-100 text-slate-800 text-xs font-bold rounded border border-slate-300 cursor-pointer">Cetak PDF</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
               <div class="p-5 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
-                <div class="text-xs text-slate-500">Cicilan Tetap per Bulan</div>
+                <div class="text-xs text-slate-500">Cicilan Tetap per Bulan (Anuitas)</div>
                 <div id="tblOutPMT" class="text-3xl font-bold text-slate-900 border-b border-slate-200 pb-3">Rp 0</div>
                 <div class="text-xs font-bold text-slate-700 flex justify-between pt-2"><span>Total Pokok Pinjaman:</span><span id="tblOutPokok">Rp 0</span></div>
-                <div class="text-xs font-bold text-slate-700 flex justify-between"><span>Total Bunga / Margin Bank:</span><span id="tblOutBunga" class="text-rose-600">Rp 0</span></div>
+                <div class="text-xs font-bold text-slate-700 flex justify-between"><span>Total Bunga Bank:</span><span id="tblOutBunga" class="text-rose-600">Rp 0</span></div>
               </div>
               
               <div class="h-48 relative">
@@ -480,11 +472,56 @@
               <table class="w-full text-left border-collapse text-xs">
                 <thead>
                   <tr class="bg-slate-100 border-b border-slate-200 font-bold text-slate-800">
-                    <th class="py-2 px-3">Bulan Ke-</th><th class="py-2 px-3">Total Cicilan</th><th class="py-2 px-3">Bayar Pokok</th><th class="py-2 px-3">Bayar Bunga/Margin</th><th class="py-2 px-3">Sisa Pinjaman</th>
+                    <th class="py-2 px-3">Bulan Ke-</th><th class="py-2 px-3">Total Cicilan</th><th class="py-2 px-3">Pelunasan Pokok</th><th class="py-2 px-3">Pembayaran Bunga</th><th class="py-2 px-3">Sisa Pinjaman</th>
                   </tr>
                 </thead>
                 <tbody id="tbodyAnuitas" class="divide-y divide-slate-200"></tbody>
               </table>
+            </div>
+          </div>
+
+          <!-- Panel Literasi Matematika Keuangan: Anuitas & Konsep Terkait -->
+          <div class="card-panel rounded-xl p-6 space-y-4">
+            <div class="border-b border-slate-200 pb-3">
+              <h3 class="text-base font-bold text-slate-900 uppercase tracking-wide">Panduan Singkat Matematika Kredit &amp; Anuitas</h3>
+              <p class="text-xs text-slate-500 mt-1">Konsep dasar perhitungan angsuran perbankan agar tidak keliru membandingkan penawaran pinjaman.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700 leading-relaxed">
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-1.5">
+                <div class="font-bold text-slate-900">1. Apa Itu Sistem Anuitas?</div>
+                <p>
+                  <strong>Anuitas</strong> adalah sistem pembayaran pinjaman secara berkala dengan <strong>nominal cicilan tetap sama setiap bulan</strong> hingga masa kredit berakhir. Setiap pembayaran bulanan terdiri atas dua bagian: <strong>angsuran pokok</strong> (mengurangi sisa utang) dan <strong>beban bunga</strong> (imbal jasa pinjaman).
+                </p>
+              </div>
+
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-1.5">
+                <div class="font-bold text-slate-900">2. Pergeseran Porsi Pokok dan Bunga</div>
+                <p>
+                  Pada bulan-bulan awal, porsi pembayaran bunga lebih besar karena sisa pokok utang masih tinggi. Seiring menyusutnya sisa pinjaman setiap bulan, <strong>porsi bunga makin mengecil</strong> dan <strong>porsi pelunasan pokok makin membesar</strong>, sementara jumlah keduanya tetap sama.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-1.5">
+                <div class="font-bold text-slate-900">3. Rumus Matematis Cicilan Anuitas</div>
+                <div class="p-2.5 rounded bg-white border border-slate-200 font-bold text-slate-900 text-center">
+                  PMT = (P &times; r) / [1 &minus; (1 + r)<sup>&minus;n</sup>]
+                </div>
+                <p>
+                  <strong>PMT</strong> = cicilan bulanan; <strong>P</strong> = pokok pinjaman awal; <strong>r</strong> = suku bunga efektif per bulan (bunga tahunan &divide; 12); dan <strong>n</strong> = lama cicilan dalam bulan.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-1.5">
+                <div class="font-bold text-slate-900">4. Efektif (Anuitas), Flat, dan Floating</div>
+                <p>
+                  <strong>Bunga Efektif</strong> dihitung dari sisa utang bulanan. <strong>Bunga Flat</strong> dihitung terus dari pokok awal sehingga angsurannya jauh lebih mahal pada angka persen yang sama (konversi pendekatan: <em>i<sub>efektif</sub> &approx; i<sub>flat</sub> &times; [2n / (n + 1)]</em>). <strong>Bunga Floating</strong> berubah mengikuti suku bunga pasar setelah masa promo <em>fixed</em> berakhir.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 leading-relaxed">
+              <strong>5. Prinsip Batas Sehat 30% Penghasilan:</strong> Dalam perencanaan keuangan pribadi, total seluruh kewajiban cicilan bulanan disarankan <strong>tidak melebihi 30% dari penghasilan bersih</strong>. Batas ini menjaga agar 70% sisa pendapatan tetap mencukupi kebutuhan pokok harian, tabungan, serta dana darurat tanpa memicu risiko gagal bayar.
             </div>
           </div>
         </section>
@@ -512,11 +549,11 @@
           </div>
         </section>
 
-        <!-- Footer Disklaimer & Identitas Lengkap -->
+        <!-- Footer Disklaimer & Identitas Kelompok -->
         <footer class="pt-4 pb-6 border-t border-slate-200 text-[11px] text-slate-600 leading-relaxed flex flex-col sm:flex-row sm:items-start justify-between gap-3 no-print">
           <div class="space-y-1">
             <div>
-              <strong>Disklaimer:</strong> FinCheck merupakan prototipe edukasi literasi keuangan karya siswa <strong>Kelas XI SMAN 1 Klaten</strong> (Anggota Kelompok: 1. [Nama Anggota 1], 2. [Nama Anggota 2], 3. [Nama Anggota 3], 4. [Nama Anggota 4], 5. [Nama Anggota 5], 6. [Nama Anggota 6]). Seluruh perhitungan anuitas dan evaluasi AI bersifat simulasi pembelajaran berdasarkan acuan regulasi dan publikasi bank per November 2026, bukan keputusan persetujuan resmi bank.
+              <strong>Identitas &amp; Disklaimer:</strong> FinCheck merupakan aplikasi edukasi <strong>Proyek Matematika Keuangan — Kelompok 1 Kelas XI B SMAN 1 Klaten</strong>. Seluruh simulasi anuitas dan evaluasi AI bersifat panduan literasi berdasarkan regulasi pemerintah dan publikasi bank per November 2026, bukan keputusan persetujuan kredit resmi bank.
             </div>
           </div>
           <button type="button" onclick="bukaKuesioner()" class="shrink-0 font-bold text-emerald-700 underline hover:text-emerald-800 self-start cursor-pointer">
@@ -530,7 +567,7 @@
 
   <script>
     /* =========================================================================
-       KONFIGURASI SERVER GOOGLE APPS SCRIPT (OPSI B: SEMUA API KEY DI SERVER)
+       KONFIGURASI SERVER GOOGLE APPS SCRIPT (OPSI B: MULTI-AI OTOMATIS)
        ========================================================================= */
     var SERVER_API_URL = "https://script.google.com/macros/s/AKfycbwjHS9Bm4qKk2Xma23te8D5wMlhhw8Lt6dEGkxue5R-SIBgUM_JRAQdNLRrpLpy9Kt2/exec";
     var LINK_KUESIONER = "";
@@ -545,7 +582,7 @@
       if (LINK_KUESIONER && LINK_KUESIONER.trim().indexOf("http") === 0) {
         window.open(LINK_KUESIONER.trim(), "_blank", "noopener,noreferrer");
       } else {
-        alert("Tautan Google Form kuesioner sedang disiapkan oleh tim pengembang.");
+        alert("Tautan Google Form kuesioner sedang disiapkan oleh Kelompok 1 Kelas XI B SMAN 1 Klaten.");
       }
     };
 
@@ -563,49 +600,46 @@
       return uid;
     };
 
-    /* 22 PRODUK KREDIT & PEMBIAYAAN SYARIAH TERVERIFIKASI DARI 8 BANK PER NOVEMBER 2026 */
+    /* 13 PRODUK KREDIT TERVERIFIKASI PER NOVEMBER 2026 (REGULASI & LAMAN RESMI 6 BANK) */
     var direktoriBankData = [
       {
         bank: "Bank Rakyat Indonesia (BRI)",
-        produk: "KUR Super Mikro BRI (Plafon s.d. Rp 10 Juta)",
+        produk: "KUR Super Mikro (Plafon s.d. Rp 10 Juta)",
         kategori: "Modal Usaha",
         bunga: 3.00,
-        sifatBunga: "Tetap Sepanjang Tenor",
-        isSyariah: false,
+        sifatBunga: "Tetap Sepanjang Tenor (Anuitas)",
         tenorDefault: 24,
         plafonDefault: 10000000,
         ket: "Pinjaman modal usaha mikro pemula/pekerja produktif maksimal Rp 10 juta sesuai Permenko Perekonomian No. 1 Tahun 2026.",
-        sumber: "Sumber: Laman Resmi kur.bri.co.id & Permenko 1/2026 (Dicek 20 Nov 2026)",
-        jalurMenu: "Buka kur.bri.co.id atau beranda BRI > Pinjaman > KUR",
+        sumber: "Sumber: Permenko Perekonomian No. 1/2026 & Laman KUR BRI (Nov 2026)",
+        jalurMenu: "Buka ekon.go.id / kur.bri.co.id > Pinjaman > KUR Super Mikro",
         url: "https://kur.bri.co.id"
       },
       {
         bank: "Bank Rakyat Indonesia (BRI)",
-        produk: "KUR Mikro Sektor Produksi & Ekspor (s.d. Rp 100 Juta)",
+        produk: "KUR Mikro Sektor Produksi & Ekspor (>Rp 10–100 Juta)",
         kategori: "Modal Usaha",
         bunga: 6.00,
-        sifatBunga: "Tetap Sepanjang Tenor",
-        isSyariah: false,
+        sifatBunga: "Tetap Sepanjang Tenor (Anuitas)",
         tenorDefault: 36,
         plafonDefault: 50000000,
         ket: "Plafon >Rp 10 juta s.d. Rp 100 juta tanpa agunan tambahan untuk sektor produksi (pertanian, perikanan, industri, jasa) & ekspor. Usaha min. 6 bulan.",
-        sumber: "Sumber: Laman Resmi kur.bri.co.id & Permenko 1/2026 (Dicek 20 Nov 2026)",
-        jalurMenu: "Buka kur.bri.co.id atau beranda BRI > Pinjaman > KUR",
-        url: "https://kur.bri.co.id"
+        sumber: "Sumber: Permenko Perekonomian No. 1/2026 & Panduan KUR BRI (Nov 2026)",
+        jalurMenu: "Buka bri.co.id > Pinjaman / UMKM > KUR",
+        url: "https://bri.co.id"
       },
       {
         bank: "Bank Rakyat Indonesia (BRI)",
         produk: "KUR Kecil Sektor Produksi & Ekspor (>Rp 100–500 Juta)",
         kategori: "Modal Usaha",
         bunga: 6.00,
-        sifatBunga: "Tetap Sepanjang Tenor",
-        isSyariah: false,
+        sifatBunga: "Tetap Sepanjang Tenor (Anuitas)",
         tenorDefault: 48,
         plafonDefault: 150000000,
         ket: "Plafon >Rp 100 juta s.d. Rp 500 juta dengan agunan tambahan sesuai ketentuan bank penyalur. Omzet usaha maksimal Rp 4,8 miliar/tahun.",
-        sumber: "Sumber: Laman Resmi kur.bri.co.id & Permenko 1/2026 (Dicek 20 Nov 2026)",
-        jalurMenu: "Buka kur.bri.co.id atau beranda BRI > Pinjaman > KUR",
-        url: "https://kur.bri.co.id"
+        sumber: "Sumber: Permenko Perekonomian No. 1/2026 & Panduan KUR BRI (Nov 2026)",
+        jalurMenu: "Buka bri.co.id > Pinjaman / UMKM > KUR",
+        url: "https://bri.co.id"
       },
       {
         bank: "Penyalur Resmi KUR (BRI / Mandiri / BNI / BTN)",
@@ -613,125 +647,38 @@
         kategori: "Modal Usaha",
         bunga: 6.00,
         sifatBunga: "6% Akad 1 (Naik s.d. 9% di Akad 4)",
-        isSyariah: false,
         tenorDefault: 36,
         plafonDefault: 50000000,
-        ket: "Khusus usaha perdagangan non-ekspor berlaku tarif berjenjang per akad pinjaman: 6% (akad 1), 7% (akad 2), 8% (akad 3), dan 9% (akad 4).",
-        sumber: "Sumber: Permenko Perekonomian No. 1/2026 & kur.bri.co.id (20 Nov 2026)",
-        jalurMenu: "Buka laman Kemenko Perekonomian / kur.bri.co.id > Ketentuan KUR",
+        ket: "Khusus usaha perdagangan non-ekspor berlaku tarif efektif berjenjang per akad pinjaman: 6% (akad 1), 7% (akad 2), 8% (akad 3), dan 9% (akad 4).",
+        sumber: "Sumber: Permenko Perekonomian No. 1 Tahun 2026",
+        jalurMenu: "Buka ekon.go.id / JDIH Kemenko Perekonomian > Permenko 1/2026",
         url: "https://www.ekon.go.id"
-      },
-      {
-        bank: "Bank Syariah Indonesia (BSI)",
-        produk: "BSI KUR Mikro Syariah (Plafon >Rp 10–100 Juta)",
-        kategori: "Modal Usaha",
-        bunga: 6.00,
-        sifatBunga: "Margin Syariah Setara 6% Efektif",
-        isSyariah: true,
-        tenorDefault: 36,
-        plafonDefault: 50000000,
-        ket: "Pembiayaan modal kerja dan investasi berbasis syariah dengan margin setara 6% efektif per tahun sesuai program KUR pemerintah.",
-        sumber: "Sumber: Laman Resmi BSI KUR Mikro & Salam Digital BSI (Dicek 20 Nov 2026)",
-        jalurMenu: "Buka beranda BSI / salamdigital.bankbsi.co.id > Pembiayaan > BSI KUR",
-        url: "https://www.bankbsi.co.id"
-      },
-      {
-        bank: "Bank Central Asia (BCA)",
-        produk: "Kredit UMKM & Ritel Non-KPR BCA (Acuan Dasar SBDK)",
-        kategori: "Modal Usaha",
-        bunga: 6.99,
-        sifatBunga: "Acuan SBDK Mikro 6,99% (Kecil 8,01%)",
-        isSyariah: false,
-        tenorDefault: 36,
-        plafonDefault: 100000000,
-        ket: "Acuan SBDK resmi BCA berlaku mulai 30 Sep 2026: UMKM Mikro 6,99%, UMKM Kecil 8,01%, UMKM Menengah 8,06%, Ritel 7,74% (tarif dasar sebelum premi risiko).",
-        sumber: "Sumber: Tabel Resmi SBDK BCA (Berlaku 30 Sep 2026)",
-        jalurMenu: "Buka beranda BCA > Gulir ke Footer > Suku Bunga Dasar Kredit (SBDK)",
-        url: "https://www.bca.co.id"
-      },
-      {
-        bank: "Bank Mandiri",
-        produk: "Kredit Komersial UMKM Mandiri (Acuan Dasar SBDK)",
-        kategori: "Modal Usaha",
-        bunga: 10.00,
-        sifatBunga: "Acuan SBDK Kecil 10,00% (Mikro 12,75%)",
-        isSyariah: false,
-        tenorDefault: 36,
-        plafonDefault: 150000000,
-        ket: "Acuan SBDK resmi Bank Mandiri pembaruan 31 Okt 2026 untuk kredit komersial UMKM non-subsidi: Menengah 9,60%, Kecil 10,00%, Mikro 12,75%.",
-        sumber: "Sumber: Tabel Resmi SBDK Bank Mandiri (Update 31 Okt 2026)",
-        jalurMenu: "Buka beranda Mandiri > Gulir ke Footer > Suku Bunga Dasar Kredit",
-        url: "https://www.bankmandiri.co.id"
       },
       {
         bank: "Bank Tabungan Negara (BTN)",
         produk: "KPR Subsidi FLPP Rumah Tapak (Penyalur Utama Nasional)",
         kategori: "Properti Subsidi",
         bunga: 5.00,
-        sifatBunga: "Tetap Sepanjang Tenor",
-        isSyariah: false,
+        sifatBunga: "Tetap Sepanjang Tenor (Anuitas)",
         tenorDefault: 180,
         plafonDefault: 150000000,
-        ket: "Penyalur FLPP terbesar ke-1 nasional (89.481 unit per 17 Nov 2026). Harga rumah maks. Rp 166 jt (Jateng); gaji MBR maks. Rp 8,5 jt (lajang) / Rp 10 jt (kawin).",
+        ket: "Penyalur FLPP terbesar nasional (89.481 unit per 17 Nov 2026). Harga rumah tapak Jawa Tengah maks. Rp 166 juta; gaji MBR maks. Rp 8,5 juta (lajang) / Rp 10 juta (kawin).",
         sumber: "Sumber: Kepmen PKP No. 1722/2026 & Laporan BP Tapera (Nov 2026)",
-        jalurMenu: "Buka beranda BTN > Produk > KPR Subsidi",
+        jalurMenu: "Buka btn.co.id > Produk > KPR Subsidi & jdih.pkp.go.id",
         url: "https://www.btn.co.id"
-      },
-      {
-        bank: "Bank Syariah Nasional (BSN)",
-        produk: "KPR Subsidi FLPP BSN (Margin Setara 5% Tetap)",
-        kategori: "Properti Subsidi",
-        bunga: 5.00,
-        sifatBunga: "Margin Syariah Setara 5% Tetap",
-        isSyariah: true,
-        tenorDefault: 180,
-        plafonDefault: 150000000,
-        ket: "Penyalur FLPP terbesar ke-2 nasional pada 2026 (realisasi 49.193 unit per 17 Nov 2026). Mengikuti ketentuan nasional FLPP rumah tapak Jateng maks. Rp 166 juta.",
-        sumber: "Sumber: Laporan Realisasi BP Tapera (17 Nov 2026) & Kepmen PKP 1722/2026",
-        jalurMenu: "Buka laman BP Tapera / Tapera Mobile > Daftar Bank Penyalur FLPP",
-        url: "https://tapera.go.id"
-      },
-      {
-        bank: "Bank Syariah Indonesia (BSI)",
-        produk: "BSI KPR Sejahtera FLPP Syariah (Margin Setara 5% Tetap)",
-        kategori: "Properti Subsidi",
-        bunga: 5.00,
-        sifatBunga: "Margin Syariah Setara 5% Tetap",
-        isSyariah: true,
-        tenorDefault: 180,
-        plafonDefault: 150000000,
-        ket: "Pembiayaan rumah pertama bersubsidi skema syariah dengan margin setara 5% tetap hingga lunas bagi MBR sesuai ketentuan FLPP (rumah tapak Jateng maks. Rp 166 juta).",
-        sumber: "Sumber: Laman Resmi BSI KPR Sejahtera Syariah & Kepmen PKP 1722/2026 (20 Nov 2026)",
-        jalurMenu: "Buka beranda BSI > Promo / Produk > BSI KPR Sejahtera Syariah",
-        url: "https://www.bankbsi.co.id"
       },
       {
         bank: "Bank Negara Indonesia (BNI)",
         produk: "KPR Sejahtera FLPP BNI",
         kategori: "Properti Subsidi",
         bunga: 5.00,
-        sifatBunga: "Tetap Sepanjang Tenor",
-        isSyariah: false,
+        sifatBunga: "Tetap Sepanjang Tenor (Anuitas)",
         tenorDefault: 240,
         plafonDefault: 150000000,
         ket: "KPR bersubsidi bunga tetap 5% selama jangka waktu kredit (tenor di laman resmi BNI s.d. 20 tahun; biaya provisi 0,5%, administrasi Rp 250.000).",
         sumber: "Sumber: Laman Resmi BNI & Kepmen PKP No. 1722/2026 (Nov 2026)",
-        jalurMenu: "Buka beranda BNI > Individu > Pinjaman > KPR Sejahtera BNI",
+        jalurMenu: "Buka bni.co.id > Individu > Pinjaman > KPR Sejahtera BNI",
         url: "https://www.bni.co.id"
-      },
-      {
-        bank: "Bank Rakyat Indonesia (BRI)",
-        produk: "KPR Subsidi FLPP BRI",
-        kategori: "Properti Subsidi",
-        bunga: 5.00,
-        sifatBunga: "Tetap Sepanjang Tenor",
-        isSyariah: false,
-        tenorDefault: 180,
-        plafonDefault: 150000000,
-        ket: "Penyalur FLPP terbesar ke-3 nasional pada 2026 (realisasi 29.592 unit per 17 Nov 2026) dengan bunga tetap 5% sepanjang tenor sesuai aturan FLPP.",
-        sumber: "Sumber: Laporan Realisasi BP Tapera (17 Nov 2026) & Kepmen PKP 1722/2026",
-        jalurMenu: "Buka beranda BRI > Individu > Pinjaman > KPR Sejahtera BRI",
-        url: "https://bri.co.id"
       },
       {
         bank: "Bank Rakyat Indonesia (BRI)",
@@ -739,12 +686,11 @@
         kategori: "Properti Komersial",
         bunga: 2.85,
         sifatBunga: "Promo Berjenjang (s.d. 30 Nov 2026)",
-        isSyariah: false,
         tenorDefault: 240,
         plafonDefault: 300000000,
-        ket: "Skema promo berjenjang tenor min. 20 tahun: 2,85% (Thn 1–3), 6,75% (Thn 4–6), dan 8,95% (Thn 7–20). Bebas provisi & admin (promo s.d. 30 Nov 2026).",
-        sumber: "Sumber: Laman Resmi Promo BRI KPR (Dicek Nov 2026)",
-        jalurMenu: "Buka beranda BRI > Promo > BRI KPR Promo Bunga Spesial",
+        ket: "Promo efektif berjenjang tenor min. 20 tahun: 2,85% (Thn 1–3), 6,75% (Thn 4–6), dan 8,95% (Thn 7–20). Bebas biaya provisi & administrasi.",
+        sumber: "Sumber: Laman Resmi Promo BRI KPR (Berlaku s.d. 30 Nov 2026)",
+        jalurMenu: "Buka bri.co.id > Promo > BRI KPR Promo Bunga Spesial",
         url: "https://bri.co.id"
       },
       {
@@ -753,12 +699,11 @@
         kategori: "Properti Komersial",
         bunga: 3.85,
         sifatBunga: "Fixed 5 Thn (3,15% / 3,85% / 6,85%)",
-        isSyariah: false,
         tenorDefault: 120,
         plafonDefault: 300000000,
-        ket: "Promo fixed 5 tahun: 3,15% (min. tenor 15 thn), 3,85% (min. 10 thn), 6,85% (min. 5 thn), lalu counter rate. Bebas provisi & admin (s.d. 30 Nov 2026).",
-        sumber: "Sumber: Laman Resmi Promo BRI KPR (Dicek Nov 2026)",
-        jalurMenu: "Buka beranda BRI > Promo > BRI KPR Promo Bunga Spesial",
+        ket: "Promo fixed 5 tahun: 3,15% (min. tenor 15 thn), 3,85% (min. 10 thn), 6,85% (min. 5 thn), lalu mengikuti counter rate. Bebas provisi & admin.",
+        sumber: "Sumber: Laman Resmi Promo BRI KPR (Berlaku s.d. 30 Nov 2026)",
+        jalurMenu: "Buka bri.co.id > Promo > BRI KPR Promo Bunga Spesial",
         url: "https://bri.co.id"
       },
       {
@@ -767,55 +712,25 @@
         kategori: "Properti Komersial",
         bunga: 3.75,
         sifatBunga: "Fixed Berjenjang + Floating",
-        isSyariah: false,
         tenorDefault: 180,
         plafonDefault: 300000000,
         ket: "Pembelian/renovasi properti: Thn 1 mulai 3,75%/4,75%, Thn 2–3 6,75%, Thn 4–10 9,75%, Thn 11–15/20 10,75%, lalu floating. Provisi 1%, admin Rp 750 rb–2,5 jt.",
         sumber: "Sumber: Laman Resmi BNI Griya (Dicek Nov 2026)",
-        jalurMenu: "Buka beranda BNI > Individu > Pinjaman > BNI Griya",
+        jalurMenu: "Buka bni.co.id > Individu > Pinjaman > BNI Griya",
         url: "https://www.bni.co.id"
-      },
-      {
-        bank: "Bank Tabungan Negara (BTN)",
-        produk: "KPR Non-Subsidi BTN (Indikasi Awal + SBDK)",
-        kategori: "Properti Komersial",
-        bunga: 4.50,
-        sifatBunga: "Indikasi Awal 1 Thn (Normal 8,25%)",
-        isSyariah: false,
-        tenorDefault: 120,
-        plafonDefault: 300000000,
-        ket: "Tarif awal indikatif 4,50% (1 tahun) dan tarif normal 8,25% (min. tenor 8 tahun; data agregator Nov 2026). Acuan SBDK Ritel BTN per 1 Nov 2026: 9,25%.",
-        sumber: "Sumber: Tabel SBDK BTN (1 Nov 2026) & Rangkuman KPR Nov 2026",
-        jalurMenu: "Buka beranda BTN > Produk > KPR Non-Subsidi & Footer > SBDK",
-        url: "https://www.btn.co.id"
       },
       {
         bank: "Bank Mandiri",
         produk: "Mandiri KPR Take Over (Fixed 5 Tahun + Acuan SBDK)",
         kategori: "Properti Komersial",
         bunga: 5.50,
-        sifatBunga: "Fixed 5 Thn (SBDK KPR 12,10%)",
-        isSyariah: false,
+        sifatBunga: "Fixed 5 Thn (Acuan SBDK KPR 12,10%)",
         tenorDefault: 144,
         plafonDefault: 300000000,
-        ket: "Tarif promo fixed 5 tahun 5,50% (min. tenor 12 tahun; tersedia juga 3,75% fixed 1 thn & 4,25% fixed 3 thn), selanjutnya mengikuti bunga berlaku (SBDK KPR 12,10%).",
+        ket: "Tarif fixed 5 tahun 5,50% (min. tenor 12 tahun; tersedia juga 3,75% fixed 1 thn & 4,25% fixed 3 thn), selanjutnya mengikuti bunga berlaku (SBDK KPR 12,10%).",
         sumber: "Sumber: Laman Resmi Mandiri & Tabel SBDK Mandiri (31 Okt 2026)",
-        jalurMenu: "Buka beranda Mandiri > Pinjaman / Promo & Footer > SBDK",
+        jalurMenu: "Buka bankmandiri.co.id > Pinjaman / Promo & Footer > SBDK",
         url: "https://www.bankmandiri.co.id"
-      },
-      {
-        bank: "Bank Syariah Indonesia (BSI)",
-        produk: "BSI Griya Spesial Margin (Payroll Fixed s.d. 15 Tahun)",
-        kategori: "Properti Komersial",
-        bunga: 8.50,
-        sifatBunga: "Margin Fixed s.d. 15 Thn (Non-Payroll 8,75%)",
-        isSyariah: true,
-        tenorDefault: 180,
-        plafonDefault: 300000000,
-        ket: "Pembiayaan rumah komersial syariah margin tetap 8,50% (payroll) atau 8,75% (non-payroll) untuk tenor 1–15 tahun. Tersedia juga opsi berjenjang mulai 3,00% (thn 1).",
-        sumber: "Sumber: Laman Resmi Promo BSI Griya Spesial Margin (Dicek 20 Nov 2026)",
-        jalurMenu: "Buka beranda BSI > Promo > BSI Griya Spesial Margin",
-        url: "https://www.bankbsi.co.id"
       },
       {
         bank: "Bank Danamon Indonesia",
@@ -823,12 +738,11 @@
         kategori: "Properti Komersial",
         bunga: 8.50,
         sifatBunga: "Acuan SBDK (Belum Premi Risiko)",
-        isSyariah: false,
         tenorDefault: 120,
         plafonDefault: 250000000,
-        ket: "Angka 8,50% adalah SBDK KPR resmi Bank Danamon efektif 2 Nov 2026 (tarif dasar terendah bank sebelum ditambah premi risiko masing-masing debitur).",
+        ket: "Angka 8,50% adalah SBDK KPR resmi Bank Danamon efektif 2 Nov 2026 (tarif dasar terendah bank sebelum ditambah premi risiko debitur).",
         sumber: "Sumber: Tabel Resmi SBDK Bank Danamon (Efektif 2 Nov 2026)",
-        jalurMenu: "Buka beranda Danamon > Gulir ke Footer > SBDK",
+        jalurMenu: "Buka danamon.co.id > Gulir ke Footer > SBDK",
         url: "https://www.danamon.co.id"
       },
       {
@@ -837,40 +751,24 @@
         kategori: "Properti Komersial",
         bunga: 9.07,
         sifatBunga: "Acuan SBDK (Belum Premi Risiko)",
-        isSyariah: false,
         tenorDefault: 120,
         plafonDefault: 300000000,
-        ket: "Angka 9,07% adalah Suku Bunga Dasar Kredit (SBDK) KPR resmi BCA berlaku mulai 30 Sep 2026 (bukan bunga final kontrak sebelum ditambah premi risiko).",
+        ket: "Angka 9,07% adalah Suku Bunga Dasar Kredit (SBDK) KPR resmi BCA berlaku mulai 30 Sep 2026 (tarif dasar terendah sebelum premi risiko nasabah).",
         sumber: "Sumber: Tabel Resmi SBDK BCA (Berlaku 30 Sep 2026)",
-        jalurMenu: "Buka beranda BCA > Gulir ke Footer > Suku Bunga Dasar Kredit (SBDK)",
+        jalurMenu: "Buka bca.co.id > Gulir ke Footer > Suku Bunga Dasar Kredit (SBDK)",
         url: "https://www.bca.co.id"
-      },
-      {
-        bank: "Bank Syariah Indonesia (BSI)",
-        produk: "BSI OTO Kendaraan (Mobil Baru — Setara 3,68% Efektif)",
-        kategori: "Kendaraan",
-        bunga: 3.68,
-        sifatBunga: "Setara 3,68% Efektif (2,00% Flat Tenor 1 Thn)",
-        isSyariah: true,
-        tenorDefault: 36,
-        plafonDefault: 150000000,
-        ket: "Pembiayaan mobil baru syariah (tenor 1–7 tahun) dengan margin flat mulai 2,00% p.a. (setara 3,68% efektif p.a. pada tenor 1 tahun) hingga 4,48% flat p.a. (tenor 5 tahun).",
-        sumber: "Sumber: Laman Resmi BSI OTO (Dicek 20 Nov 2026)",
-        jalurMenu: "Buka beranda BSI > Produk & Layanan / Promo > BSI OTO",
-        url: "https://www.bankbsi.co.id"
       },
       {
         bank: "Bank Mandiri",
         produk: "Multiguna Refinancing Mandiri (Fixed 3 Tahun + SBDK)",
         kategori: "Multiguna",
         bunga: 6.00,
-        sifatBunga: "Fixed 3 Thn (SBDK Non-KPR 11,60%)",
-        isSyariah: false,
+        sifatBunga: "Fixed 3 Thn (Acuan SBDK Non-KPR 11,60%)",
         tenorDefault: 84,
         plafonDefault: 150000000,
         ket: "Refinancing agunan properti bunga efektif 6,00% / 7,25% fixed 3 tahun (min. tenor 5–7 thn), selanjutnya mengikuti bunga berlaku (SBDK Non-KPR 11,60%).",
         sumber: "Sumber: Laman Resmi Mandiri & Tabel SBDK Mandiri (31 Okt 2026)",
-        jalurMenu: "Buka beranda Mandiri > Pinjaman / Promo & Footer > SBDK",
+        jalurMenu: "Buka bankmandiri.co.id > Pinjaman / Promo & Footer > SBDK",
         url: "https://www.bankmandiri.co.id"
       }
     ];
@@ -952,10 +850,10 @@
 
       var judulMap = {
         beranda: 'Beranda Utama',
-        kalkulator: 'Kalkulator & Cari Bank Otomatis',
+        kalkulator: 'Kalkulator & Cari Bank',
         analisis: 'Room Chat & Pindai Brosur AI',
-        rekomendasi: 'Direktori 22 Produk Terverifikasi (8 Bank)',
-        anuitas: 'Tabel & Grafik Anuitas',
+        rekomendasi: 'Direktori Produk Resmi (13)',
+        anuitas: 'Tabel, Grafik & Materi Anuitas',
         riwayat: 'Riwayat Konsultasi Privat Saya'
       };
       var bc = document.getElementById('breadcrumbTitle');
@@ -978,7 +876,7 @@
       var metode = document.getElementById('customMetode').value;
 
       if (!nama || !bunga || bunga <= 0) {
-        alert("Mohon isi Nama Bank/Produk dan angka Suku Bunga (%/tahun) lebih dari 0.");
+        alert("Isi Nama Bank/Produk dan Suku Bunga (%/tahun) lebih dari 0.");
         return;
       }
 
@@ -1017,7 +915,7 @@
       }
     };
 
-    /* LOGIKA KALKULATOR KELAYAKAN & PENCARI BANK OTOMATIS */
+    /* LOGIKA KALKULATOR KELAYAKAN & PENCARI BANK */
     window.hitungKelayakanDanCariBank = function() {
       var gaji = parseFloat(document.getElementById('calcGaji').value) || 0;
       var cicilanLama = parseFloat(document.getElementById('calcCicilanLama').value) || 0;
@@ -1027,7 +925,7 @@
       var hanyaLayak = document.getElementById('chkHanyaLayak').checked;
 
       if (gaji <= 0 || pinjaman <= 0 || tenor <= 0) {
-        alert("Mohon isi Gaji Bersih per Bulan dan Kebutuhan Dana Pinjaman dengan angka lebih dari 0.");
+        alert("Isi Gaji Bersih per Bulan dan Kebutuhan Pokok Pinjaman dengan angka lebih dari 0.");
         return;
       }
 
@@ -1083,12 +981,11 @@
             produk: pm.nama,
             bunga: pm.bunga,
             metode: pm.metode,
-            isSyariah: false,
             sifatBunga: pm.metode === "flat"
               ? ("Metode Bunga Flat (Setara ~" + efektifSetara.toFixed(1).replace('.', ',') + "% Efektif/thn)")
               : "Metode Bunga Efektif (Anuitas)",
-            sumber: "Sumber: Input Mandiri Pengguna untuk Simulasi Perbandingan",
-            jalurMenu: "Verifikasi langsung pada brosur fisik / laman resmi bank terkait",
+            sumber: "Sumber: Input Mandiri Pengguna",
+            jalurMenu: "Verifikasi langsung pada brosur atau laman resmi bank terkait",
             url: "https://www.google.com/search?q=" + encodeURIComponent(pm.nama + " suku bunga resmi 2026")
           },
           cicilanBaru: cicilanM,
@@ -1110,23 +1007,23 @@
       if (jumlahLayak === 0) {
         kotakSaran.classList.remove('hidden');
         if (sisaKapasitas <= 0) {
-          kotakSaran.innerHTML = '<strong>Perhatian:</strong> Total cicilan lama Anda (' + formatRp(cicilanLama) + '/bln) sudah mencapai atau melebihi batas sehat 30% gaji (' + formatRp(batas30) + '/bln). Disarankan melunasi sebagian kewajiban lama terlebih dahulu sebelum mengajukan pinjaman baru.';
+          kotakSaran.innerHTML = '<strong>Perhatian:</strong> Cicilan lama Anda (' + formatRp(cicilanLama) + '/bln) sudah mencapai atau melebihi batas aman 30% gaji (' + formatRp(batas30) + '/bln). Lunasi sebagian kewajiban lama terlebih dahulu sebelum menambah pinjaman baru.';
         } else {
           var bungaTerendah = kandidat.length > 0 ? kandidat[0].bungaEfektifTampil : 6.0;
           var plafonMaksAman = hitungPlafonMaksimal(sisaKapasitas, tenor, bungaTerendah);
-          kotakSaran.innerHTML = '<strong>Saran Penyesuaian Otomatis:</strong> Dengan sisa kapasitas cicilan <strong>' + formatRp(sisaKapasitas) + '/bulan</strong> pada tenor <strong>' + tenor + ' bulan</strong>, pinjaman sebesar <strong>' + formatRp(pinjaman) + '</strong> masih melebihi batas aman 30%. Agar tetap <strong>Layak Aman</strong>, Anda dapat memperpanjang lama cicilan (tenor) atau menyesuaikan nominal pinjaman maksimal menjadi sekitar <strong>' + formatRp(plafonMaksAman) + '</strong> (acuan tarif efektif ' + bungaTerendah.toFixed(2).replace('.', ',') + '%/thn).';
+          kotakSaran.innerHTML = '<strong>Saran Penyesuaian:</strong> Dengan sisa kapasitas cicilan <strong>' + formatRp(sisaKapasitas) + '/bulan</strong> pada tenor <strong>' + tenor + ' bulan</strong>, pokok pinjaman <strong>' + formatRp(pinjaman) + '</strong> masih melampaui batas aman 30%. Agar berstatus <strong>Layak Aman</strong>, perpanjang tenor cicilan atau turunkan pokok pinjaman menjadi maksimal sekitar <strong>' + formatRp(plafonMaksAman) + '</strong> (acuan bunga efektif ' + bungaTerendah.toFixed(2).replace('.', ',') + '%/thn).';
         }
       } else {
         kotakSaran.classList.add('hidden');
       }
 
-      document.getElementById('subjudulHasilBank').innerText = "Ditemukan " + jumlahLayak + " dari " + kandidat.length + " opsi kredit/pembiayaan yang berstatus Layak Aman untuk kebutuhan " + formatRp(pinjaman) + " (" + tenor + " bln).";
+      document.getElementById('subjudulHasilBank').innerText = "Ditemukan " + jumlahLayak + " dari " + kandidat.length + " opsi kredit berstatus Layak Aman untuk pokok pinjaman " + formatRp(pinjaman) + " (" + tenor + " bln).";
 
       var wadah = document.getElementById('wadahHasilBankKalkulator');
       wadah.innerHTML = "";
 
       if (tampilList.length === 0) {
-        wadah.innerHTML = '<div class="col-span-2 text-center py-8 text-xs font-bold text-slate-500">Tidak ada produk yang memenuhi batas 30% untuk nominal dan tenor ini. Hilangkan centang filter di atas untuk melihat rincian seluruh produk.</div>';
+        wadah.innerHTML = '<div class="col-span-2 text-center py-8 text-xs font-bold text-slate-500">Belum ada produk yang memenuhi batas 30% untuk nominal dan tenor ini. Hilangkan centang filter di atas untuk melihat rincian seluruh produk.</div>';
       } else {
         for (var i = 0; i < tampilList.length; i++) {
           var row = tampilList[i];
@@ -1139,7 +1036,7 @@
           var textCicilanColor = row.layak ? 'text-emerald-700' : 'text-rose-700';
           var labelBungaKanan = (row.isMandiri && item.metode === "flat")
             ? ('Bunga Flat ' + item.bunga.toFixed(2).replace('.', ',') + '% / thn')
-            : (item.isSyariah ? ('Margin Setara ' + item.bunga.toFixed(2).replace('.', ',') + '% / thn') : ('Bunga Efektif ' + item.bunga.toFixed(2).replace('.', ',') + '% / thn'));
+            : ('Bunga Efektif ' + item.bunga.toFixed(2).replace('.', ',') + '% / thn');
 
           wadah.innerHTML +=
             '<div class="p-4 rounded-xl border ' + cardBorder + ' flex flex-col justify-between gap-3">' +
@@ -1149,17 +1046,17 @@
                   '<span class="text-xs font-bold text-slate-900">' + labelBungaKanan + '</span>' +
                 '</div>' +
                 '<div class="font-bold text-sm text-slate-900 pt-1">' + item.bank + ' — ' + item.produk + '</div>' +
-                '<div class="text-[11px] font-bold text-slate-600">Sifat Tarif: <span class="text-slate-900">' + item.sifatBunga + '</span></div>' +
+                '<div class="text-[11px] font-bold text-slate-600">Ketentuan Tarif: <span class="text-slate-900">' + item.sifatBunga + '</span></div>' +
                 '<div class="p-2.5 rounded-lg bg-white border border-slate-200 mt-2 space-y-1">' +
-                  '<div class="flex justify-between text-xs"><span class="text-slate-600">Estimasi Cicilan (' + tenor + ' bln):</span><strong class="' + textCicilanColor + '">' + formatRp(row.cicilanBaru) + ' / bln</strong></div>' +
-                  '<div class="flex justify-between text-[11px]"><span class="text-slate-500">Total Beban Utang terhadap Gaji:</span><strong class="text-slate-800">' + row.rasioPersen.toFixed(1).replace('.', ',') + '% (Batas 30%)</strong></div>' +
+                  '<div class="flex justify-between text-xs"><span class="text-slate-600">Perkiraan Cicilan (' + tenor + ' bln):</span><strong class="' + textCicilanColor + '">' + formatRp(row.cicilanBaru) + ' / bln</strong></div>' +
+                  '<div class="flex justify-between text-[11px]"><span class="text-slate-500">Total Beban Cicilan terhadap Gaji:</span><strong class="text-slate-800">' + row.rasioPersen.toFixed(1).replace('.', ',') + '% (Batas 30%)</strong></div>' +
                 '</div>' +
                 '<div class="text-[10px] text-slate-500 italic pt-1">' + item.sumber + '</div>' +
                 '<div class="text-[10px] text-slate-600">Jalur Bukti: ' + item.jalurMenu + '</div>' +
               '</div>' +
               '<div class="flex items-center gap-2 pt-2 border-t border-slate-200">' +
                 '<button type="button" onclick="simulasikanBankKeAnuitas(' + pinjaman + ',' + row.bungaEfektifTampil.toFixed(2) + ',' + tenor + ')" class="flex-1 py-2 px-3 bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 text-xs font-bold rounded-lg transition cursor-pointer">Lihat Tabel Anuitas</button>' +
-                '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg text-center transition">Beranda Resmi</a>' +
+                '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg text-center transition">Situs Resmi</a>' +
               '</div>' +
             '</div>';
         }
@@ -1226,26 +1123,23 @@
       if (badgeJumlah) badgeJumlah.innerText = "Menampilkan " + hasilFilter.length + " produk";
 
       if (hasilFilter.length === 0) {
-        wadah.innerHTML = '<div class="col-span-2 text-center py-8 text-xs font-bold text-slate-500">Produk bank belum ada di daftar 22 produk terverifikasi. Klik tombol "Cek Tarif Bank Lain di Google" di atas untuk membuka publikasi resminya.</div>';
+        wadah.innerHTML = '<div class="col-span-2 text-center py-8 text-xs font-bold text-slate-500">Produk belum tersedia di daftar 13 produk terverifikasi. Klik tombol "Cek Tarif Bank Lain di Google" di atas untuk melihat publikasi resminya.</div>';
         return;
       }
 
       for (var i = 0; i < hasilFilter.length; i++) {
         var item = hasilFilter[i];
         var estPMT = hitungPMT(item.plafonDefault, item.tenorDefault, item.bunga);
-        var badgeSifatColor = (item.sifatBunga.indexOf("Tetap") === 0 || item.sifatBunga.indexOf("Margin Syariah Setara") === 0)
+        var badgeSifatColor = item.sifatBunga.indexOf("Tetap") === 0
           ? "bg-emerald-100 text-emerald-800"
           : "bg-amber-100 text-amber-900";
-        var labelBungaKanan = item.isSyariah
-          ? ("Margin Setara " + item.bunga.toFixed(2).replace('.', ',') + "% / thn")
-          : ("Bunga Efektif " + item.bunga.toFixed(2).replace('.', ',') + "% / thn");
 
         wadah.innerHTML += 
           '<div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between gap-3">' +
             '<div class="space-y-1.5">' +
               '<div class="flex items-center justify-between gap-2 flex-wrap">' +
                 '<span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ' + badgeSifatColor + '">' + item.sifatBunga + '</span>' +
-                '<span class="text-xs font-bold text-slate-900">' + labelBungaKanan + '</span>' +
+                '<span class="text-xs font-bold text-slate-900">Bunga Efektif ' + item.bunga.toFixed(2).replace('.', ',') + '% / thn</span>' +
               '</div>' +
               '<div class="font-bold text-sm text-slate-900 pt-1">' + (i + 1) + '. ' + item.bank + ' — ' + item.produk + '</div>' +
               '<p class="text-xs text-slate-600 leading-relaxed">' + item.ket + '</p>' +
@@ -1255,7 +1149,7 @@
             '</div>' +
             '<div class="flex items-center gap-2 pt-2 border-t border-slate-200">' +
               '<button type="button" onclick="simulasikanBankKeAnuitas(' + item.plafonDefault + ',' + item.bunga + ',' + item.tenorDefault + ')" class="flex-1 py-2 px-3 bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 text-xs font-bold rounded-lg transition cursor-pointer">Hitung Anuitas</button>' +
-              '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg text-center transition">Beranda Resmi</a>' +
+              '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg text-center transition">Situs Resmi</a>' +
             '</div>' +
           '</div>';
       }
@@ -1318,7 +1212,7 @@
           anuitasChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-              labels: ['Total Pokok Pinjaman', 'Total Bunga / Margin'],
+              labels: ['Total Pokok Pinjaman', 'Total Bunga Bank'],
               datasets: [{ data: [plafon, totalBunga], backgroundColor: ['#0f172a', '#e11d48'], borderWidth: 0 }]
             },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } } } }
@@ -1389,7 +1283,7 @@
 
       for (var i = 0; i < files.length; i++) {
         if (daftarGambarBrosur.length >= 6) {
-          alert("Maksimal 6 foto brosur dalam satu kali kirim agar proses AI tetap cepat.");
+          alert("Maksimal 6 foto brosur dalam satu kali kirim.");
           break;
         }
         try {
@@ -1444,52 +1338,7 @@
     };
 
     /* =========================================================================
-       TES KONEKSI MULTI-AI LEWAT GOOGLE APPS SCRIPT (OPSI B)
-       ========================================================================= */
-    window.tesKoneksiMultiAI = async function() {
-      var badge = document.getElementById('indikatorKoneksiAI');
-      var btn = document.getElementById('btnTesKoneksiAI');
-
-      btn.disabled = true;
-      btn.innerText = "Menguji Server...";
-      badge.innerText = "Menguji Jalur Multi-AI...";
-      badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300";
-
-      try {
-        var res = await fetch(SERVER_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: 'tesKoneksiAI' })
-        });
-        var json = await res.json();
-
-        btn.disabled = false;
-        btn.innerText = "Tes Koneksi Multi-AI";
-
-        if (json && json.ok) {
-          badge.innerText = "Terhubung: " + json.provider + " (" + json.model + ")";
-          badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
-          alert(
-            "Koneksi Multi-AI Berhasil!\n\n" +
-            "• Jalur 1 (Google Gemini): " + json.statusGemini + "\n" +
-            "• Jalur 2 (OpenRouter): " + json.statusOpenRouter
-          );
-        } else {
-          badge.innerText = "Server Perlu Update Deploy";
-          badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
-          alert("Koneksi Multi-AI belum merespons: " + (json.error || "Pastikan Code.gs di Google Apps Script sudah diperbarui dan di-Deploy versi baru."));
-        }
-      } catch (err) {
-        btn.disabled = false;
-        btn.innerText = "Tes Koneksi Multi-AI";
-        badge.innerText = "Gangguan Server";
-        badge.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
-        alert("Gagal terhubung ke Google Apps Script: " + err.message);
-      }
-    };
-
-    /* =========================================================================
-       ROOM CHAT INTERAKTIF (MULTI-TURN VIA APPS SCRIPT)
+       ROOM CHAT INTERAKTIF (OTOMATIS MULTI-PROVIDER DI SERVER)
        ========================================================================= */
     function tambahGelembungUser_(teks, jumlahFoto, previewUrls) {
       var wadah = document.getElementById('wadahGelembungChat');
@@ -1522,7 +1371,7 @@
         '<div id="' + idLoading + '" class="flex items-start gap-3">' +
           '<div class="w-8 h-8 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">AI</div>' +
           '<div class="max-w-[85%] rounded-2xl rounded-tl-none bg-white border border-slate-200 p-3.5 text-xs text-slate-600 italic shadow-xs">' +
-            'Sedang memproses lewat jalur Multi-AI (Gemini &amp; OpenRouter)...' +
+            'Sedang menganalisis brosur dan menghitung kelayakan cicilan...' +
           '</div>' +
         '</div>';
       wadah.scrollTop = wadah.scrollHeight;
@@ -1532,7 +1381,7 @@
       var el = document.getElementById(idLoading);
       if (!el) return;
       var borderClass = isError ? "border-rose-300 bg-rose-50 text-rose-900" : "border-slate-200 bg-white text-slate-800";
-      var headerText = isError ? "Peringatan Koneksi Multi-AI" : ("Konsultan Keuangan FinCheck • " + labelProvider);
+      var headerText = isError ? "Peringatan Sistem" : ("Asisten Keuangan FinCheck • " + labelProvider);
       var headerColor = isError ? "text-rose-700" : "text-emerald-700";
 
       el.innerHTML =
@@ -1554,8 +1403,8 @@
         '<div class="flex items-start gap-3">' +
           '<div class="w-8 h-8 rounded-full bg-emerald-700 text-white text-xs font-bold flex items-center justify-center shrink-0">AI</div>' +
           '<div class="max-w-[85%] rounded-2xl rounded-tl-none bg-white border border-slate-200 p-3.5 text-xs text-slate-800 leading-relaxed shadow-xs">' +
-            '<div class="font-bold text-emerald-700 mb-1">Konsultan Keuangan FinCheck (Sesi Baru)</div>' +
-            'Ruang obrolan telah dibersihkan. Silakan lampirkan foto brosur baru atau tulis pertanyaan keuangan Anda di bawah.' +
+            '<div class="font-bold text-emerald-700 mb-1">Asisten Keuangan FinCheck (Sesi Baru)</div>' +
+            'Ruang obrolan telah dibersihkan. Silakan lampirkan foto brosur baru atau tulis pertanyaan Anda di bawah.' +
           '</div>' +
         '</div>';
     };
@@ -1563,7 +1412,7 @@
     function simpanKeDatabaseLatarBelakang_(payloadSimpan) {
       if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) return;
       var statusEl = document.getElementById('statusSimpanDB');
-      if (statusEl) statusEl.innerText = "Menyimpan ke riwayat...";
+      if (statusEl) statusEl.innerText = "Menyimpan riwayat...";
 
       fetch(SERVER_API_URL, {
         method: 'POST',
@@ -1589,7 +1438,7 @@
       var catatan = inputBox.value.trim();
 
       if (!catatan && daftarGambarBrosur.length === 0) {
-        alert("Silakan ketik pesan/kondisi keuangan Anda atau lampirkan foto brosur terlebih dahulu.");
+        alert("Tulis kondisi penghasilan atau lampirkan foto brosur terlebih dahulu.");
         return;
       }
 
@@ -1606,21 +1455,21 @@
 
       if (isTurnPertama) {
         instruksiSistem =
-          "Anda adalah konsultan literasi keuangan FinCheck yang ramah, akurat, dan mudah dipahami masyarakat awam. Jawab dalam bahasa Indonesia tanpa emoji.\n" +
+          "Anda adalah asisten literasi keuangan FinCheck yang lugas, akurat, dan mudah dipahami masyarakat awam. Jawab dalam bahasa Indonesia yang efektif tanpa emoji.\n" +
           "Aturan Evaluasi:\n" +
           "1. Batas cicilan sehat maksimal adalah 30% dari penghasilan bersih bulanan (setelah dikurangi cicilan lain yang sedang berjalan).\n" +
-          "2. Jika terdapat foto brosur, baca semua nama produk, batas plafon, suku bunga/margin syariah (bedakan bunga efektif/anuitas vs bunga flat), dan tabel cicilan per tenor secara teliti.\n" +
+          "2. Jika terdapat foto brosur, baca nama produk, pokok pinjaman (plafon), suku bunga (bedakan metode bunga efektif/anuitas vs bunga flat), serta tabel cicilan per tenor secara teliti.\n" +
           "3. Evaluasi setiap pilihan tenor/produk dengan rasio `(Total Cicilan / Gaji x 100%)` dan nyatakan tegas **Status: Layak Aman** (<= 30%) atau **Status: Tidak Layak** (> 30%).\n" +
-          "4. Jika pengguna belum menyebutkan gaji, hitung gaji minimal per bulan yang aman dengan rumus `Cicilan Bulanan / 0,30`.\n" +
+          "4. Jika pengguna belum menyebutkan gaji, hitung penghasilan minimal per bulan yang aman dengan rumus `Cicilan Bulanan / 0,30`.\n" +
           "5. Gunakan **teks tebal** pada nama produk, nominal Rupiah, persentase, dan status kelayakan.\n\n" +
           "Pesan Pengguna:\n";
       } else {
         instruksiSistem =
-          "Lanjutkan percakapan konsultasi keuangan sebelumnya dengan tetap berpedoman pada data brosur dan gaji yang telah dibahas, menggunakan standar batas cicilan aman maksimal 30% gaji dan bahasa Indonesia yang jelas tanpa emoji.\n\n" +
+          "Lanjutkan diskusi evaluasi kredit sebelumnya berdasarkan data brosur dan penghasilan yang telah dibahas, tetap berpedoman pada batas aman cicilan maksimal 30% gaji bersih dengan bahasa Indonesia yang lugas tanpa emoji.\n\n" +
           "Pertanyaan Lanjutan Pengguna:\n";
       }
 
-      var partsTurnIni = [{ text: instruksiSistem + (catatan || "Tolong pindai dan analisis seluruh pilihan produk serta tenor pada foto brosur yang dilampirkan.") }];
+      var partsTurnIni = [{ text: instruksiSistem + (catatan || "Tolong pindai dan evaluasi seluruh pilihan produk serta tenor pada foto brosur yang dilampirkan.") }];
       for (var g = 0; g < daftarGambarBrosur.length; g++) {
         partsTurnIni.push({
           inline_data: {
@@ -1663,14 +1512,14 @@
           riwayatChatSesi.pop();
           var badgeErr = document.getElementById('indikatorKoneksiAI');
           if (badgeErr) {
-            badgeErr.innerText = "Koneksi Gagal";
+            badgeErr.innerText = "Server Sedang Sibuk";
             badgeErr.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
           }
           gantiGelembungLoading_(
             idLoading,
-            'Gagal memproses permintaan Multi-AI:<br><code>' + (hasilAI && hasilAI.error ? hasilAI.error : 'Pastikan Code.gs sudah di-Deploy versi baru.') + '</code>',
+            'Permintaan belum dapat diproses saat ini:<br><code>' + (hasilAI && hasilAI.error ? hasilAI.error : 'Server sedang padat, silakan kirim ulang beberapa saat lagi.') + '</code>',
             true,
-            "Gagal Terhubung"
+            "Gangguan Sementara"
           );
           return;
         }
@@ -1683,7 +1532,7 @@
         var labelProviderModel = (hasilAI.provider || "AI") + " (" + (hasilAI.model || "aktif") + ")";
         var badgeOk = document.getElementById('indikatorKoneksiAI');
         if (badgeOk) {
-          badgeOk.innerText = "Aktif: " + labelProviderModel;
+          badgeOk.innerText = "Terhubung: " + labelProviderModel;
           badgeOk.className = "text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
         }
 
@@ -1703,9 +1552,9 @@
         btn.innerText = "Kirim Pesan";
         gantiGelembungLoading_(
           idLoading,
-          'Koneksi ke server Google Apps Script terputus (' + err.message + '). Pastikan Code.gs sudah di-Deploy versi baru.',
+          'Koneksi ke server terputus (' + err.message + '). Periksa jaringan internet Anda lalu coba kirim kembali.',
           true,
-          "Gangguan Server"
+          "Koneksi Terputus"
         );
       }
     };
@@ -1755,7 +1604,7 @@
       if (!SERVER_API_URL || SERVER_API_URL.indexOf("http") !== 0) return;
 
       var userId = getUserIdPrivat();
-      if (!confirm("Hapus seluruh riwayat konsultasi untuk sesi perangkat Anda (" + userId + ") agar kembali kosong?")) return;
+      if (!confirm("Hapus seluruh riwayat konsultasi pada sesi perangkat Anda (" + userId + ")?")) return;
 
       var btn = document.getElementById('btnHapusRiwayat');
       btn.innerText = "Menghapus...";
